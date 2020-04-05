@@ -15,11 +15,26 @@ app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
 
+# List of all terms:
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
     return render_template("terms.html",
                             terms=mongo.db.terms.find())
+
+
+# CRUD Add new term:
+@app.route('/add_term')
+def add_term():
+    return render_template('addterm.html',
+                           categories=mongo.db.categories.find())
+
+
+@app.route('/insert_term', methods=['POST'])
+def insert_term():
+    terms = mongo.db.terms
+    terms.insert_one(request.form.to_dict())
+    return redirect(url_for('get_terms'))
 
 
 if __name__ == '__main__':
