@@ -15,7 +15,7 @@ app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
 
-# List of all terms:
+# Main Page: List of all terms:
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
@@ -23,7 +23,7 @@ def get_terms():
                             terms=mongo.db.terms.find())
 
 
-# CRUD Add new term:
+# CRUD: Add new term:
 @app.route('/add_term')
 def add_term():
     return render_template('addterm.html',
