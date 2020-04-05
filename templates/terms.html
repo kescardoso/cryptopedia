@@ -6,5 +6,31 @@
         {{term.term_description}}
         {{term.category_name}}
     {% endfor %}
+
+    <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    </ul>
+
+    <!-- Js Functions -->
+    <script type="text/javascript">
+        // JS Initialization
+        $(document).ready(function(){
+            // Js Collapsible Accordion
+            $('.collapsible').collapsible();
+            // Js Select
+            $('select').material_select();
+        });
+    </script>
     
 {% endblock %}
