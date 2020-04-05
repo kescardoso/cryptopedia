@@ -7,11 +7,8 @@ from os import path
 if path.exists("env.py"):
     import env
 
-
 app = Flask(__name__)
-
-
-app.config["MONGO_NAME"] = 'thecryptopedia'
+app.config["MONGO_NAME"] = 'cryptopedia'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 
@@ -21,7 +18,8 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
-    return render_template("terms.html", terms=mongo.db.terms.find())
+    return render_template("terms.html",
+                            terms=mongo.db.terms.find())
 
 
 if __name__ == '__main__':
