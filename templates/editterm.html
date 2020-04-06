@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h3>Edit Term</h3>
+    <div class="row">
+
+        <!-- Start form: edit term onto the database -->
+        <form action="{{ url_for('update_term', term_id=term._id) }}" method="POST" class="col s12">
+
+            <!-- Edit category -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">ballot</i>
+                    <select id="category" name="category_name">
+                    <option value="" disabled selected>Choose Category</option> 
+                        {% for cat in categories %}
+                            {% if cat.category_name == term.category_name %}
+                                <option value="{{cat.category_name}}" selected >{{cat.category_name}}</option>
+                            {% else %}
+                                <option value="{{cat.category_name}}"  >{{cat.category_name}}</option>
+                            {% endif %}
+                        {% endfor %}    
+                    </select>
+                    <label>Category</label>
+                </div>
+            </div>
+
+            <!-- Edit name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">bubble_chart</i>
+                    <input id="term_name" name="term_name" type="text" class="validate" value="{{ term.term_name }}">
+                    <label for="icon_assignment">Name</label>
+                </div>
+            </div>
+
+            <!-- Task description -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">insert_comment</i>
+                    <textarea id="term_description" name="term_description" class="materialize-textarea">{{ term.term_description }}</textarea>
+                    <label for="icon_subject">Description or Definition</label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Save
+                    <i class="material-icons right">save_alt</i>
+                </button>
+                <!-- Delete Button -->
+                <a href="{{ url_for('delete_term', term_id=term._id) }}" 
+                    class="btn waves-effect waves-light">
+                    Delete  
+                    <i class="material-icons prefix right">delete_forever</i>
+                </a>
+
+            </div>
+
+        </form>
+    </div>
+
+{% endblock %}

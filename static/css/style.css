@@ -2,7 +2,7 @@
 .btns-glo {
     justify-content: space-between;
     position: absolute;
-    right: 15%;
+    right: 14%;
 }
 
 /* fix buttons dimensions on glossary view */
@@ -10,4 +10,8 @@
     padding-left: 2px;
     margin-right: 8px;
     color: grey;
+}
+
+/* fix delte button style on edit view */
+.btn-del {
 }
