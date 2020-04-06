@@ -14,6 +14,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css"/>
 </head>
+
 <body>
     <!-- Parent Template Block -->
     <h1>Base</h1>
@@ -26,5 +27,15 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!-- Js Functions -->
+    <script type="text/javascript">
+        // JS Initialization
+        $(document).ready(function(){
+            // Js Collapsible Accordion
+            $('.collapsible').collapsible();
+            // Js Select
+            $('select').material_select();
+        });
+    </script>
 </body>
 </html>
