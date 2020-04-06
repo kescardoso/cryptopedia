@@ -1,16 +1,12 @@
-.btn-flat {
-    width: 8px !important;
-    padding-left: 2px !important;
-    height: 24px;
-    line-height: 24px;
-    margin: 5px 5px;
-    background-color: none;
+.btns-glo {
+    /* display: flex; */
+    justify-content: space-between;
+    position: absolute;
+    right: 15%;
 }
 
-.term-header {
-   margin-top:;
-}
-
-.col-eddel {
-    display: inline-block;
+.btn-small {
+    padding-left: 2px;
+    margin-right: 8px;
+    color: grey;
 }

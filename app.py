@@ -23,7 +23,7 @@ def get_terms():
                             terms=mongo.db.terms.find())
 
 
-# CRUD: display form to add new term:
+# CRUD: display form for add new term:
 @app.route('/add_term')
 def add_term():
     return render_template('addterm.html',
@@ -38,11 +38,7 @@ def insert_term():
     return redirect(url_for('get_terms'))
 
 
-
-
-
-
-
+# CRUD: display form for edit term:
 @app.route('/edit_term/<term_id>')
 def edit_term(term_id):
     the_term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
@@ -51,6 +47,7 @@ def edit_term(term_id):
                            categories=all_categories)
 
 
+# CRUD: edit term intto the database:
 @app.route('/update_term/<term_id>', methods=["POST"])
 def update_term(term_id):
     terms = mongo.db.terms
@@ -62,10 +59,16 @@ def update_term(term_id):
     return redirect(url_for('get_terms'))
 
 
+# CRUD: delete term from the database:
 @app.route('/delete_term/<term_id>')
 def delete_term(term_id):
     mongo.db.terms.remove({'_id': ObjectId(term_id)})
     return redirect(url_for('get_terms'))
+
+
+
+
+
 
 
 @app.route('/get_categories')
