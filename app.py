@@ -43,31 +43,29 @@ def insert_term():
 
 
 
-@app.route('/edit_task/<task_id>')
-def edit_task(task_id):
-    the_task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
+@app.route('/edit_term/<term_id>')
+def edit_term(term_id):
+    the_term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     all_categories = mongo.db.categories.find()
-    return render_template('edittask.html', task=the_task,
+    return render_template('editterm.html', term=the_term,
                            categories=all_categories)
 
 
-@app.route('/update_task/<task_id>', methods=["POST"])
-def update_task(task_id):
-    tasks = mongo.db.tasks
-    tasks.update({'_id': ObjectId(task_id)}, {
-        'task_name': request.form.get('task_name'),
+@app.route('/update_term/<term_id>', methods=["POST"])
+def update_term(term_id):
+    terms = mongo.db.terms
+    terms.update({'_id': ObjectId(term_id)}, {
+        'term_name': request.form.get('term_name'),
         'category_name': request.form.get('category_name'),
-        'task_description': request.form.get('task_description'),
-        'due_date': request.form.get('due_date'),
-        'is_urgent': request.form.get('is_urgent')
+        'term_description': request.form.get('term_description'),
     })
-    return redirect(url_for('get_tasks'))
+    return redirect(url_for('get_terms'))
 
 
-@app.route('/delete_task/<task_id>')
-def delete_task(task_id):
-    mongo.db.tasks.remove({'_id': ObjectId(task_id)})
-    return redirect(url_for('get_tasks'))
+@app.route('/delete_term/<term_id>')
+def delete_term(term_id):
+    mongo.db.terms.remove({'_id': ObjectId(term_id)})
+    return redirect(url_for('get_terms'))
 
 
 @app.route('/get_categories')
