@@ -66,17 +66,14 @@ def delete_term(term_id):
     return redirect(url_for('get_terms'))
 
 
-
-
-
-
-
+# CRUD: Bind and display categories from the database
 @app.route('/get_categories')
 def get_categories():
     return render_template('categories.html',
                            categories=mongo.db.categories.find())
 
 
+# CRUD: Display categories on form to be edited
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     return render_template('editcategory.html',
@@ -84,6 +81,7 @@ def edit_category(category_id):
                             {'_id': ObjectId(category_id)}))
 
 
+# CRUD: Edit categories from form onto the database
 @app.route('/update_category/<category_id>', methods=['POST'])
 def update_category(category_id):
     mongo.db.categories.update(
@@ -92,12 +90,14 @@ def update_category(category_id):
     return redirect(url_for('get_categories'))
 
 
+# CRUD: Delete categories on form from the databse
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     mongo.db.categories.remove({'_id': ObjectId(category_id)})
     return redirect(url_for('get_categories'))
 
 
+# CRUD: Add new Category from form into the database
 @app.route('/insert_category', methods=['POST'])
 def insert_category():
     category_doc = {'category_name': request.form.get('category_name')}
@@ -105,13 +105,10 @@ def insert_category():
     return redirect(url_for('get_categories'))
 
 
+# CRUD: Add new Category from form into the database
 @app.route('/add_category')
 def add_category():
     return render_template('addcategory.html')
-
-
-
-
 
 
 if __name__ == '__main__':
