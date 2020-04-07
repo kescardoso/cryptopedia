@@ -10,7 +10,7 @@
             <!-- Edit term category -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">ballot</i>
+                    <i class="material-icons prefix">label</i>
                     <select id="category" name="category_name">
                     <option value="" disabled selected>Choose Category</option> 
                         {% for cat in categories %}
@@ -28,7 +28,7 @@
             <!-- Edit term name -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">bubble_chart</i>
+                    <i class="material-icons prefix">attachment</i>
                     <input id="term_name" name="term_name" type="text" class="validate" value="{{ term.term_name }}">
                     <label for="icon_assignment">Name</label>
                 </div>

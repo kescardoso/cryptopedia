@@ -31,6 +31,7 @@ main {
     flex: 1 0 auto;
   }
 
+/* Footer credits */
 footer{
     text-transform: uppercase;
     font-size: 80%;

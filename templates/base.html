@@ -30,26 +30,57 @@
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <!-- Responsive Nav -->
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="{{url_for('get_terms')}}">Glossary</a></li>
-                        <li><a href="{{url_for('add_term')}}">Add New</a></li>
-                        <li><a href="{{url_for('get_categories')}}">Categories</a></li>    
+                        <li><a href="{{url_for('get_terms')}}">
+                                <i class="material-icons left">menu_book</i>
+                                Glossary
+                            </a>
+                        </li>
+                        <li><a href="{{url_for('add_term')}}">
+                                <i class="material-icons left">library_add</i>
+                                Add New
+                            </a>
+                        </li>   
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger dropdown-button btn" href="#!" data-activates="dropdown1">
+                        <li><a class="dropdown-trigger dropdown-button" href="#!" data-activates="dropdown1">
+                                <i class="material-icons left">label</i>
                                 Categories<i class="material-icons right">arrow_drop_down</i>
                             </a>
                         </li>
                         <!-- Dropdown Link Structure -->
                         <ul id="dropdown1" class="dropdown-content">
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li><a href="{{url_for('get_categories')}}">Categories</a></li>
+                            <li><a href="{{url_for('get_categories')}}">Manage Categories</a></li> 
+                            <li><a href="#!">Category one</a></li>
+                            <li><a href="#!">Category two</a></li>
+                            <li><a href="#!">Category three</a></li>
                         </ul>
+                        <li><a class="btn" href="#!">
+                                <i class="material-icons left">vpn_key</i>
+                                Log In
+                            </a>
+                        </li>
                     </ul>
                     <!-- Mobile Nav -->
                     <ul class="side-nav" id="mobile-demo">
-                        <li><a href="{{url_for('get_terms')}}">Glossary</a></li>
-                        <li><a href="{{url_for('add_term')}}">Add New</a></li>
-                        <li><a href="{{url_for('get_categories')}}">Categories</a></li>
+                        <li><a href="#!">
+                                <i class="material-icons">vpn_key</i>
+                                Log In
+                            </a>
+                        </li>
+                        <li><a href="{{url_for('get_terms')}}">
+                                <i class="material-icons left">menu_book</i>
+                                Glossary
+                            </a>
+                        </li>
+                        <li><a href="{{url_for('add_term')}}">
+                                <i class="material-icons left">library_add</i>
+                                Add New
+                            </a>
+                        </li>   
+                        <li><a href="{{url_for('get_categories')}}">
+                                <i class="material-icons left">label</i>
+                                Categories
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -81,6 +112,8 @@
             $('.button-collapse').sideNav();
             $('.sidenav').sidenav();
             $('.dropdown-button').dropdown();
+            // Search
+            $('input.autocomplete').autocomplete();
         });
     </script>
 </main>
