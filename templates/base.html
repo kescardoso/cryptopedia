@@ -12,7 +12,7 @@
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css"/>
 </head>
 
 <main>
@@ -24,7 +24,9 @@
             <nav>
                 <div class="nav-wrapper">
                     <!-- Logo at Nav -->
-                    <a href="{{url_for('get_terms')}}" class="brand-logo">The Cryptopedia</a>
+                    <a href="{{url_for('get_terms')}}" class="brand-logo">
+                        <img id='image-logo' alt="The Cryptopedia World" src="{{ url_for('static', filename='images/logo-cryptopedia.png') }}">
+                    </a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <!-- Responsive Nav -->
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -87,13 +89,15 @@
 <footer>
     <div class="footer-copyright center">
         <div class="container">
-        © 2020 The Cryptopedia World ✩ Brought to you by The Ether Girl
+        The Cryptopedia World <span class="unicorn">🦄</span>Built by The Ether Girl
         </br> 
-        <a class="grey-text" href="{{ url_for('about') }}">About</a> 
+        <a class="foot-link grey-text" href="{{ url_for('about') }}">About</a> 
         ・ 
-        <a class="grey-text" href="https://github.com/kescardoso/cryptopedia" target ='_blank' alt='Github Repo'>Github</a>
+        <a class="foot-link grey-text" href="https://github.com/kescardoso/cryptopedia" target ='_blank' alt='Github Repo'>Github</a>
         ・ 
-        <a class="grey-text" href="https://twitter.com/TokensForK" target ='_blank' alt='Twitter'>Twitter</a>
+        <a class="foot-link grey-text" href="https://twitter.com/TokensForK" target ='_blank' alt='Twitter'>Twitter</a>
+        ・ 
+        <a class="foot-link grey-text" href="mailto:info@kescardoso.com" target ='_blank' alt='Contact'>Contact</a>
         </div>
         </div>
 </footer>
