@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Base</title>
+    <title>The Cryptopedia World</title>
 
     <!-- Materialize Fonts/Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,11 +16,51 @@
 </head>
 
 <body>
-    <!-- Parent Template Block -->
-    <h1>Base</h1>
+
+    <!-- Nav -->
+    <header>
+        <!-- Navbar is fixed -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <!-- Logo at Nav -->
+                    <a href="{{url_for('get_terms')}}" class="brand-logo">The Cryptopedia</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <!-- Responsive Nav -->
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="{{url_for('get_terms')}}">Glossary</a></li>
+                        <li><a href="{{url_for('add_term')}}">Add New</a></li>
+                        <li><a href="{{url_for('get_categories')}}">Categories</a></li>    
+                        <!-- Dropdown Trigger -->
+                        <li><a class="dropdown-trigger dropdown-button btn" href="#!" data-activates="dropdown1">
+                                Categories<i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+                        <!-- Dropdown Link Structure -->
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li><a href="#!">one</a></li>
+                            <li><a href="#!">two</a></li>
+                            <li><a href="{{url_for('get_categories')}}">Categories</a></li>
+                        </ul>
+                    </ul>
+                    <!-- Mobile Nav -->
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a href="{{url_for('get_terms')}}">Glossary</a></li>
+                        <li><a href="{{url_for('add_term')}}">Add New</a></li>
+                        <li><a href="{{url_for('get_categories')}}">Categories</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Container starts here -->
     <div class="container">
+        <!-- Parent Template Block -->
         {% block content %}
         {% endblock %}
+
+    <!-- Container ends here -->
     </div>
 
     <!-- Jquery -->
@@ -35,7 +75,15 @@
             $('.collapsible').collapsible();
             // Js Select
             $('select').material_select();
+            // Nav and mobile nav
+            $(".button-collapse").sideNav();
+            $('.dropdown-button').dropdown({
         });
+        // Menu dropdown
+        // var dropdowns = document.querySelectorAll('.dropdown-trigger')
+        //     for (var i = 0; i < dropdowns.length; i++){
+        //         M.Dropdown.init(dropdowns[i]);
+        //     };
     </script>
 </body>
 </html>
