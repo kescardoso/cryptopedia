@@ -3,39 +3,14 @@
 
 <h3>Add New Term</h3>
 <div class="row">
-
-    <!-- Start form: add new term to the database -->
-    <form  action="{{ url_for('insert_term') }}" method="POST" class="col s12">
-
-        <!-- Select category from database -->
+    
+    <!-- Start form: Add Category -->
+    <form action="{{ url_for('insert_category') }}" method="POST" class="col s12">
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">ballot</i>
-                <select id="category" name="category_name">
-                <option value="" disabled selected>Choose Category</option>
-                {% for cat in categories %}
-                    <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                {% endfor %}
-            </select>
-                <label>Category</label>
-            </div>
-        </div>
-
-        <!-- Add term name -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">bubble_chart</i>
-                <input id="term_name" name="term_name" type="text">
-                <label for="icon_prefix">Name</label>
-            </div>
-        </div>
-
-        <!-- Add term description or definition -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">insert_comment</i>
-                <textarea name="term_description" id="term_description" class="materialize-textarea"></textarea>
-                <label for="icon_prefix">Description or Definition</label>
+                <input id="category_name" name="category_name" type="text" class="validate">
+                <label for="category_name">Category</label>
             </div>
         </div>
 
@@ -43,7 +18,7 @@
         <div class="row">
             <!-- Save add button -->
             <button class="btn waves-effect waves-light" type="submit" name="action">
-                Add to Glossary
+                Add to Categories
                 <i class="material-icons right">save_alt</i>
             </button>
             <!-- Cancel button -->
@@ -55,6 +30,7 @@
         </div>
 
     </form>
+
 </div>
 
 {% endblock %}
