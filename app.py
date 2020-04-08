@@ -15,6 +15,14 @@ app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
 
+# Search Form for glossary terms
+@app.route('/search_terms/<search>')
+def search_terms(search):
+    results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
+    return render_template("terms.html",
+                            terms=results)
+
+
 # CRUD: bind and display list of all terms in the database:
 @app.route('/')
 @app.route('/get_terms')

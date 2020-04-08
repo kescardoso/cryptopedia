@@ -26,11 +26,12 @@
             <li>
                 <div class="collapsible-header">
                     <div class="col s12"> 
-                    <form>
+                    <form id="search-form" action="{{ url_for('search_terms', search='search') }}" method="GET" class="col s12">
                         <div class="input-field col s12">
                             <i class="material-icons prefix left">search</i>
-                            <input class="search-input" id="search" type="search" 
-                                placeholder="Search for a term">
+                            <!-- js: get input value to add to url (without quotes: search_item) -->
+                            <input class="search-input" id="search" type="search"
+                                placeholder="Type your term and hit enter">
                             <i class="material-icons">close</i>
                         </div>
                     </form>
