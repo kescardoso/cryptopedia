@@ -3,6 +3,21 @@
 
      <div class="row">
 
+        <!-- About Card: Intro to The Cryptopedia -->
+        <div class="row">
+            <div class="col s12">
+                <div class="card horizontal ">
+                    <div class="card-content black-text">
+                        <span class="card-title">The Cryptopedia World</span>
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.
+                        <a class="foot-link grey-text" href="{{ url_for('about') }}">Read more (about page)</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h3>Glossary</h3>
         <!-- Start List: Glossary of Terms -->
         <ul class="collapsible" data-collapsible="accordion">
@@ -63,7 +78,7 @@
 
     <!-- Button: add new term -->
     <div class="row">
-        <a href="{{url_for('add_term')}}" class="waves-effect waves-light btn">
+        <a href="{{url_for('add_term')}}" class="waves-effect waves-light btn cyan darken-2">
             <i class="material-icons right">library_add</i>Add New Term</a>
     </div>
     

@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/0e62df9888.js" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css"/>
 </head>
@@ -30,33 +32,32 @@
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <!-- Responsive Nav -->
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="{{url_for('get_terms')}}">
+                        <li><a class="nav-links cyan-text text-darken-2" href="{{url_for('get_terms')}}">
                                 <i class="material-icons left">menu_book</i>
                                 Glossary
                             </a>
                         </li>
-                        <li><a href="{{url_for('add_term')}}">
+                        <li><a class="nav-links cyan-text text-darken-2" href="{{url_for('add_term')}}">
                                 <i class="material-icons left">library_add</i>
                                 Add New
                             </a>
                         </li>   
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger dropdown-button" href="#!" data-activates="dropdown1">
+                        <li><a class="dropdown-trigger dropdown-button nav-links cyan-text text-darken-2" 
+                                href="#!" data-activates="dropdown1">
                                 <i class="material-icons left">label</i>
                                 Categories<i class="material-icons right">arrow_drop_down</i>
                             </a>
                         </li>
                         <!-- Dropdown Link Structure -->
                         <ul id="dropdown1" class="dropdown-content">
-                            <li><a href="{{url_for('get_categories')}}">Manage Categories</a></li> 
-                            <li><a href="#!">Category one</a></li>
-                            <li><a href="#!">Category two</a></li>
-                            <li><a href="#!">Category three</a></li>
+                            <li><a class="nav-drop black-text" href="{{url_for('get_categories')}}">Manage Categories</a></li> 
+                            <li class="divider"></li>
+                            <li><a class="nav-drop cyan-text text-darken-2" href="#!">Category one</a></li>
+                            <li><a class="nav-drop cyan-text text-darken-2" href="#!">Category two</a></li>
+                            <li><a class="nav-drop cyan-text text-darken-2" href="#!">Category three</a></li>
                         </ul>
-                        <li><a class="btn" href="#!">
-                                <i class="material-icons left">vpn_key</i>
-                                Log In
-                            </a>
+                        <li><a class="btn cyan darken-2" href="#!">Log In</a>
                         </li>
                     </ul>
                     <!-- Mobile Nav -->
@@ -122,17 +123,16 @@
 <footer>
     <div class="footer-copyright center">
         <div class="container">
-        The Cryptopedia World <span class="unicorn">🦄</span>Built by The Ether Girl
-        </br> 
-        <a class="foot-link grey-text" href="{{ url_for('about') }}">About</a> 
-        ・ 
-        <a class="foot-link grey-text" href="https://github.com/kescardoso/cryptopedia" target ='_blank' alt='Github Repo'>Github</a>
-        ・ 
-        <a class="foot-link grey-text" href="https://twitter.com/TokensForK" target ='_blank' alt='Twitter'>Twitter</a>
-        ・ 
-        <a class="foot-link grey-text" href="mailto:info@kescardoso.com" target ='_blank' alt='Contact'>Contact</a>
+            <div class="foot-creds">
+                The Cryptopedia World <span class="unicorn">🦄 </span>Built by The Ether Girl
+            </div>
+            <div class ="foot-links">
+                <a class="foot-link black-text" href="mailto:info@kescardoso.com" target ='_blank' alt='Contact'><i class="footer-links far fa-envelope"></i></a>
+                <a class="foot-link black-text" href="https://github.com/kescardoso/cryptopedia" target ='_blank' alt='Github Repo'><i class="footer-links fab fa-github-alt"></i></a>
+                <a class="foot-link black-text" href="https://twitter.com/TokensForK" target ='_blank' alt='Twitter'><i class="footer-links fab fa-twitter"></i></a>
+            </div>
         </div>
-        </div>
+    </div>
 </footer>
 
 </html>

@@ -7,6 +7,7 @@
 
 /* fix buttons dimensions on glossary view */
 .btn-flat {
+    background: none;  
 }
 
 /* Nav: brand-image */
@@ -17,8 +18,27 @@
     margin-left: 6px;
   }
 
-/* Sticky Footer */
+  .nav-wrapper{
+      background-color: #fbfbf8 !important;
+  }
+
+  .nav-links {
+      text-transform: uppercase;
+      font-size: 90%;
+      letter-spacing: 0.2em;
+  }
+
+  .nav-drop {
+      text-transform: uppercase;
+      font-size: 85% !important;
+      letter-spacing: 0.1em;
+  }
+
+/* Body and Footer */
 body {
+    /* Background image */
+    background: url('/static/images/paper01.png');
+    /* Sticky Footer */
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -30,14 +50,27 @@ main {
 
 /* Footer credits */
 footer{
-    text-transform: uppercase;
-    font-size: 80%;
+    text-transform: uppercase;  
     letter-spacing: 0.2em;
     color: #888;
-    background-color: #f5f5f5;
-    padding: 10px;
+    background-color: #fbfbf8 !important;
+    padding: 16px 8px;
+  }
+
+  .foot-creds {
+      font-size: 85%;
   }
 
   .unicorn{
       font-size: 125%;
+  }
+
+  .foot-links {
+      font-size: 125%;
+  }
+
+  /* About Card */
+  .card {
+      /* background-color: #fbfbf8; */
+      background: url('/static/images/paper02.png');
   }
