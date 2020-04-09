@@ -12,7 +12,6 @@
     height: 60px;
     width: auto;
     padding: 2px 4px;
-    /* margin-left: 6px; */
   }
 
   .navbar{
@@ -49,25 +48,23 @@ main {
 footer{
     text-transform: uppercase;  
     letter-spacing: 0.2em;
-    color: #888;
     background-color: #fbfbf8 !important;
     padding: 10px 5px 5px 5px;
   }
 
-  .foot-creds {
-      font-size: 85%;
-  }
-
-  .unicorn{
-      font-size: 125%;
+  .foot-creds,
+  .ether-girl {
+      font-size: 85%; 
   }
 
   .foot-links {
       font-size: 125%;
   }
 
+  footer a {
+    color: #3b4a40 !important;
+
   /* About Card */
   .card {
-      /* background-color: #fbfbf8; */
       background: url('/static/images/paper02.png');
   }
