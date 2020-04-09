@@ -2,24 +2,21 @@
 .btns-glo {
     justify-content: space-between;
     position: absolute;
-    right: 14%;
-}
-
-/* fix buttons dimensions on glossary view */
-.btn-flat {
-    background: none;  
+    width: 0rem;
+    margin-right: 0;
+    right: 20%;
 }
 
 /* Nav: brand-image */
 #image-logo {
     height: 60px;
     width: auto;
-    padding: 2px 6px;
-    margin-left: 6px;
+    padding: 2px 4px;
+    /* margin-left: 6px; */
   }
 
-  .nav-wrapper{
-      background-color: #fbfbf8 !important;
+  .navbar{
+      background-color:#3b4a40 !important;
   }
 
   .nav-links {
@@ -54,7 +51,7 @@ footer{
     letter-spacing: 0.2em;
     color: #888;
     background-color: #fbfbf8 !important;
-    padding: 16px 8px;
+    padding: 10px 5px 5px 5px;
   }
 
   .foot-creds {

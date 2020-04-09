@@ -11,57 +11,67 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/0e62df9888.js" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css"/>
 </head>
 
 <main>
 
-    <!-- Nav -->
     <header>
-        <!-- Navbar is fixed -->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper">
+            
+        <!-- Nav -->
+        <nav class="navbar black-text">
+
+            <!-- Nav wrapper -->
+            <div class="nav-wrapper">
+
+                <!-- Container starts here -->
+                <div class="container">
+
                     <!-- Logo at Nav -->
                     <a href="{{url_for('get_terms')}}" class="brand-logo">
-                        <img id='image-logo' alt="The Cryptopedia World" src="{{ url_for('static', filename='images/logo-cryptopedia.png') }}">
+                        <img id='image-logo' alt="The Cryptopedia World" src="{{ url_for('static', filename='images/logo-cpw-blue.png') }}">
                     </a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    
                     <!-- Responsive Nav -->
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a class="nav-links cyan-text text-darken-2" href="{{url_for('get_terms')}}">
+                        <li>
+                            <a class="nav-links" href="{{url_for('get_terms')}}">
                                 <i class="material-icons left">menu_book</i>
                                 Glossary
                             </a>
                         </li>
-                        <li><a class="nav-links cyan-text text-darken-2" href="{{url_for('add_term')}}">
+                        <li>
+                            <a class="nav-links" href="{{url_for('add_term')}}">
                                 <i class="material-icons left">library_add</i>
                                 Add New
                             </a>
                         </li>   
+                        
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger dropdown-button nav-links cyan-text text-darken-2" 
+                        <li>
+                            <a class="dropdown-trigger dropdown-button nav-links" 
                                 href="#!" data-activates="dropdown1">
                                 <i class="material-icons left">label</i>
                                 Categories<i class="material-icons right">arrow_drop_down</i>
                             </a>
                         </li>
+                        
                         <!-- Dropdown Link Structure -->
                         <ul id="dropdown1" class="dropdown-content">
                             <li><a class="nav-drop black-text" href="{{url_for('get_categories')}}">Manage Categories</a></li> 
                             <li class="divider"></li>
-                            <li><a class="nav-drop cyan-text text-darken-2" href="#!">Category one</a></li>
-                            <li><a class="nav-drop cyan-text text-darken-2" href="#!">Category two</a></li>
-                            <li><a class="nav-drop cyan-text text-darken-2" href="#!">Category three</a></li>
+                            <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category one</a></li>
+                            <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category two</a></li>
+                            <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category three</a></li>
                         </ul>
-                        <li><a class="btn cyan darken-2" href="{{ url_for('login') }}">Log In</a>
+                        <li><a class="btn cyan accent-4" href="{{ url_for('login') }}">Log In</a>
                         </li>
                     </ul>
+                    
                     <!-- Mobile Nav -->
-                    <ul class="side-nav" id="mobile-demo">
+                    <ul class="side-nav cyan-text text-darken-2" id="mobile-demo">
                         <li><a href="#!">
                                 <i class="material-icons">vpn_key</i>
                                 Log In
@@ -83,22 +93,31 @@
                             </a>
                         </li>
                     </ul>
+
+                <!-- Container ends here -->
                 </div>
-            </nav>
-        </div>
+
+            <!-- Nav wrapper ends here -->
+            </div>
+
+        <!-- Nav ends here -->
+        </nav>
+
+    <!-- Header ends here -->
     </header>
 
+    <!-- Parent Template Block -->
     <!-- Container starts here -->
     <div class="container">
-        <!-- Parent Template Block -->
         {% block content %}
         {% endblock %}
-
-    <!-- Container ends here -->
     </div>
+
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/0e62df9888.js" crossorigin="anonymous"></script>
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <!-- Js Functions -->
@@ -133,7 +152,9 @@
     <div class="footer-copyright center">
         <div class="container">
             <div class="foot-creds">
-                The Cryptopedia World <span class="unicorn">🦄 </span>Built by The Ether Girl
+                The Cryptopedia World
+                </br>
+                <a class="black-text" href="http://theethergirl.substack.com" target ='_blank' alt='Blog: The Ether Girl'>Built by The Ether Girl</a>
             </div>
             <div class ="foot-links">
                 <a class="foot-link black-text" href="mailto:info@kescardoso.com" target ='_blank' alt='Contact'><i class="footer-links far fa-envelope"></i></a>

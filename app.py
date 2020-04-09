@@ -125,22 +125,29 @@ def about():
     return render_template("about.html")
 
 
+# Display terms by category
+# @app.route('sort_cats/<category_id>')
+# def sort_cats(category_id):
+#     db.getCollection('Cryptopedia').find({'\category_id' : coins })
+#     return render_template("sort.html")
+
+
 # Login page
 @app.route('/login')
 def login():
     return render_template("login.html")
 
 
-# Signup page
-@app.route('/signup')
-def signup():
-    return render_template("signup.html")
+# # Signup page
+# @app.route('/signup')
+# def signup():
+#     return render_template("signup.html")
 
 
-# User dashboard page
-@app.route('/user_dash')
-def user_dash():
-    return render_template("user.html")
+# # User dashboard page
+# @app.route('/user_dash')
+# def user_dash():
+#     return render_template("user.html")
 
 
 if __name__ == '__main__':
