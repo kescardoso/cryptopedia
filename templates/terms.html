@@ -3,16 +3,22 @@
 
      <div class="row">
 
-        <!-- About Card: Intro to The Cryptopedia -->
+        <!-- CARD About and Guide to The Cryptopedia -->
         <div class="row">
             <div class="col s12">
                 <div class="card horizontal ">
                     <div class="card-content black-text">
-                        <span class="card-title">The Cryptopedia World</span>
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.
-                        <a class="foot-link grey-text" href="{{ url_for('about') }}">Read more (about page)</a> 
+                        <p><strong>The Cryptopedia</strong> is a community encyclopedia about crypto-currencies, 
+                        crypto-economy and the blockchain technology. 
+                        When I was getting started with crypto, every term and concept was foreign to me. So, 
+                        it took me significant time to understand how to implement the information and dive 
+                        into the possibilities available in decentralized finances. That's why I created The Cryptopedia: 
+                        to help you get educated and informed faster and in a friendly manner. The Cryptopedia is free to use, 
+                        and all are welcome to join in building the archives as a community. 
+                        <span class="card-signup"><a href="{{ url_for('login') }}">Sign up</a></span>
+                        to create your account and start learning and contributing today!
                         </p>
+                        <p class="card-link"><a href="{{ url_for('about') }}">Read the guide</a></p>
                     </div>
                 </div>
             </div>
@@ -52,7 +58,7 @@
                     <div class="col s11">
                         <div class="term-header left"> 
                             <!-- Term Header: name - category -->
-                            <strong>{{term.term_name}}</strong> - {{term.category_name}}
+                            <strong>{{term.term_name}}</strong> - <span class="grey-text">{{term.category_name}}</span>
                         </div>
                         <div class="btns-glo">
                             <!-- Edit and Delete Button -->

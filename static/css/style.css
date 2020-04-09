@@ -1,3 +1,8 @@
+html {
+    font-family: "Lato", sans serif;
+    letter-spacing: 0.04em;
+}
+
 /* force float buttons to the right on glossary view */
 .btns-glo {
     justify-content: space-between;
@@ -20,8 +25,8 @@
 
   .nav-links {
       text-transform: uppercase;
-      font-size: 90%;
-      letter-spacing: 0.2em;
+      font-size: 80%;
+      /* letter-spacing: 0.2em; */
   }
 
   .nav-drop {
@@ -63,8 +68,28 @@ footer{
 
   footer a {
     color: #3b4a40 !important;
+  }
 
   /* About Card */
-  .card {
-      background: url('/static/images/paper02.png');
-  }
+.card.horizontal {
+    margin-top: 20px;
+}
+.card {
+    background: url('/static/images/paper02.png');
+}
+
+.card-content {
+    font-family: "Georgia", serif !important;
+    padding: 4px;
+}
+
+.card-link {
+    text-transform: uppercase;
+    text-align: right !important;
+    font-family: "Lato", sans-serif;
+}
+
+.card-link a,
+.card-signup a {
+    color: #3b4a40 !important;
+}
