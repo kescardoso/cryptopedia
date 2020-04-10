@@ -16,11 +16,22 @@ mongo = PyMongo(app)
 
 
 # Search Form for glossary terms
-@app.route('/search_terms/<search>')
+
+# From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
+# And: https://stackoverflow.com/questions/49884312/mongodb-text-index-search
+@app.route('/search_terms')
 def search_terms(search):
-    results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
+    mongo.db.terms.create_index({ term_name: "text", term_description: "text" })
+    results=mongo.db.terms.find({"$text": {"$search": search}})
     return render_template("terms.html",
                             terms=results)
+
+#Seun
+# @app.route('/search_terms/<search>')
+# def search_terms(search):
+#     results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
+#     return render_template("terms.html",
+#                             terms=results)
 
 
 # CRUD: bind and display list of all terms in the database:
