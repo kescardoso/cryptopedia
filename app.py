@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_login import LoginManager, UserMixin, login_user
 # Environment Variables
 from os import path
 if path.exists("env.py"):
@@ -11,16 +12,16 @@ app = Flask(__name__)
 app.config["MONGO_NAME"] = 'cryptopedia'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
+# Flask Login secret key
+app.config["SECRET_KEY"] = '!gMcT*jnqvez&'
+
 
 mongo = PyMongo(app)
 
-
-# Flask Login Installation, from: https://flask-login.readthedocs.io/
-# Flask Login Config: login manager and application
+# Flask Login Init
 login_manager = LoginManager()
 login_manager.init_app(app)
-# Flask Login secret key
-app.secret_key = !gMcT*jnqvez;
+login_manager.login.view =  'login'
 
 
 # UserLoader Callback:
@@ -28,7 +29,7 @@ app.secret_key = !gMcT*jnqvez;
 # It should return None if the ID is not valid. 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.query.get(int(user_id))
 
 
 # Login page
@@ -54,10 +55,10 @@ def login():
     return flask.render_template('login.html', form=form)
 
 
-# # Signup page
-# @app.route('/signup')
-# def signup():
-#     return render_template("signup.html")
+# Signup page
+@app.route('/signup')
+def signup():
+    return render_template("signup.html")
 
 
 # # User dashboard page
