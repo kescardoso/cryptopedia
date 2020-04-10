@@ -15,6 +15,57 @@ app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
 
+# Flask Login Installation, from: https://flask-login.readthedocs.io/
+# Flask Login Config: login manager and application
+login_manager = LoginManager()
+login_manager.init_app(app)
+# Flask Login secret key
+app.secret_key = !gMcT*jnqvez;
+
+
+# UserLoader Callback:
+# reloads the user object from the user ID stored in the session
+# It should return None if the ID is not valid. 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+
+# Login page
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    # Use a class of some kind to represent and validate our client-side form data
+    # and use a custom LoginForm to validate
+    form = LoginForm()
+    if form.validate_on_submit():
+        # Login and validate the user.
+        # user should be an instance of `User` class
+        login_user(user)
+
+        flask.flash('Logged in successfully.')
+
+        next = flask.request.args.get('next')
+        # is_safe_url should check if the url is safe for redirects.
+        # See http://flask.pocoo.org/snippets/62/ for an example.
+        if not is_safe_url(next):
+            return flask.abort(400)
+
+        return flask.redirect(next or flask.url_for('index'))
+    return flask.render_template('login.html', form=form)
+
+
+# # Signup page
+# @app.route('/signup')
+# def signup():
+#     return render_template("signup.html")
+
+
+# # User dashboard page
+# @app.route('/user_dash')
+# def user_dash():
+#     return render_template("user.html")
+
+
 # Search Form for glossary terms
 
 # From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
@@ -134,31 +185,6 @@ def insert_category():
 @app.route('/about')
 def about():
     return render_template("about.html")
-
-
-# Display terms by category
-# @app.route('sort_cats/<category_id>')
-# def sort_cats(category_id):
-#     db.getCollection('Cryptopedia').find({'\category_id' : coins })
-#     return render_template("sort.html")
-
-
-# Login page
-@app.route('/login')
-def login():
-    return render_template("login.html")
-
-
-# # Signup page
-# @app.route('/signup')
-# def signup():
-#     return render_template("signup.html")
-
-
-# # User dashboard page
-# @app.route('/user_dash')
-# def user_dash():
-#     return render_template("user.html")
 
 
 if __name__ == '__main__':
