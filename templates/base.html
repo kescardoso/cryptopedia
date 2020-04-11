@@ -27,77 +27,71 @@
             <!-- Nav wrapper -->
             <div class="nav-wrapper">
 
-                <!-- Container starts here -->
-                <div class="container">
-
-                    <!-- Logo at Nav -->
-                    <a href="{{url_for('get_terms')}}" class="brand-logo">
-                        <img id='image-logo' alt="The Cryptopedia World" src="{{ url_for('static', filename='images/logo-cpw-blue.png') }}">
-                    </a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <!-- Logo at Nav -->
+                <a href="{{url_for('get_terms')}}" class="brand-logo">
+                    <img id='image-logo' alt="The Cryptopedia World" src="{{ url_for('static', filename='images/logo-cpw-blue.png') }}">
+                </a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                
+                <!-- Responsive Nav -->
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a class="nav-links" href="{{url_for('get_terms')}}">
+                            <i class="material-icons left">menu_book</i>
+                            Glossary
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-links" href="{{url_for('add_term')}}">
+                            <i class="material-icons left">library_add</i>
+                            Add New
+                        </a>
+                    </li>   
                     
-                    <!-- Responsive Nav -->
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li>
-                            <a class="nav-links" href="{{url_for('get_terms')}}">
-                                <i class="material-icons left">menu_book</i>
-                                Glossary
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-links" href="{{url_for('add_term')}}">
-                                <i class="material-icons left">library_add</i>
-                                Add New
-                            </a>
-                        </li>   
-                        
-                        <!-- Dropdown Trigger -->
-                        <li>
-                            <a class="dropdown-trigger dropdown-button nav-links" 
-                                href="#!" data-activates="dropdown1">
-                                <i class="material-icons left">label</i>
-                                Categories<i class="material-icons right">arrow_drop_down</i>
-                            </a>
-                        </li>
-                        
-                        <!-- Dropdown Link Structure -->
-                        <ul id="dropdown1" class="dropdown-content">
-                            <li><a class="nav-drop black-text" href="{{url_for('get_categories')}}">Manage Categories</a></li> 
-                            <li class="divider"></li>
-                            <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category one</a></li>
-                            <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category two</a></li>
-                            <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category three</a></li>
-                        </ul>
-                        <li><a class="btn cyan accent-4" href="{{ url_for('login') }}">Log In</a>
-                        </li>
-                    </ul>
+                    <!-- Dropdown Trigger -->
+                    <li>
+                        <a class="dropdown-trigger dropdown-button nav-links" 
+                            href="#!" data-activates="dropdown1">
+                            <i class="material-icons left">label</i>
+                            Categories<i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
                     
-                    <!-- Mobile Nav -->
-                    <ul class="side-nav cyan-text text-darken-2" id="mobile-demo">
-                        <li><a href="#!">
-                                <i class="material-icons">vpn_key</i>
-                                Log In
-                            </a>
-                        </li>
-                        <li><a href="{{url_for('get_terms')}}">
-                                <i class="material-icons left">menu_book</i>
-                                Glossary
-                            </a>
-                        </li>
-                        <li><a href="{{url_for('add_term')}}">
-                                <i class="material-icons left">library_add</i>
-                                Add New
-                            </a>
-                        </li>   
-                        <li><a href="{{url_for('get_categories')}}">
-                                <i class="material-icons left">label</i>
-                                Categories
-                            </a>
-                        </li>
+                    <!-- Dropdown Link Structure -->
+                    <ul id="dropdown1" class="dropdown-content">
+                        <li><a class="nav-drop black-text" href="{{url_for('get_categories')}}">Manage Categories</a></li> 
+                        <li class="divider"></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category one</a></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category two</a></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category three</a></li>
                     </ul>
-
-                <!-- Container ends here -->
-                </div>
+                    <li><a class="btn cyan accent-4" href="{{ url_for('login') }}">Sign In / Sign Up</a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Nav -->
+                <ul class="side-nav cyan-text text-darken-2" id="mobile-demo">
+                    <li><a href="{{ url_for('login') }}">
+                            <i class="material-icons">vpn_key</i>
+                            Log In
+                        </a>
+                    </li>
+                    <li><a href="{{url_for('get_terms')}}">
+                            <i class="material-icons left">menu_book</i>
+                            Glossary
+                        </a>
+                    </li>
+                    <li><a href="{{url_for('add_term')}}">
+                            <i class="material-icons left">library_add</i>
+                            Add New
+                        </a>
+                    </li>   
+                    <li><a href="{{url_for('get_categories')}}">
+                            <i class="material-icons left">label</i>
+                            Categories
+                        </a>
+                    </li>
+                </ul>
 
             <!-- Nav wrapper ends here -->
             </div>
@@ -108,9 +102,25 @@
     <!-- Header ends here -->
     </header>
 
-    <!-- Parent Template Block -->
+    
     <!-- Container starts here -->
     <div class="container">
+        <!-- Flash Message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" 
+                     style="margin: 20px 0px 5px 0px;
+                            padding: 20px 15px;
+                            text-transform: uppercase;
+                            letter-spacing: 0.1em;
+                            text-align: center">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        <!-- Parent Template Block -->
         {% block content %}
         {% endblock %}
     </div>

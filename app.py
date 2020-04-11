@@ -1,89 +1,23 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask_login import LoginManager, UserMixin, login_user
-# Environment Variables
+# Forms
+from forms import RegistrationForm, LoginForm
+# Environment variables
 from os import path
 if path.exists("env.py"):
     import env
 
 app = Flask(__name__)
+
+# MongoDB settings
 app.config["MONGO_NAME"] = 'cryptopedia'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
-
-# Flask Login secret key
+# Flask settings
 app.config["SECRET_KEY"] = '!gMcT*jnqvez&'
 
-
 mongo = PyMongo(app)
-
-# Flask Login Init
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login.view =  'login'
-
-
-# UserLoader Callback:
-# reloads the user object from the user ID stored in the session
-# It should return None if the ID is not valid. 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
-
-# Login page
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    # Use a class of some kind to represent and validate our client-side form data
-    # and use a custom LoginForm to validate
-    form = LoginForm()
-    if form.validate_on_submit():
-        # Login and validate the user.
-        # user should be an instance of `User` class
-        login_user(user)
-
-        flask.flash('Logged in successfully.')
-
-        next = flask.request.args.get('next')
-        # is_safe_url should check if the url is safe for redirects.
-        # See http://flask.pocoo.org/snippets/62/ for an example.
-        if not is_safe_url(next):
-            return flask.abort(400)
-
-        return flask.redirect(next or flask.url_for('index'))
-    return flask.render_template('login.html', form=form)
-
-
-# Signup page
-@app.route('/signup')
-def signup():
-    return render_template("signup.html")
-
-
-# # User dashboard page
-# @app.route('/user_dash')
-# def user_dash():
-#     return render_template("user.html")
-
-
-# Search Form for glossary terms
-
-# From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
-# And: https://stackoverflow.com/questions/49884312/mongodb-text-index-search
-@app.route('/search_terms')
-def search_terms(search):
-    mongo.db.terms.create_index({ term_name: "text", term_description: "text" })
-    results=mongo.db.terms.find({"$text": {"$search": search}})
-    return render_template("terms.html",
-                            terms=results)
-
-#Seun
-# @app.route('/search_terms/<search>')
-# def search_terms(search):
-#     results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
-#     return render_template("terms.html",
-#                             terms=results)
 
 
 # CRUD: bind and display list of all terms in the database:
@@ -182,10 +116,44 @@ def insert_category():
     return redirect(url_for('get_categories'))
 
 
-# About and Guide Page
+# Search Form for glossary terms
+# From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
+# And: https://stackoverflow.com/questions/49884312/mongodb-text-index-search
+@app.route('/search_terms')
+def search_terms(search):
+    mongo.db.terms.create_index({ term_name: "text", term_description: "text" })
+    results=mongo.db.terms.find({"$text": {"$search": search}})
+    return render_template("terms.html",
+                            terms=results)
+#Seun
+# @app.route('/search_terms/<search>')
+# def search_terms(search):
+#     results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
+#     return render_template("terms.html",
+#                             terms=results)
+
+
+# About and Guide
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
+# User Registration
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Success! Account created for {form.username.data}', 'badge cyan lighten-4')
+        return redirect(url_for('get_terms'))
+    return render_template("register.html", title='Register', form=form)
+
+
+# User Login
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template("login.html", title='Login', form=form)
 
 
 if __name__ == '__main__':
