@@ -13,29 +13,75 @@
             <!-- CSRF Token -->
             {{ form.hidden_tag() }}
                 
-                <!-- Form -->
+                <!-- Username -->
                 <div class="row">
                     <div class="input-field col s12">
                         {{ form.username.label }}
-                        {{ form.username }}
+                        <!-- With error -->
+                        {% if form.username.errors %}
+                            {{ form.username(class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        <!-- No error -->
+                        {% else %}
+                            {{ form.username }}
+                        {% endif %}
                     </div>
                 </div>
                 
+                <!-- Email -->
                 <div class="row">
                     <div class="input-field col s12">
                         {{ form.email.label }}
-                        {{ form.email }}
+                        <!-- With error -->
+                        {% if form.email.errors %}
+                            {{ form.email(class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        <!-- No error -->    
+                        {% else %}
+                            {{ form.email }}
+                        {% endif %}
                     </div>
                 </div>
-                    
+
+                <!-- Password -->    
                 <div class="row">
                     <div class="input-field col s6">
-                        {{ form.password.label }}
-                        {{ form.password }}
+                        {{ form.password.label }}       
+                        <!-- With error -->
+                        {% if form.password.errors %}
+                            {{ form.password(class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        <!-- No error -->
+                        {% else %}
+                            {{ form.password }}
+                        {% endif %}
                     </div>
                     <div class="input-field col s6">
-                        {{ form.confirm_password.label }}
-                        {{ form.confirm_password }}
+                        {{ form.confirm_password.label }}                 
+                        <!-- With error -->
+                        {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.confirm_password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        <!-- No error --> 
+                        {% else %}
+                            {{ form.confirm_password }}
+                        {% endif %}
                     </div>
                 </div>
 
@@ -47,7 +93,7 @@
             </form>
         </div>
 
-        <!-- Comment -->
+        <!-- Login link for registered user -->
         <div>
             <small class="text-muted">
                 Already have an account? <a href="{{ url_for('login') }}">Sign In</a>

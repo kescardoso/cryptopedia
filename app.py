@@ -144,15 +144,21 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Success! Account created for {form.username.data}', 'badge cyan lighten-4')
+        flash(f'Success! Account created for {form.username.data}.', 'badge light-green lighten-4')
         return redirect(url_for('get_terms'))
     return render_template("register.html", title='Register', form=form)
 
 
 # User Login
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('Success! You have been logged in.', 'badge light-green lighten-4')
+            return redirect(url_for('get_terms'))
+        else:
+            flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
     return render_template("login.html", title='Login', form=form)
 
 

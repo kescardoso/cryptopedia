@@ -32,8 +32,8 @@ class LoginForm(FlaskForm):
     # Password Field/Label
     password = PasswordField('Pasword', 
                              validators=[DataRequired()])
-    # Remmeber Cookie Session
-    rememebr = BooleanField('Remember me')
+    # Remember Cookie Session
+    remember = BooleanField('Remember me')
     # Submit Button
     submit = SubmitField('Login')
     

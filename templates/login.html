@@ -3,47 +3,76 @@
 
      <div class="row">
 
-        <h5>Login</h5>
+        <h5>User LogIn</h5>
         
-        <!-- User form: login -->
+        <!-- User form: Login -->
         <div class="row">
+
             <form action="" method="POST" class="col s12">
 
-                <!-- CSRF Token -->
-                {{ form.hidden_tag() }}
-
-                <div class="row">
-                    <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                    </div>
-                </div>
+            <!-- CSRF Token -->
+            {{ form.hidden_tag() }}
                 
+                <!-- Email -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="username" type="text" class="validate">
-                        <label for="username">Username</label>
+                        {{ form.email.label }}
+                        <!-- With error -->
+                        {% if form.email.errors %}
+                            {{ form.email(class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        <!-- No error -->    
+                        {% else %}
+                            {{ form.email }}
+                        {% endif %}
                     </div>
                 </div>
-                    
+
+                <!-- Password -->    
                 <div class="row">
-                    <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
+                    <div class="input-field col s6">
+                        {{ form.password.label }}       
+                        <!-- With error -->
+                        {% if form.password.errors %}
+                            {{ form.password(class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        <!-- No error -->
+                        {% else %}
+                            {{ form.password }}
+                        {% endif %}
                     </div>
+                </div>
+                <!-- Remember me -->
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
                 </div>
 
                 <!-- Submit Button -->
                 <div class="row">
-                    <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
-                        Sign in
-                        <i class="material-icons right">vpn_key</i>
-                    </button>
+                    {{ form.submit(class="waves-effect waves-light btn cyan accent-4") }}
                 </div>
-
+                <!-- Forgot Password -->
+                <small class="text-muted">
+                    <a href="#">Forgot Password?</a>
+                </small>
 
             </form>
         </div>
+
+        <!-- Register link for new user -->
+        <div>
+            <small class="text-muted">
+                Need an account? <a href="{{ url_for('register') }}">Sign up now</a>
+            </small>
+        </div>
         
-    
 {% endblock %}
