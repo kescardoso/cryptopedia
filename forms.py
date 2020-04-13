@@ -1,5 +1,5 @@
 # Code credits:
-# Python Flask Tutorial: Forms and User Input https://www.youtube.com/watch?v=UIJKdCIEXUQ&t=23s
+# Corey Schafer: https://youtu.be/UIJKdCIEXUQ
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, validators
