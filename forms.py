@@ -1,6 +1,5 @@
-# Code used from tutorial:
-# Python Flask Tutorial: Full-Featured Web App Part 3 - Forms and User Input
-# https://www.youtube.com/watch?v=UIJKdCIEXUQ&t=23s
+# Code credits:
+# Python Flask Tutorial: Forms and User Input https://www.youtube.com/watch?v=UIJKdCIEXUQ&t=23s
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, validators
@@ -26,9 +25,9 @@ class RegistrationForm(FlaskForm):
 
 # User Login Form
 class LoginForm(FlaskForm):
-    # Email Field/Label
-    email = StringField('Email',
-                        validators=[DataRequired(), Email()])
+    # Username Field/Label
+    username = StringField('Username',
+                        validators=[DataRequired()])
     # Password Field/Label
     password = PasswordField('Pasword', 
                              validators=[DataRequired()])

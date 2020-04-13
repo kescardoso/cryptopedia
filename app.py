@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 # Forms
 from forms import RegistrationForm, LoginForm
 # Environment variables
@@ -9,20 +10,95 @@ from os import path
 if path.exists('env.py'):
     import env
 
-app = Flask(__name__)
 
-# MongoDB settings
+# Flask app:
+app = Flask(__name__)
+# MongoDB settings:
 app.config['MONGO_NAME'] = 'cryptopedia'
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
-# Flask settings
-app.config['SECRET_KEY'] = '!gMcT*jnqvez&'
-
+# Pymongo app:
 mongo = PyMongo(app)
 
 
+# FLASK LOGIN SETTINGS:
+# Code credits:
+# SatackOverflow: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
+# Creating User Login with MongoDB: https://www.youtube.com/watch?v=vVx1737auSE
+# Python Flask Tutorial: Forms and User Input https://www.youtube.com/watch?v=UIJKdCIEXUQ&t=23s
+app.config['SECRET_KEY'] = '!gMcT*jnqvez&'
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+### USER CLASSES:
+class User:
+    def __init__(self, username):
+        self.username = username
+
+    @staticmethod
+    def is_authenticated():
+        return True
+
+    @staticmethod
+    def is_active():
+        return True
+
+    @staticmethod
+    def is_anonymous():
+        return False
+
+    def get_id(self):
+        return self.username
+
+    @staticmethod
+    def check_password(password_hash, password):
+        return check_password_hash(password_hash, password)
+
+
+@login_manager.user_loader
+def load_user(username):
+    u = mongo.db.Users.find_one({"Username": user_name})
+    if not u:
+        return None
+    return User(username=u['Username'])
+
+
+### USER FORMS
+# User Login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """ User login form with validators and alerts """
+    if current_user.is_authenticated:
+            return redirect(url_for('get_terms'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = mongo.db.Users.find_one({"Username": form.username.data})
+
+        if form.username.data == 'adminblog' and form.password.data == 'password':
+            flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
+            return redirect(url_for('get_terms'))
+            
+        else:
+            flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
+    return render_template("login.html", title='Login', form=form)
+
+
+# Register New User
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    """ New user registration form with validators and alerts """
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Success! Account created for {form.username.data}.', 'badge light-green lighten-4')
+        return redirect(url_for('get_terms'))
+    return render_template("register.html", title='Register', form=form)
+
+
+
+
+
+
 ### CRUD FUNCTIONS:
-
-
+# Home: Glossary (list of terms)
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
@@ -31,6 +107,7 @@ def get_terms():
                             terms=mongo.db.terms.find())
 
 
+# Add term
 @app.route('/add_term')
 def add_term():
     """ CRUD: get form to add new term """
@@ -46,6 +123,7 @@ def insert_term():
     return redirect(url_for('get_terms'))
 
 
+# Edit Term
 @app.route('/edit_term/<term_id>')
 def edit_term(term_id):
     """ CRUD: get form to edit term """
@@ -74,6 +152,7 @@ def delete_term(term_id):
     return redirect(url_for('get_terms'))
 
 
+# List of Categories
 @app.route('/get_categories')
 def get_categories():
     """ CRUD: bind and display list of categories from the database """
@@ -81,6 +160,22 @@ def get_categories():
                            categories=mongo.db.categories.find())
 
 
+# Add Category
+@app.route('/add_category')
+def add_category():
+    """ CRUD: get form to add new category to the database """
+    return render_template('addcategory.html')
+
+
+@app.route('/insert_category', methods=['POST'])
+def insert_category():
+    """ CRUD: add new Category to the database """
+    category_doc = {'category_name': request.form.get('category_name')}
+    mongo.db.categories.insert_one(category_doc)
+    return redirect(url_for('get_categories'))
+
+
+# Edit Category
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     """ CRUD: get form to edit category """
@@ -105,21 +200,7 @@ def delete_category(category_id):
     return redirect(url_for('get_categories'))
 
 
-@app.route('/add_category')
-def add_category():
-    """ CRUD: get form to add new category to the database """
-    return render_template('addcategory.html')
-
-
-@app.route('/insert_category', methods=['POST'])
-def insert_category():
-    """ CRUD: add new Category to the database """
-    category_doc = {'category_name': request.form.get('category_name')}
-    mongo.db.categories.insert_one(category_doc)
-    return redirect(url_for('get_categories'))
-
-
-# Search Form for glossary terms
+### SEARCH FORM
 # From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
 # And: https://stackoverflow.com/questions/49884312/mongodb-text-index-search
 @app.route('/search_terms')
@@ -140,32 +221,6 @@ def search_terms(search):
 @app.route('/about')
 def about():
     return render_template("about.html")
-
-
-### USER FORMS
-
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    """ New user registration form with validators and alerts """
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        flash(f'Success! Account created for {form.username.data}.', 'badge light-green lighten-4')
-        return redirect(url_for('get_terms'))
-    return render_template("register.html", title='Register', form=form)
-
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    """ User login form with validators and alerts """
-    form = LoginForm()
-    if form.validate_on_submit():
-        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
-            flash('Success! You have been logged in.', 'badge light-green lighten-4')
-            return redirect(url_for('get_terms'))
-        else:
-            flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
-    return render_template("login.html", title='Login', form=form)
 
 
 if __name__ == '__main__':
