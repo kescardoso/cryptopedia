@@ -2,9 +2,11 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask_login import LoginManager, current_user, login_user, logout_user, login_required
+from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
-# Forms
+import bcrypt
+
+# Flask WTForms
 from forms import *
 # Environment variables
 from os import path
@@ -116,11 +118,15 @@ def update_category(category_id):
         {'category_name': request.form.get('category_name')})
     return redirect(url_for('get_categories'))
 
- 
+
+### CHECK THIS FOR ACCESS RESTRICTION
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     """ CRUD: delete categories from the databse """
-    mongo.db.categories.remove({'_id': ObjectId(category_id)})
+    if 'username' in session:
+        user = mongo.db.users.find_one({'user_name': session["username"]})
+        if user.privilage =="admin":
+            mongo.db.categories.remove({'_id': ObjectId(category_id)})
     return redirect(url_for('get_categories'))
 
 
@@ -134,11 +140,12 @@ def about():
 # Code credits:
 # SatackOverflow: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
 # Corey Schafer: https://youtu.be/UIJKdCIEXUQ
-class User:
+class User(UserMixin):
     def __init__(self, username):
         self.username = username
-        self.email = Email
-        self.password = passoword
+
+    def get_id(self):
+        return self.username
 
     @staticmethod
     def is_authenticated():
@@ -152,9 +159,6 @@ class User:
     def is_anonymous():
         return False
 
-    def get_id(self):
-        return self.username
-
     @staticmethod
     def check_password(password_hash, password):
         return check_password_hash(password_hash, password)
@@ -162,31 +166,31 @@ class User:
 
 ### FLASK-LOGIN MANAGER ROUTE
 # Code credits:
-# Flask-Login Read the Docs: https://flask-login.readthedocs.io/en/latest/
-# User Loader Callback
+# Flask-Login ReadTheDocs: https://flask-login.readthedocs.io/en/latest/
+# StackOverflow: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
 @login_manager.user_loader
-def load_user(username):
-    """ Reloads the user object from the user ID stored in the session """
-    u = mongo.db.users.find_one(_id)
-    if not u:
-        return None
-    return user(username=u['user_name'])
+def load_user(user_id):
+    return User.get(user_id)
 
 
 ### USER FORMS ROUTES
 # Code credits:
 # SatackOverflow: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
 # Pretty Printed: https://youtu.be/vVx1737auSE
+
 # Register User 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('get_home'))
+
     """ Register new user to the db via form with validators and alerts """
     form = RegistrationForm(request.form)
     if form.validate_on_submit():
 
         if request.method == 'POST':
             """ Check if username already exists, to avoid duplicates """
-            existing_user = mongo.db.users.find_one({'user_name': form.username.data})
+            existing_user = mongo.db.users.find_one({'user_name' : form.username.data})
 
             """ If username doesn't exist, create new instance of user """
             if existing_user is None:
@@ -205,24 +209,41 @@ def register():
 
 
 # User Login
-@app.route('/login', methods=['GET', 'POST'])
+# Code credits:
+# StackOverlflow: https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     """ User login form with validators and alerts """
+    if current_user.is_authenticated:
+        return redirect(url_for('get_terms'))
+
     form = LoginForm(request.form)
     if form.validate_on_submit():
-        logged_user = mongo.db.users.find_one({"user_name": form.username.data})
+        """ Check if username already exists, to avoid duplicates """
+        log_user = mongo.db.users.find_one({'user_name' : form.username.data})
 
-        """ User is found and logged in """
-        if logged_user:
-            if bcrypt.generate_password_hash((form.password.data).encode('utf-8'), login_user(form.password.data).encode('utf-8')) == login_user(form.password.data).encode('utf-8'):
-                session['username'] = form.username.data
-                flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
-                return redirect(url_for('get_terms'))
-               
+        # Bcrypt needs to be decoded when we use "bcrypt.generate_password_hash" (like in the register route)
+        # Here we are checking the hash, so either decode or encode generate an error. This seems to be working fine.
+        if log_user and bcrypt.check_password_hash(log_user['user_pass'], form.password.data):
+
+            ### Here is the code that is causing issues -->> TypeError: Object of type ObjectId is not JSON serializable
+            ### https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
+            ### https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
+            ### According to https://flask-login.readthedocs.io/en/latest/
+            ### Login and validate the user
+            ### user should be an instance of your `User` class
+            # login_user(user)
+            user = User(log_user)
+            login_user(user, remember=form.remember.data)
+            flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
+            return redirect(url_for('get_terms'))
+
         else:
             flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
     
     return render_template("login.html", title='Login', form=form)
+
+
 
 
 ### SEARCH FORM

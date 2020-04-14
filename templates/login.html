@@ -15,7 +15,7 @@
                 
                 <!-- Username -->
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         {{ form.username.label }}
                         <!-- With error -->
                         {% if form.username.errors %}
@@ -25,7 +25,7 @@
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
-                        <!-- No error -->    
+                        <!-- No error -->
                         {% else %}
                             {{ form.username }}
                         {% endif %}
@@ -71,7 +71,7 @@
         <!-- Register link for new user -->
         <div>
             <small class="text-muted">
-                Need an account? <a href="{{ url_for('register') }}">Sign up now</a>
+                Need an account? <a href="{{ url_for('register') }}">Register now</a>
             </small>
         </div>
         

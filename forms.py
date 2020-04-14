@@ -1,4 +1,6 @@
+# Flask-Wtforms
 # Code credits:
+# Flask-WTF ReadTheDocs: https://wtforms.readthedocs.io/en/stable/fields.html
 # Corey Schafer: https://youtu.be/UIJKdCIEXUQ
 
 from flask_wtf import FlaskForm
