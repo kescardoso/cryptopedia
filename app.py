@@ -181,25 +181,25 @@ def load_user(username):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """ Register new user to the db via form with validators and alerts """
-    form = RegistrationForm()
+    form = RegistrationForm(request.form)
     if form.validate_on_submit():
 
         if request.method == 'POST':
             """ Check if username already exists, to avoid duplicates """
             existing_user = mongo.db.users.find_one({'user_name': form.username.data})
 
-            flash('Sorry! This username is already taken. If it is you, please log in.', 'badge red lighten-4')
-            return render_template("register.html", title='Register', form=form)
+            """ If username doesn't exist, create new instance of user """
+            if existing_user is None:
+                password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+                mongo.db.users.insert({ 'user_name': form.username.data,
+                                        'user_email': form.email.data,
+                                        'user_pass' : password_hash })
+                session['username'] = form.username.data
+                flash(f'Success! Account created for {form.username.data}. Please, log in.', 'badge light-green lighten-4')
+                return redirect(url_for('login'))
 
-        """ If username doesn't exist, create new instance of user """
-        if existing_user is None:
-            password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-            mongo.db.users.insert({ 'user_name': form.username.data,
-                                    'user_email': form.email.data,
-                                    'user_pass' : password_hash })
-            session['username'] = form.username.data
-            flash(f'Success! Account created for {form.username.data}. Please, log in.', 'badge light-green lighten-4')
-            return redirect(url_for('login'))
+            else:
+                flash('Sorry! This username is already taken. If it is you, please log in.', 'badge red lighten-4')
 
     return render_template("register.html", title='Register', form=form)
 
@@ -208,18 +208,20 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """ User login form with validators and alerts """
-    if current_user.is_authenticated:
-        return redirect(url_for('get_terms'))
-    form = LoginForm()
+    form = LoginForm(request.form)
     if form.validate_on_submit():
-        user = mongo.db.users.find_one({"user_name": form.username.data})
+        logged_user = mongo.db.users.find_one({"user_name": form.username.data})
 
-        if form.username.data == 'adminblog' and form.password.data == 'password':
-            flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
-            return redirect(url_for('get_terms'))
-            
+        """ User is found and logged in """
+        if logged_user:
+            if bcrypt.generate_password_hash((form.password.data).encode('utf-8'), login_user(form.password.data).encode('utf-8')) == login_user(form.password.data).encode('utf-8'):
+                session['username'] = form.username.data
+                flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
+                return redirect(url_for('get_terms'))
+               
         else:
             flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
+    
     return render_template("login.html", title='Login', form=form)
 
 
