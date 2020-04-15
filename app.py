@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, flash, ses
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bcrypt import Bcrypt
 import bcrypt
 
@@ -143,6 +144,18 @@ def about():
 class User(UserMixin):
     def __init__(self, username):
         self.username = username
+        self.active = True
+        # self.password = User.hashed_password(password)
+    
+    @staticmethod
+    def hashed_password(password):
+        #return generate_password_hash(password)
+        return bcrypt.generate_password_hash(password)
+
+    @staticmethod
+    def check_password(hashed_password, password):
+        #return check_password_hash(hashed_password, password)
+        return bcrypt.check_password_hash(hashed_password, password)
 
     def get_id(self):
         return self.username
@@ -159,9 +172,7 @@ class User(UserMixin):
     def is_anonymous():
         return False
 
-    @staticmethod
-    def check_password(password_hash, password):
-        return check_password_hash(password_hash, password)
+    
 
 
 ### FLASK-LOGIN MANAGER ROUTE
@@ -171,6 +182,11 @@ class User(UserMixin):
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
+# def load_user(username):
+#     u = mongo.db.Users.find_one({'user_name': username})
+#     if not u:
+#         return None
+#     return User(username=u['user_name'])
 
 
 ### USER FORMS ROUTES
@@ -181,16 +197,13 @@ def load_user(user_id):
 # Register User 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('get_home'))
-
     """ Register new user to the db via form with validators and alerts """
     form = RegistrationForm(request.form)
     if form.validate_on_submit():
 
         if request.method == 'POST':
             """ Check if username already exists, to avoid duplicates """
-            existing_user = mongo.db.users.find_one({'user_name' : form.username.data})
+            existing_user = mongo.db.users.find_one({'user_name': form.username.data})
 
             """ If username doesn't exist, create new instance of user """
             if existing_user is None:
@@ -211,39 +224,37 @@ def register():
 # User Login
 # Code credits:
 # StackOverlflow: https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
+# Pretty Printed: https://youtu.be/vVx1737auSE
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    """ User login form with validators and alerts """
     if current_user.is_authenticated:
-        return redirect(url_for('get_terms'))
-
+        return redirect(url_for('index'))
+    """ User login form with validators and alerts """
     form = LoginForm(request.form)
     if form.validate_on_submit():
         """ Check if username already exists, to avoid duplicates """
-        log_user = mongo.db.users.find_one({'user_name' : form.username.data})
-
-        # Bcrypt needs to be decoded when we use "bcrypt.generate_password_hash" (like in the register route)
-        # Here we are checking the hash, so either decode or encode generate an error. This seems to be working fine.
-        if log_user and bcrypt.check_password_hash(log_user['user_pass'], form.password.data):
-
-            ### Here is the code that is causing issues -->> TypeError: Object of type ObjectId is not JSON serializable
-            ### https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
-            ### https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
-            ### According to https://flask-login.readthedocs.io/en/latest/
-            ### Login and validate the user
-            ### user should be an instance of your `User` class
-            # login_user(user)
-            user = User(log_user)
-            login_user(user, remember=form.remember.data)
-            flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
-            return redirect(url_for('get_terms'))
+        u = mongo.db.users.find_one({'user_name' : form.username.data})
+        if u and bcrypt.check_password_hash(u['user_pass'], form.password.data):
+            ### Getting -->> ValueError: Invalid salt
+            # https://www.pythonanywhere.com/forums/topic/4489/
+            # https://github.com/pythonanywhere/help_pages/issues/6
+            # https://stackoverflow.com/questions/39980976/python-bcrypt-package-on-heroku-gives-attributeerror-module-object-has-no-att
+            # https://blog.ruanbekker.com/blog/2018/07/04/salt-and-hash-example-using-python-with-bcrypt-on-alpine/
+            # https://stackoverflow.com/questions/36057308/bcrypt-how-to-store-salt-with-python3
+            # https://stackoverflow.com/questions/41283541/using-bcrypt-password-hashing-for-user-authentication
+                
+                login_user(u, remember=form.remember.data)
+                flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
+                return redirect(url_for('get_terms'))
+                ### Getting -->> AttributeError: 'dict' object has no attribute 'is_active'
+                # https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
+                # https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
+                # https://flask-login.readthedocs.io/en/latest/
 
         else:
             flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
     
     return render_template("login.html", title='Login', form=form)
-
-
 
 
 ### SEARCH FORM
