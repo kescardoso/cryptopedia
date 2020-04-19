@@ -2,13 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_bcrypt import Bcrypt
-import bcrypt
-
-# Flask WTForms
-from forms import *
 # Environment variables
 from os import path
 if path.exists('env.py'):
@@ -22,12 +16,79 @@ app.config['MONGO_NAME'] = 'cryptopedia'
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 # Pymongo app:
 mongo = PyMongo(app)
-# Flask login app:
-app.config['SECRET_KEY'] = '!gMcT*jnqvez&'
-login_manager = LoginManager()
-login_manager.init_app(app)
-# Bcrypt app:
-bcrypt = Bcrypt(app)
+
+
+### USER FORMS ROUTES
+# Code credits:
+# Pretty Printed Login System https://youtu.be/vVx1737auSE 
+# Pretty Printed Bad request in Flask https://youtu.be/lLc_jHkifRc
+# Tech Monger https://techmonger.github.io/4/secure-passwords-werkzeug/
+
+# Register Form Route
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    """ Check if username already exists, to avoid duplicates """
+    if request.method == 'POST':
+        existing_user = mongo.db.users.find_one({'user_name': request.form.get('username')})
+
+        """ If username doesn't exist, create new instance for user """
+        if existing_user is None:
+            pwhash = generate_password_hash(request.form.get('password'))
+            # hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+
+            mongo.db.users.insert({ 'user_name': request.form.get('username'),
+                                    'user_email': request.form.get('email'),
+                                    'user_pass' : pwhash })
+            session['user_name'] = request.form.get('username')
+            flash('Account created successfuly. Please, log in.', 'badge light-green lighten-4')
+            return redirect(url_for('login'))
+
+        else:
+            flash('Sorry! This username is already taken. If it is you, please log in.', 'badge red lighten-4')
+
+    return render_template("register.html")
+
+
+# Login Form Route
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    """ Check if username exists """
+    login_user = mongo.db.users.find_one({'user_name': request.form.get('username')})
+
+    """ If username exists, log user in """
+    if login_user:
+        if check_password_hash(login_user['user_pass'], request.form.get('password')):
+            session['user_name'] = request.form.get('username')
+            flash('Success! You have been logged in', 'badge light-green lighten-4')
+            return redirect(url_for('get_terms'))
+    
+        else:
+            flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
+    
+    return render_template("login.html")
+
+
+### Restrict Access Page Route
+@app.route('/restrict')
+def restrict():
+    return render_template("restrict.html")
+
+
+### SEARCH FORM
+# From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
+# And: https://stackoverflow.com/questions/49884312/mongodb-text-index-search
+@app.route('/search_terms')
+def search_terms(search):
+    mongo.db.terms.create_index({ term_name: "text", term_description: "text" })
+    results=mongo.db.terms.find({"$text": {"$search": search}})
+    return render_template("terms.html",
+                            terms=results)
+#Seun
+# @app.route('/search_terms/<search>')
+# def search_terms(search):
+#     results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
+#     return render_template("terms.html",
+#                             terms=results)
 
 
 ### CRUD ROUTES
@@ -137,144 +198,11 @@ def about():
     return render_template("about.html")
 
 
-### USER CLASSES
-# Code credits:
-# SatackOverflow: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
-# Corey Schafer: https://youtu.be/UIJKdCIEXUQ
-class User(UserMixin):
-    def __init__(self, username):
-        self.username = username
-        self.active = True
-        # self.password = User.hashed_password(password)
-    
-    @staticmethod
-    def hashed_password(password):
-        #return generate_password_hash(password)
-        return bcrypt.generate_password_hash(password)
 
-    @staticmethod
-    def check_password(hashed_password, password):
-        #return check_password_hash(hashed_password, password)
-        return bcrypt.check_password_hash(hashed_password, password)
-
-    def get_id(self):
-        return self.username
-
-    @staticmethod
-    def is_authenticated():
-        return True
-
-    @staticmethod
-    def is_active():
-        return True
-
-    @staticmethod
-    def is_anonymous():
-        return False
-
-    
-
-
-### FLASK-LOGIN MANAGER ROUTE
-# Code credits:
-# Flask-Login ReadTheDocs: https://flask-login.readthedocs.io/en/latest/
-# StackOverflow: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
-# def load_user(username):
-#     u = mongo.db.Users.find_one({'user_name': username})
-#     if not u:
-#         return None
-#     return User(username=u['user_name'])
-
-
-### USER FORMS ROUTES
-# Code credits:
-# SatackOverflow: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
-# Pretty Printed: https://youtu.be/vVx1737auSE
-
-# Register User 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    """ Register new user to the db via form with validators and alerts """
-    form = RegistrationForm(request.form)
-    if form.validate_on_submit():
-
-        if request.method == 'POST':
-            """ Check if username already exists, to avoid duplicates """
-            existing_user = mongo.db.users.find_one({'user_name': form.username.data})
-
-            """ If username doesn't exist, create new instance of user """
-            if existing_user is None:
-                password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-                mongo.db.users.insert({ 'user_name': form.username.data,
-                                        'user_email': form.email.data,
-                                        'user_pass' : password_hash })
-                session['username'] = form.username.data
-                flash(f'Success! Account created for {form.username.data}. Please, log in.', 'badge light-green lighten-4')
-                return redirect(url_for('login'))
-
-            else:
-                flash('Sorry! This username is already taken. If it is you, please log in.', 'badge red lighten-4')
-
-    return render_template("register.html", title='Register', form=form)
-
-
-# User Login
-# Code credits:
-# StackOverlflow: https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
-# Pretty Printed: https://youtu.be/vVx1737auSE
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    """ User login form with validators and alerts """
-    form = LoginForm(request.form)
-    if form.validate_on_submit():
-        """ Check if username already exists, to avoid duplicates """
-        u = mongo.db.users.find_one({'user_name' : form.username.data})
-        if u and bcrypt.check_password_hash(u['user_pass'], form.password.data):
-            ### Getting -->> ValueError: Invalid salt
-            # https://www.pythonanywhere.com/forums/topic/4489/
-            # https://github.com/pythonanywhere/help_pages/issues/6
-            # https://stackoverflow.com/questions/39980976/python-bcrypt-package-on-heroku-gives-attributeerror-module-object-has-no-att
-            # https://blog.ruanbekker.com/blog/2018/07/04/salt-and-hash-example-using-python-with-bcrypt-on-alpine/
-            # https://stackoverflow.com/questions/36057308/bcrypt-how-to-store-salt-with-python3
-            # https://stackoverflow.com/questions/41283541/using-bcrypt-password-hashing-for-user-authentication
-                
-                login_user(u, remember=form.remember.data)
-                flash(f'Success! You have been logged in as {form.username.data}.', 'badge light-green lighten-4')
-                return redirect(url_for('get_terms'))
-                ### Getting -->> AttributeError: 'dict' object has no attribute 'is_active'
-                # https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
-                # https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
-                # https://flask-login.readthedocs.io/en/latest/
-
-        else:
-            flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
-    
-    return render_template("login.html", title='Login', form=form)
-
-
-### SEARCH FORM
-# From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
-# And: https://stackoverflow.com/questions/49884312/mongodb-text-index-search
-@app.route('/search_terms')
-def search_terms(search):
-    mongo.db.terms.create_index({ term_name: "text", term_description: "text" })
-    results=mongo.db.terms.find({"$text": {"$search": search}})
-    return render_template("terms.html",
-                            terms=results)
-#Seun
-# @app.route('/search_terms/<search>')
-# def search_terms(search):
-#     results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
-#     return render_template("terms.html",
-#                             terms=results)
 
 
 if __name__ == '__main__':
+    app.secret_key = 'mysecretcookierecipe'
     app.run(host=os.environ.get('IP'),
-        port=int(os.environ.get('PORT')),
-        debug=True)
+            port=int(os.environ.get('PORT')),
+            debug=True)

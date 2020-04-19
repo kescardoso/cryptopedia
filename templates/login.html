@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-     <div class="row">
+    <div class="row">
 
         <h5>User LogIn</h5>
         
@@ -9,70 +9,37 @@
         <div class="row">
 
             <form action="" method="POST" class="col s12">
-
-            <!-- CSRF Token -->
-            {{ form.hidden_tag() }}
                 
                 <!-- Username -->
                 <div class="row">
                     <div class="input-field col s6">
-                        {{ form.username.label }}
-                        <!-- With error -->
-                        {% if form.username.errors %}
-                            {{ form.username(class="is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.username.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        <!-- No error -->
-                        {% else %}
-                            {{ form.username }}
-                        {% endif %}
+                        <input id="username" name="username" type="text" class="validate">
+                        <label for="username">Username</label>
                     </div>
                 </div>
-
                 <!-- Password -->    
                 <div class="row">
                     <div class="input-field col s6">
-                        {{ form.password.label }}       
-                        <!-- With error -->
-                        {% if form.password.errors %}
-                            {{ form.password(class="is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.password.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        <!-- No error -->
-                        {% else %}
-                            {{ form.password }}
-                        {% endif %}
+                        <input id="password" name="password" type="password" class="validate">
+                        <label for="password">Password</label>
                     </div>
                 </div>
-                <!-- Remember me -->
-                <div class="form-check">
-                    {{ form.remember(class="form-check-input") }}
-                    {{ form.remember.label(class="form-check-label") }}
-                </div>
-
                 <!-- Submit Button -->
-                <div class="row">
-                    {{ form.submit(class="waves-effect waves-light btn cyan accent-4") }}
-                </div>
-                <!-- Forgot Password -->
-                <small class="text-muted">
-                    <a href="#">Forgot Password?</a>
-                </small>
+                <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
+                    Log In
+                </button>
 
             </form>
+
         </div>
 
-        <!-- Register link for new user -->
+        <!-- Register link -->
         <div>
-            <small class="text-muted">
+            <p class="text-muted">
                 Need an account? <a href="{{ url_for('register') }}">Register now</a>
-            </small>
+            </p>
         </div>
+
+    </div>
         
 {% endblock %}
