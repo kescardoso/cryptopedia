@@ -89,6 +89,7 @@
                                 <i class="material-icons">vpn_key</i>
                                 Log In
                             </a>
+                        {% endif %}
                     </li>
                     <li><a href="{{url_for('get_terms')}}">
                             <i class="material-icons left">menu_book</i>
@@ -177,8 +178,7 @@
         <div class="container">
             <div class="foot-creds grey-text">
                 {% if session['username'] %}
-                    You are logged in as {{ session['username'] }}
-                    </br>
+                    <span>You are logged in as {{ session['username'] }}</span>
                 {% endif %}
                 The Cryptopedia World
             </div>
