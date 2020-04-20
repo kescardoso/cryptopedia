@@ -59,19 +59,27 @@ def login():
     if login_user:
         if check_password_hash(login_user['user_pass'], request.form.get('password')):
             session['user_name'] = request.form.get('username')
-            flash('Success! You have been logged in', 'badge light-green lighten-4')
+            flash('Success! You have been logged in.', 'badge light-green lighten-4')
             return redirect(url_for('get_terms'))
     
         else:
             flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
     
-    return render_template("login.html")
+    return render_template('login.html')
 
 
-### Restrict Access Page Route
-@app.route('/restrict')
-def restrict():
-    return render_template("restrict.html")
+# Logout Form Route
+@app.route('/logout')
+def logout():
+    session.pop('username')
+    flash('You were logged out.', 'badge light-green lighten-4')
+    return redirect(url_for('terms.html'))
+
+
+# ### Restrict Access Page Route
+# @app.route('/restrict')
+# def restrict():
+#     return render_template("restrict.html")
 
 
 ### SEARCH FORM

@@ -65,16 +65,30 @@
                         <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category two</a></li>
                         <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category three</a></li>
                     </ul>
-                    <li><a class="btn cyan accent-4" href="{{ url_for('login') }}">Log In</a>
+                    <li>
+                        {% if session['username'] %}
+                            <a class="btn cyan accent-4" href="{{ url_for('logout') }}" alt="Log out">
+                                Hi {{ session['username'] }}!
+                            </a>
+                        {% else %}
+                            <a class="btn cyan accent-4" href="{{ url_for('login') }}" alt="Log in">
+                                Log In
+                            </a>
+                        {% endif %}
                     </li>
                 </ul>
                 
                 <!-- Mobile Nav -->
                 <ul class="side-nav cyan-text text-darken-2" id="mobile-demo">
-                    <li><a href="{{ url_for('login') }}">
-                            <i class="material-icons">vpn_key</i>
-                            Log In
-                        </a>
+                    <li>{% if session['username'] %}
+                            <a class="btn cyan accent-4" href="{{ url_for('logout') }}">
+                                Hi {{ session['username'] }}!
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}">
+                                <i class="material-icons">vpn_key</i>
+                                Log In
+                            </a>
                     </li>
                     <li><a href="{{url_for('get_terms')}}">
                             <i class="material-icons left">menu_book</i>
@@ -162,6 +176,10 @@
     <div class="footer-copyright center">
         <div class="container">
             <div class="foot-creds grey-text">
+                {% if session['username'] %}
+                    You are logged in as {{ session['username'] }}
+                    </br>
+                {% endif %}
                 The Cryptopedia World
             </div>
             <div class="ether-girl">
