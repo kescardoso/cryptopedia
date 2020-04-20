@@ -166,6 +166,7 @@ def register():
 
 
 # Login Form Route
+# Can't see if statements with username
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     """ Check if username exists """
@@ -185,6 +186,7 @@ def login():
 
 
 # Logout Form Route
+# Can't see if it works and don't know how to log out
 @app.route('/logout')
 def logout():
     session.pop('username')
@@ -210,6 +212,8 @@ def restrict():
 # Elasticsearch: https://dev.to/aligoren/using-elasticsearch-with-python-and-flask-2i0e
 # Elasticsearch: https://medium.com/@xoor/indexing-mongodb-with-elasticsearch-2c428b676343
 # ElasticSearch: https://elasticsearch-py.readthedocs.io/en/master/
+# Pymongo and ES: https://github.com/ruanbekker/flask-reminders
+# Pymongo ES: https://github.com/ItsRanveer/flask-mongo-elastic-REST
 @app.route('/search_terms')
 def search_terms(search):
     mongo.db.terms.create_index({ term_name: "text", term_description: "text" })
