@@ -88,17 +88,14 @@ footer{
 .card-content {
     font-family: "Georgia", serif !important;
     padding: 4px;
+    text-align: center;
 }
 
 .card-link {
     text-transform: uppercase;
     text-align: right !important;
     font-family: "Lato", sans-serif;
-}
-
-.card-link a,
-.card-signup a {
-    color: #3b4a40 !important;
+    font-weight: bold;
 }
 
 /* Form Validator Alert */

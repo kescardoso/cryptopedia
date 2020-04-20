@@ -3,7 +3,6 @@ from flask import Flask, render_template, redirect, request, url_for, flash, ses
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from elasticsearch import Elasticsearch
 # Environment variables
 from os import path
 if path.exists('env.py'):
@@ -12,13 +11,12 @@ if path.exists('env.py'):
 
 # Flask app:
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY')
 # MongoDB settings:
 app.config['MONGO_NAME'] = 'cryptopedia'
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 # Pymongo app:
 mongo = PyMongo(app)
-# Elasticsearch
-es = Elasticsearch()
 
 
 ### CRUD ROUTES
@@ -111,27 +109,23 @@ def update_category(category_id):
     return redirect(url_for('get_categories'))
 
 
-
+### CHECK THIS FOR ACCESS RESTRICTION
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     """ CRUD: delete categories from the databse """
-    mongo.db.categories.remove({'_id': ObjectId(category_id)})
+    if 'username' in session:
+        user = mongo.db.users.find_one({'user_name': session["username"]})
+        if user.privilage == 'admin':
+            mongo.db.categories.remove({'_id': ObjectId(category_id)})
     return redirect(url_for('get_categories'))
-### CHECK THIS FOR ACCESS RESTRICTION
-# @app.route('/delete_category/<category_id>')
-# def delete_category(category_id):
-#     """ CRUD: delete categories from the databse """
-#     if 'username' in session:
-#         user = mongo.db.users.find_one({'user_name': session["username"]})
-#         if user.privilage =="admin":
-#             mongo.db.categories.remove({'_id': ObjectId(category_id)})
-#     return redirect(url_for('get_categories'))
 
 
-### ABOUT / GUIDE ROUTE
-@app.route('/about')
-def about():
-    return render_template("about.html")
+### CATEGORY BY QUERIES
+@app.route('/get_category_coins')
+def get_category_coins():
+    """ Category query : Coins """
+    return render_template('category_coins.html',
+                            coins=mongo.db.terms.find({'category_name' : 'coins'}))
 
 
 ### USER FORMS ROUTES
@@ -203,7 +197,7 @@ def logout():
 ### RESTRICT ACCESS ROUTE
 @app.route('/restrict')
 def restrict():
-    return render_template("restrict.html")
+    return render_template('restrict.html')
 
 
 ### SEARCH FORM
@@ -229,7 +223,6 @@ def search_terms(search):
 
 
 if __name__ == '__main__':
-    app.secret_key = 'mysecretcookierecipe'
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)

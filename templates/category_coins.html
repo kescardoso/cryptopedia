@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h5>Terms by Category: Coins</h5>
+    <!-- Start List: Categories -->
+    <div class="row">
+
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for coin in coins %}
+            <li>
+
+                <!-- List of terms -->
+                <div class="collapsible-header">
+                    <div class="col s11">
+                        <div class="term-header left"> 
+                            <!-- Term Header -->
+                            <strong>{{term.term_name}}</strong>
+                        </div>
+                    </div>                    
+                </div> 
+
+                <!-- Accordion: term description -->
+                <div class="collapsible-body">
+                    <span>
+                        {{term.term_description}}
+                    </span>
+                </div>
+
+            </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    
+{% endblock %}
