@@ -109,14 +109,10 @@ def update_category(category_id):
     return redirect(url_for('get_categories'))
 
 
-### CHECK THIS FOR ACCESS RESTRICTION
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     """ CRUD: delete categories from the databse """
-    if 'username' in session:
-        user = mongo.db.users.find_one({'user_name': session["username"]})
-        if user.privilage == 'admin':
-            mongo.db.categories.remove({'_id': ObjectId(category_id)})
+    mongo.db.categories.remove({'_id': ObjectId(category_id)})
     return redirect(url_for('get_categories'))
 
 
@@ -134,7 +130,7 @@ def filter_terms(category):
 # Pretty Printed Bad request in Flask https://youtu.be/lLc_jHkifRc
 # Tech Monger https://techmonger.github.io/4/secure-passwords-werkzeug/
 
-# Register Form Route
+# Register Form
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """ Check if username already exists, to avoid duplicates """
@@ -159,7 +155,7 @@ def register():
     return render_template("register.html")
 
 
-# Login Form Route
+# Login Form
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     """ Check if username exists """
@@ -178,7 +174,7 @@ def login():
     return render_template('login.html')
 
 
-# Logout Form Route
+# Logout Form
 @app.route('/logout')
 def logout():
     session.pop('user_name')
@@ -201,7 +197,7 @@ def search_terms():
     results=mongo.db.terms.find({"$text": {"$search": search}})
     return render_template("terms.html",
                             terms=results)
-                            
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

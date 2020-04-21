@@ -2,22 +2,22 @@
 {% block content %}
 
     <h5>Categories</h5>
-    <!-- Start List: Categories -->
+    <!-- Start list: categories -->
     <div class="row">
 
         <ul class="collapsible" data-collapsible="accordion">
             {% for category in categories %}
             
             <li>
-                <!-- Categories List -->
+                <!-- Categories list -->
                 <div class="collapsible-header">
                     <div class="cat-header"> 
-                        <!-- Category Header: name - category -->
+                        <!-- Category header -->
                         {{category.category_name}}
                     </div>
 
                     <div class="btns-glo">
-                        <!-- Edit and Delete Button -->
+                        <!-- Edit and delete button -->
                         <a href="{{ url_for('edit_category', category_id=category._id) }}" 
                             class="btn-flat">
                             <i class="material-icons">edit</i>
@@ -30,7 +30,7 @@
         </ul>
     </div>
 
-    <!-- Button: Add new category -->
+    <!-- Button: add new category -->
     <div class="row">
         <a href="{{url_for('add_category')}}" class="waves-effect waves-light btn cyan accent-4">
             <i class="material-icons right">library_add</i>Add New Category</a>
