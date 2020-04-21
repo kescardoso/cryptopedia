@@ -41,14 +41,7 @@
                             Glossary
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-links" href="{{url_for('add_term')}}">
-                            <i class="material-icons left">library_add</i>
-                            Add New
-                        </a>
-                    </li>   
-                    
-                    <!-- Dropdown Trigger -->
+                    <!-- Dropdown Trigger : Categories-->
                     <li>
                         <a class="dropdown-trigger dropdown-button nav-links" 
                             href="#!" data-activates="dropdown1">
@@ -56,8 +49,7 @@
                             Categories<i class="material-icons right">arrow_drop_down</i>
                         </a>
                     </li>
-                    
-                    <!-- Dropdown Link Structure -->
+                    <!-- Dropdown Link Structure : Categories -->
                     <ul id="dropdown1" class="dropdown-content">
                         <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('get_categories')}}">See All Categories</a></li> 
                         <li class="divider"></li>
@@ -65,6 +57,19 @@
                         <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='DeFi')}}">DeFi</a></li>
                         <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Exchanges')}}">Exchanges</a></li>
                         <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Blockchain')}}">Blockchain</a></li>
+                    </ul>
+                    <!-- Dropdown Trigger : Add New -->
+                    <li>
+                        <a class="dropdown-trigger dropdown-button nav-links" 
+                            href="#!" data-activates="dropdown2">
+                            <i class="material-icons left">library_add</i>
+                            Add New<i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                    <!-- Dropdown Link Structure : Add New -->
+                    <ul id="dropdown2" class="dropdown-content">
+                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('add_term')}}">New Term</a></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('add_category')}}">New Category</a></li>
                     </ul>
                     <li>
                         {% if session['user_name'] %}
@@ -97,16 +102,28 @@
                             Glossary
                         </a>
                     </li>
-                    <li><a href="{{url_for('add_term')}}">
-                            <i class="material-icons left">library_add</i>
-                            Add New
-                        </a>
-                    </li>   
                     <li><a href="{{url_for('get_categories')}}">
                             <i class="material-icons left">label</i>
-                            Categories
+                            All Categories
                         </a>
                     </li>
+                    <li><a href="{{url_for('add_term')}}">
+                            <i class="material-icons left">library_add</i>
+                            New Term
+                        </a>
+                    </li>   
+                    <li><a href="{{url_for('add_category')}}">
+                            <i class="material-icons left">library_add</i>
+                            New Category
+                        </a>
+                    </li>
+                    <li>{% if session['user_name'] %}
+                        <a href="{{ url_for('logout') }}">
+                            <i class="material-icons">vpn_key</i>
+                            Log Out
+                        </a>
+                        {% endif %}
+                    </li>    
                 </ul>
 
             <!-- Nav wrapper ends here -->
@@ -120,7 +137,7 @@
 
     
     <!-- Container starts here -->
-    <div class="container">
+    <div class="container template-container">
         <!-- Flash Message -->
         <!-- Code Credits: Corey Schafer Flask Tutorial https://www.youtube.com/playlist?list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -173,7 +190,8 @@
         <div class="container">
             <div class="footer-session">
                 {% if session['user_name'] %}
-                    You are logged in as {{ session['user_name'] }}. 
+                    You are logged in as {{ session['user_name'] }}.
+                    </br>
                     <a href="{{ url_for('logout') }}">
                         Log out here.
                     </a>
@@ -183,7 +201,7 @@
                 The Cryptopedia World
             </div>
             <div class="ether-girl">
-                <a href="http://theethergirl.substack.com" target ='_blank' alt='Blog: The Ether Girl'>Built by The Ether Girl</a>
+                <a href="http://kescardoso.com" target ='_blank' alt='Blog: The Ether Girl'>Built by The Ether Girl</a>
             </div>
             <div class ="foot-links">
                 <a href="mailto:info@kescardoso.com" target ='_blank' alt='Contact'><i class="footer-links far fa-envelope"></i></a>

@@ -13,7 +13,9 @@
                 <div class="collapsible-header">
                     <div class="cat-header"> 
                         <!-- Category header -->
-                        {{category.category_name}}
+                        {{category.category_name}} <!-- <a href="{{ url_for('filter_terms', category_name=category._name) }}" class="btn-flat"> 
+                                See All <i class="material-icons">launch</i>
+                            </a> --> <!-- Add Link to category query (same as category dropdown) -->
                     </div>
 
                     <div class="btns-glo">

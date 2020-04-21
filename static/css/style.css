@@ -6,6 +6,12 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase !important;
+    letter-spacing: 0.1em;
+}
+
+/* Container */
+.template-container {
+    margin-top: 30px;
 }
 
 /* Body and Footer */
@@ -27,7 +33,7 @@ footer{
     letter-spacing: 0.2em;
     line-height: 2em;
     background-color: #fbfbf8 !important;
-    padding: 10px 5px 5px 5px;
+    padding: 15px 5px 15px 5px;
 }
 
 .foot-creds,
@@ -78,11 +84,7 @@ color: #3b4a40 !important;
     right: 20%;
 }
 
-/* About Card */
-.card.horizontal {
-    margin-top: 20px;
-}
-
+/* Intro Card */
 .card {
     background: url('/static/images/paper02.png');
 }

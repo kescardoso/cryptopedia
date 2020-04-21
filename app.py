@@ -121,7 +121,7 @@ def delete_category(category_id):
 def filter_terms(category):
     """ Query Terms by Category """
     return render_template('filterterms.html', category=category,
-                            terms=mongo.db.terms.find({'category_name' : category}))
+                            terms=mongo.db.terms.find({'category_name' : category}).sort('term_name'))
 
 
 ### USER FORMS ROUTES
@@ -174,7 +174,7 @@ def login():
     return render_template('login.html')
 
 
-# Logout Form
+# Logout
 @app.route('/logout')
 def logout():
     session.pop('user_name')
