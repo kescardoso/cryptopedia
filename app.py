@@ -183,15 +183,9 @@ def login():
 # Can't see if it works and don't know how to log out
 @app.route('/logout')
 def logout():
-    session.pop('username')
+    session.pop('user_name')
     flash('You were logged out.', 'badge light-green lighten-4')
     return redirect(url_for('terms.html'))
-# Blueprint? https://flask.palletsprojects.com/en/1.1.x/tutorial/views/
-# @bp.route('/logout')
-# def logout():
-#     session.clear()
-#     flash('You were logged out.', 'badge light-green lighten-4')
-#     return redirect(url_for('terms.html'))
 
 
 ### RESTRICT ACCESS ROUTE

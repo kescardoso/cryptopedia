@@ -67,9 +67,9 @@
                         <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Blockchain')}}">Blockchain</a></li>
                     </ul>
                     <li>
-                        {% if session['username'] %}
+                        {% if session['user_name'] %}
                             <a class="btn cyan accent-4" href="{{ url_for('logout') }}" alt="Log out">
-                                Hi {{ session['username'] }}!
+                                Hi {{ session['user_name'] }}!
                             </a>
                         {% else %}
                             <a class="btn cyan accent-4" href="{{ url_for('login') }}" alt="Log in">
@@ -178,8 +178,9 @@
     <div class="footer-copyright center">
         <div class="container">
             <div class="foot-creds grey-text">
-                {% if session['username'] %}
-                    <span>You are logged in as {{ session['username'] }}</span>
+                {% if session['user_name'] %}
+                    You are logged in as {{ session['user_name'] }}
+                    </br>
                 {% endif %}
                 The Cryptopedia World
             </div>
