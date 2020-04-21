@@ -81,9 +81,9 @@
                 
                 <!-- Mobile Nav -->
                 <ul class="side-nav cyan-text text-darken-2" id="mobile-demo">
-                    <li>{% if session['username'] %}
+                    <li>{% if session['user_name'] %}
                             <a class="btn cyan accent-4" href="{{ url_for('logout') }}">
-                                Hi {{ session['username'] }}!
+                                Hi {{ session['user_name'] }}!
                             </a>
                         {% else %}
                             <a href="{{ url_for('login') }}">
