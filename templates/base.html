@@ -177,11 +177,15 @@
 <footer>
     <div class="footer-copyright center">
         <div class="container">
-            <div class="foot-creds grey-text">
+            <div class="footer-session">
                 {% if session['user_name'] %}
-                    You are logged in as {{ session['user_name'] }}
-                    </br>
+                    You are logged in as {{ session['user_name'] }}. 
+                    <a href="{{ url_for('logout') }}">
+                        Log out here.
+                    </a>
                 {% endif %}
+            </div>
+            <div class="foot-creds grey-text">
                 The Cryptopedia World
             </div>
             <div class="ether-girl">

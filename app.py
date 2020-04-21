@@ -185,7 +185,7 @@ def login():
 def logout():
     session.pop('user_name')
     flash('You were logged out.', 'badge light-green lighten-4')
-    return redirect(url_for('terms.html'))
+    return redirect(url_for('get_terms'))
 
 
 ### RESTRICT ACCESS ROUTE
