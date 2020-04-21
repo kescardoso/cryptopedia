@@ -13,7 +13,8 @@ a {
     color: #00bcd4; /* materialize colors: cyan */
 }
 
-a:hover {
+a:hover,
+button:hover {
     color: #000;
 }
 
@@ -24,16 +25,14 @@ a:hover {
 
 /* Body and Footer */
 body {
-    /* Background image */
-    background: url('/static/images/paper01.png');
-    /* Sticky Footer */
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+    background: url('/static/images/paper01.png'); /* Background image */
+    display: flex;  /* Sticky Footer */
+    min-height: 100vh;  /* Sticky Footer */
+    flex-direction: column;  /* Sticky Footer */
 }
 
 main {
-    flex: 1 0 auto;
+    flex: 1 0 auto;  /* Sticky Footer */
 }
 
 /* Footer credits */
@@ -75,6 +74,10 @@ footer a {
     text-transform: uppercase;
     font-size: 80%;
     letter-spacing: 0.2em;
+}
+
+.nav-links:hover {
+    color: #fff;
 }
 
 .nav-drop {

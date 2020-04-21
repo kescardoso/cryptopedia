@@ -1,36 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h5>Add New Category</h5>
-<div class="row">
-    
-    <!-- Start form: add category -->
-    <form action="{{ url_for('insert_category') }}" method="POST" class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">label</i>
-                <input id="category_name" name="category_name" type="text" class="validate">
-                <label for="category_name">Category</label>
+    <h5>Add New Category</h5>
+    <div class="row">
+        
+        <!-- Start form: add category -->
+        <form action="{{ url_for('insert_category') }}" method="POST" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">label</i>
+                    <input id="category_name" name="category_name" type="text" class="validate">
+                    <label for="category_name">Category</label>
+                </div>
             </div>
-        </div>
 
-        <!-- Submit button -->
-        <div class="row">
-            <!-- Save button -->
-            <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
-                Add to Categories
-                <i class="material-icons right">save_alt</i>
-            </button>
-            <!-- Cancel button -->
-            <a href="{{ url_for('get_categories') }}" 
-                class="waves-effect waves-light btn grey">
-                Cancel
-                <i class="material-icons right">cancel</i>
-            </a>
-        </div>
+            <!-- Submit buttons -->
+            <div class="row">
+                <!-- SAVE -->
+                {% if session['user_name'] %}
+                    <!-- Save button: logged-in access-->
+                    <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
+                        Add to Categories
+                        <i class="material-icons right">save_alt</i>
+                    </button>
+                {% else %}
+                    <!-- Save button: restricted access-->
+                    <button class="disabled waves-effect waves-light btn cyan accent-4" type="submit" name="action">
+                        Add to Categories
+                        <i class="material-icons right">save_alt</i>
+                    </button>
+                {% endif %}
+                <!-- Cancel button -->
+                <a href="{{ url_for('get_categories') }}" 
+                    class="waves-effect waves-light btn grey">
+                    Cancel
+                    <i class="material-icons right">cancel</i>
+                </a>
+            </div>
 
-    </form>
+            <!-- Login for restricted access -->
+            <div class="grey-text small">
+                Please <a href="{{ url_for('login') }}">Log In</a> to add new category.
+            </div>
 
-</div>
+        </form>
+
+    </div>
 
 {% endblock %}

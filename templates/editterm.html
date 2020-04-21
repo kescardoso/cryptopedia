@@ -3,7 +3,6 @@
 
     <h5>Edit Term</h5>
     <div class="row">
-
         <!-- Start form: edit term onto the database -->
         <form action="{{ url_for('update_term', term_id=term._id) }}" method="POST" class="col s12">
 
@@ -43,26 +42,49 @@
                 </div>
             </div>
 
-            <!-- Submit button -->
+            <!-- Submit buttons -->
             <div class="row">
-                <!-- Save button -->
-                <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
-                    Save
-                    <i class="material-icons right">save_alt</i>
-                </button>
-                <!-- Delete button -->
-                <a href="{{ url_for('delete_term', term_id=term._id) }}" 
-                    class="waves-effect waves-light btn cyan accent-4">
-                    Delete  
-                    <i class="material-icons prefix right">delete_forever</i>
-                </a>
+                <!-- SAVE -->
+                {% if session['user_name'] %}
+                    <!-- Save button: logged-in access-->
+                    <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
+                        Save
+                        <i class="material-icons right">save_alt</i>
+                    </button>
+                {% else %}
+                    <!-- Save button: restricted access-->
+                    <button class="disabled waves-effect waves-light btn cyan accent-4" type="submit" name="action">
+                        Save
+                        <i class="material-icons right">save_alt</i>
+                    </button>
+                {% endif %}
+                <!-- DELETE -->
+                {% if session['user_name']=='admin' %}
+                    <!-- Delete button: admin access -->
+                    <a href="{{ url_for('delete_term', term_id=term._id) }}" 
+                        class="waves-effect waves-light btn cyan accent-4">
+                        Delete  
+                        <i class="material-icons prefix right">delete_forever</i>
+                    </a>
+                {% else %}
+                    <!-- Delete button: restricted access -->
+                    <a href="{{ url_for('delete_term', term_id=term._id) }}" 
+                        class=" disabled waves-effect waves-light btn cyan accent-4">
+                        Delete  
+                        <i class="material-icons prefix right">delete_forever</i>
+                    </a>
+                {% endif %}
                 <!-- Cancel button -->
                 <a href="{{ url_for('get_terms') }}" 
                     class="waves-effect waves-light btn grey">
                     Cancel
                     <i class="material-icons right">cancel</i>
                 </a>
+            </div>
 
+            <!-- Login for restricted access -->
+            <div class="grey-text small">
+                Please <a href="{{ url_for('login') }}">Log In</a> to edit term. Delete privileges are for admin only.
             </div>
 
         </form>
