@@ -91,13 +91,6 @@ footer{
     text-align: center;
 }
 
-.card-link {
-    text-transform: uppercase;
-    text-align: right !important;
-    font-family: "Lato", sans-serif;
-    font-weight: bold;
-}
-
 /* Form Validator Alert */
 .alert .alert-badge {
     margin: 20px 0px 5px 0px;

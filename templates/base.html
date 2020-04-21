@@ -59,11 +59,12 @@
                     
                     <!-- Dropdown Link Structure -->
                     <ul id="dropdown1" class="dropdown-content">
-                        <li><a class="nav-drop black-text" href="{{url_for('get_categories')}}">Manage Categories</a></li> 
+                        <li><a class="nav-drop black-text" href="{{url_for('get_categories')}}">See All Categories</a></li> 
                         <li class="divider"></li>
-                        <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category one</a></li>
-                        <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category two</a></li>
-                        <li><a class="nav-drop cyan-text text-accent-4" href="#!">Category three</a></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Coins')}}">Coins</a></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='DeFi')}}">DeFi</a></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Exchanges')}}">Exchanges</a></li>
+                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Blockchain')}}">Blockchain</a></li>
                     </ul>
                     <li>
                         {% if session['username'] %}

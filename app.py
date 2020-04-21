@@ -120,12 +120,12 @@ def delete_category(category_id):
     return redirect(url_for('get_categories'))
 
 
-### CATEGORY BY QUERIES
-@app.route('/get_category_coins')
-def get_category_coins():
-    """ Category query : Coins """
-    return render_template('category_coins.html',
-                            coins=mongo.db.terms.find({'category_name' : 'coins'}))
+### FILTER CATEGORY BY QUERIES
+@app.route('/filter_terms/<category>')
+def filter_terms(category):
+    """ Query Terms by Category """
+    return render_template('filterterms.html',
+                            terms=mongo.db.terms.find({'category_name' : category}))
 
 
 ### USER FORMS ROUTES
