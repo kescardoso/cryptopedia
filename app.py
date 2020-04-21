@@ -120,7 +120,7 @@ def delete_category(category_id):
 @app.route('/filter_terms/<category>')
 def filter_terms(category):
     """ Query Terms by Category """
-    return render_template('filterterms.html',
+    return render_template('filterterms.html', category=category,
                             terms=mongo.db.terms.find({'category_name' : category}))
 
 
