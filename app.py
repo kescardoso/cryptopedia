@@ -160,7 +160,6 @@ def register():
 
 
 # Login Form Route
-# Can't see if statements with username
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     """ Check if username exists """
@@ -180,7 +179,6 @@ def login():
 
 
 # Logout Form Route
-# Can't see if it works and don't know how to log out
 @app.route('/logout')
 def logout():
     session.pop('user_name')
@@ -195,26 +193,15 @@ def restrict():
 
 
 ### SEARCH FORM
-# From: https://stackoverflow.com/questions/48371016/pymongo-how-to-use-full-text-search
-# And: https://stackoverflow.com/questions/49884312/mongodb-text-index-search
-# Elasticsearch: https://dev.to/aligoren/using-elasticsearch-with-python-and-flask-2i0e
-# Elasticsearch: https://medium.com/@xoor/indexing-mongodb-with-elasticsearch-2c428b676343
-# ElasticSearch: https://elasticsearch-py.readthedocs.io/en/master/
-# Pymongo and ES: https://github.com/ruanbekker/flask-reminders
-# Pymongo ES: https://github.com/ItsRanveer/flask-mongo-elastic-REST
-@app.route('/search_terms')
-def search_terms(search):
-    mongo.db.terms.create_index({ term_name: "text", term_description: "text" })
+@app.route('/search_terms', methods=['POST'])
+def search_terms():
+    search = request.form.get('search')
+    print(search)
+    mongo.db.terms.create_index([ ('term_name', 'text'), ('term_description', 'text') ])
     results=mongo.db.terms.find({"$text": {"$search": search}})
     return render_template("terms.html",
                             terms=results)
-#Seun
-# @app.route('/search_terms/<search>')
-# def search_terms(search):
-#     results=mongo.db.terms.find({"term_name": {'$regex': search, '$options': 'i'}})
-#     return render_template("terms.html",
-#                             terms=results)
-
+                            
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
