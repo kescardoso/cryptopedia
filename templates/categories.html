@@ -4,11 +4,10 @@
     <h5>Categories</h5>
     <!-- Start list: categories -->
     <div class="row">
-
         <ul class="collapsible" data-collapsible="accordion">
             {% for category in categories %}
-            
             <li>
+
                 <!-- Categories list -->
                 <div class="collapsible-header">
                     <!-- Category header: with external links to dynamic list view -->
@@ -17,15 +16,16 @@
                             <i class="material-icons open-list-icon">launch</i> 
                         </a> 
                     </div>
+
                     <!-- Edit and delete button -->
                     <div class="glos-icon">
                         <a href="{{ url_for('edit_category', category_id=category._id) }}">
                             <i class="material-icons">edit</i>
                         </a>
                     </div>
-                </div> 
-            </li>
+                </div>
 
+            </li>
             {% endfor %}
         </ul>
     </div>
