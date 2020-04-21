@@ -11,15 +11,15 @@
             <li>
                 <!-- Categories list -->
                 <div class="collapsible-header">
+                    <!-- Category header: with external links to dynamic list view -->
                     <div class="cat-header"> 
-                        <!-- Category header -->
-                        {{category.category_name}}
+                        {{category.category_name}} <a href="{{ url_for('filter_terms', category=category.category_name) }}" alt="See all terms from this category"> 
+                            <i class="material-icons open-list-icon">launch</i> 
+                        </a> 
                     </div>
-
-                    <div class="btns-glo">
-                        <!-- Edit and delete button -->
-                        <a href="{{ url_for('edit_category', category_id=category._id) }}" 
-                            class="btn-flat">
+                    <!-- Edit and delete button -->
+                    <div class="glos-icon">
+                        <a href="{{ url_for('edit_category', category_id=category._id) }}">
                             <i class="material-icons">edit</i>
                         </a>
                     </div>

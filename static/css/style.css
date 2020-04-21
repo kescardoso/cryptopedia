@@ -9,6 +9,14 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.1em;
 }
 
+a {
+    color: #00bcd4; /* materialize colors: cyan */
+}
+
+a:hover {
+    color: #000;
+}
+
 /* Container */
 .template-container {
     margin-top: 30px;
@@ -47,7 +55,7 @@ footer{
 }
 
 footer a {
-color: #3b4a40 !important;
+    color: #3b4a40 !important; /* same as navbar background */
 }
 
 /* Nav */
@@ -59,29 +67,34 @@ color: #3b4a40 !important;
 }
 
 .navbar{
-      background-color:#3b4a40 !important;
-      padding: 0px 20px 0px 20px !important;
+    background-color:#3b4a40 !important; /* same as footer links */
+    padding: 0px 20px 0px 20px !important;
 }
 
 .nav-links {
-      text-transform: uppercase;
-      font-size: 80%;
-      letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 80%;
+    letter-spacing: 0.2em;
 }
 
 .nav-drop {
-      text-transform: uppercase;
-      font-size: 80% !important;
-      letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 80% !important;
+    letter-spacing: 0.1em;
 }
 
-/* Glossary buttons */
-.btns-glo {
+/* Accordion Icons */
+.glos-icon {
     justify-content: space-between;
     position: absolute;
     width: 0rem;
     margin-right: 0;
     right: 20%;
+}
+
+i.material-icons.open-list-icon {
+    font-size: 15px;
+    margin-right: 1px;
 }
 
 /* Intro Card */

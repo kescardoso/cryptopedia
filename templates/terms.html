@@ -58,10 +58,9 @@
                             <!-- Term header: name - category -->
                             <strong>{{term.term_name}}</strong> - <span class="grey-text">{{term.category_name}}</span>
                         </div>
-                        <div class="btns-glo">
+                        <div class="glos-icon">
                             <!-- Edit and delete button -->
-                            <a href="{{ url_for('edit_term', term_id=term._id) }}" 
-                                class="btn-flat">
+                            <a href="{{ url_for('edit_term', term_id=term._id) }}" alt="Edit Term">
                                 <i class="material-icons">edit</i>
                             </a>
                         </div>

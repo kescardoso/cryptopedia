@@ -136,22 +136,17 @@ def register():
     """ Check if username already exists, to avoid duplicates """
     if request.method == 'POST':
         existing_user = mongo.db.users.find_one({'user_name': request.form.get('username')})
-
         """ If username doesn't exist, create new instance for user """
         if existing_user is None:
             pwhash = generate_password_hash(request.form.get('password'))
-            # hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-
             mongo.db.users.insert({ 'user_name': request.form.get('username'),
                                     'user_email': request.form.get('email'),
                                     'user_pass' : pwhash })
             session['user_name'] = request.form.get('username')
             flash('Account created successfuly. Please, log in.', 'badge light-green lighten-4')
             return redirect(url_for('login'))
-
         else:
             flash('Sorry! This username is already taken. If it is you, please log in.', 'badge red lighten-4')
-
     return render_template("register.html")
 
 
@@ -160,17 +155,14 @@ def register():
 def login():
     """ Check if username exists """
     login_user = mongo.db.users.find_one({'user_name': request.form.get('username')})
-
     """ If username exists, log user in """
     if login_user:
         if check_password_hash(login_user['user_pass'], request.form.get('password')):
             session['user_name'] = request.form.get('username')
             flash('Success! You have been logged in.', 'badge light-green lighten-4')
-            return redirect(url_for('get_terms'))
-    
+            return redirect(url_for('get_terms'))    
         else:
-            flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')
-    
+            flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')    
     return render_template('login.html')
 
 
