@@ -83,8 +83,15 @@
                     </ul>
                     <li>
                         {% if session['user_name'] %}
-                            <a class="btn cyan accent-4" href="{{ url_for('logout') }}" alt="Log out">
+                            <div class="white-text nav-links" href="#">
                                 Hi {{ session['user_name'] }}!
+                            </div>
+                        {% endif %}
+                    </li>    
+                    <li>
+                        {% if session['user_name'] %}
+                            <a class="btn cyan accent-4" href="{{ url_for('logout') }}" alt="Log out">
+                                Log out
                             </a>
                         {% else %}
                             <a class="btn cyan accent-4" href="{{ url_for('login') }}" alt="Log in">
@@ -96,9 +103,10 @@
                 
                 <!-- Mobile Nav -->
                 <ul class="side-nav cyan-text text-darken-2" id="mobile-demo">
-                    <li>{% if session['user_name'] %}
+                    <li>
+                        {% if session['user_name'] %}
                             <a class="btn cyan accent-4" href="{{ url_for('logout') }}">
-                                Hi {{ session['user_name'] }}!
+                                Log out
                             </a>
                         {% else %}
                             <a href="{{ url_for('login') }}">
@@ -107,6 +115,13 @@
                             </a>
                         {% endif %}
                     </li>
+                    <li>
+                        {% if session['user_name'] %}
+                            <div>
+                                Hi {{ session['user_name'] }}!
+                            </div>
+                        {% endif %}
+                    </li>    
                     <li><a href="{{url_for('get_terms')}}">
                             <i class="material-icons left">menu_book</i>
                             Glossary
@@ -127,13 +142,6 @@
                             New Category
                         </a>
                     </li>
-                    <li>{% if session['user_name'] %}
-                        <a href="{{ url_for('logout') }}">
-                            <i class="material-icons">vpn_key</i>
-                            Log Out
-                        </a>
-                        {% endif %}
-                    </li>    
                 </ul>
 
             <!-- Nav wrapper ends here -->
@@ -211,7 +219,7 @@
                 <a href="http://kescardoso.com" target ='_blank' alt='Blog: The Ether Girl'>Built by The Ether Girl</a>
             </div>
             <div class ="foot-links">
-                <a href="{{ url_for('give_credits') }}" alt='Credits'><i class="footer-links fas fa-info-circle"></i></a>
+                <a href="{{ url_for('credits') }}" alt='Credits'><i class="footer-links fas fa-info-circle"></i></a>
                 <a href="mailto:info@kescardoso.com" target ='_blank' alt='Contact'><i class="footer-links far fa-envelope"></i></a>
                 <a href="https://github.com/kescardoso/cryptopedia" target ='_blank' alt='Github Repo'><i class="footer-links fab fa-github-alt"></i></a>
                 <a href="https://twitter.com/TokensForK" target ='_blank' alt='Twitter'><i class="footer-links fab fa-twitter"></i></a>

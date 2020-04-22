@@ -124,6 +124,12 @@ def filter_terms(category):
                             terms=mongo.db.terms.find({'category_name' : category}).sort('term_name'))
 
 
+### CREDITS ROUTE
+@app.route('/credits')
+def credits():
+    return render_template('credits.html')
+
+
 ### USER FORMS ROUTES
 # Code credits:
 # Pretty Printed Login System https://youtu.be/vVx1737auSE 
@@ -172,12 +178,6 @@ def logout():
     session.pop('user_name')
     flash('You were logged out.', 'badge light-green lighten-4')
     return redirect(url_for('get_terms'))
-
-
-### CREDITS ROUTE
-@app.route('/give_credits')
-def give_credits():
-    return render_template('credits.html')
 
 
 ### SEARCH FORM
