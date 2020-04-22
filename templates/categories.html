@@ -2,6 +2,17 @@
 {% block content %}
 
     <h5>Categories</h5>
+    <!-- Button: add new category -->
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <a href="{{url_for('add_category')}}" class="waves-effect waves-light btn cyan accent-4">
+                    <i class="material-icons right">library_add</i>Add New Category
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Start list: categories -->
     <div class="row">
         <ul class="collapsible" data-collapsible="accordion">
@@ -28,12 +39,6 @@
             </li>
             {% endfor %}
         </ul>
-    </div>
-
-    <!-- Button: add new category -->
-    <div class="row">
-        <a href="{{url_for('add_category')}}" class="waves-effect waves-light btn cyan accent-4">
-            <i class="material-icons right">library_add</i>Add New Category</a>
     </div>
     
 {% endblock %}

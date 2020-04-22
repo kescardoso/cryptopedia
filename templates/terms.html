@@ -23,6 +23,15 @@
         </div>
 
         <h5>The Cryptopedia Glossary</h5>
+        <!-- Button: add new term -->
+        <div class="row">
+            <div class="col s12">
+                <a href="{{url_for('add_term')}}" class="waves-effect waves-light btn cyan accent-4">
+                    <i class="material-icons right">library_add</i>Add New Term
+                </a>
+            </div>
+        </div>
+        
         <!-- Start list: glossary of terms -->
         <ul class="collapsible" data-collapsible="accordion">
 
@@ -76,12 +85,6 @@
             {% endfor %}
         </ul>
 
-    </div>
-
-    <!-- Button: add new term -->
-    <div class="row">
-        <a href="{{url_for('add_term')}}" class="waves-effect waves-light btn cyan accent-4">
-            <i class="material-icons right">library_add</i>Add New Term</a>
     </div>
     
 {% endblock %}
