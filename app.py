@@ -116,7 +116,7 @@ def delete_category(category_id):
     return redirect(url_for('get_categories'))
 
 
-### FILTER CATEGORY BY QUERIES
+### FILTER TERMS BY CATEGORY QUERIES
 @app.route('/filter_terms/<category>')
 def filter_terms(category):
     """ Query Terms by Category """
@@ -174,10 +174,10 @@ def logout():
     return redirect(url_for('get_terms'))
 
 
-### RESTRICT ACCESS ROUTE
-@app.route('/restrict')
-def restrict():
-    return render_template('restrict.html')
+### CREDITS ROUTE
+@app.route('/give_credits')
+def give_credits():
+    return render_template('credits.html')
 
 
 ### SEARCH FORM
