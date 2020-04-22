@@ -15,7 +15,7 @@
                     {% for cat in categories %}
                         <option value="{{cat.category_name}}">{{cat.category_name}}</option>
                     {% endfor %}
-                </select>
+                    </select>
                     <label>Category</label>
                 </div>
             </div>
@@ -44,21 +44,18 @@
                 {% if session['user_name'] %}
                     <!-- Save button: logged-in access-->
                     <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
-                        Add to Glossary
-                        <i class="material-icons right">save_alt</i>
+                        Add to Glossary <i class="material-icons right">save_alt</i>
                     </button>
-                 {% else %}
+                {% else %}
                     <!-- Save button: restricted access-->
                     <button class="disabled waves-effect waves-light btn cyan accent-4" type="submit" name="action">
-                        Add to Glossary
-                        <i class="material-icons right">save_alt</i>
+                        Add to Glossary <i class="material-icons right">save_alt</i>
                     </button>
                 {% endif %}
                 <!-- Cancel button -->
                 <a href="{{ url_for('get_terms') }}" 
                     class="waves-effect waves-light btn grey">
-                    Cancel
-                    <i class="material-icons right">cancel</i>
+                    Cancel <i class="material-icons right">cancel</i>
                 </a>
             </div>
 

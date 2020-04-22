@@ -25,14 +25,21 @@ button:hover {
 
 /* Body and Footer */
 body {
-    background: url('/static/images/paper01.png'); /* Background image */
-    display: flex;  /* Sticky Footer */
-    min-height: 100vh;  /* Sticky Footer */
-    flex-direction: column;  /* Sticky Footer */
+    /* Background image */
+    background: url('/static/images/paper01.png'); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
+    /* Sticky Footer */
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 main {
-    flex: 1 0 auto;  /* Sticky Footer */
+    flex: 1 0 auto;
 }
 
 /* Footer credits */
@@ -126,4 +133,12 @@ i.material-icons.open-list-icon {
     padding: 20px 15px;
     text-transform: uppercase;
     text-align: center;
+}
+
+.cred-list {
+    margin-left: 16px;
+}
+
+.collapsible-body {
+    text-align: justify;
 }

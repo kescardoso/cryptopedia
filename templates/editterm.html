@@ -12,13 +12,13 @@
                     <i class="material-icons prefix">label</i>
                     <select id="category" name="category_name">
                     <option value="" disabled selected>Choose Category</option> 
-                        {% for cat in categories %}
-                            {% if cat.category_name == term.category_name %}
-                                <option value="{{cat.category_name}}" selected >{{cat.category_name}}</option>
-                            {% else %}
-                                <option value="{{cat.category_name}}"  >{{cat.category_name}}</option>
-                            {% endif %}
-                        {% endfor %}    
+                    {% for cat in categories %}
+                        {% if cat.category_name == term.category_name %}
+                            <option value="{{cat.category_name}}" selected >{{cat.category_name}}</option>
+                        {% else %}
+                            <option value="{{cat.category_name}}"  >{{cat.category_name}}</option>
+                        {% endif %}
+                    {% endfor %}    
                     </select>
                     <label>Category</label>
                 </div>
@@ -48,14 +48,12 @@
                 {% if session['user_name'] %}
                     <!-- Save button: logged-in access-->
                     <button class="waves-effect waves-light btn cyan accent-4" type="submit" name="action">
-                        Save
-                        <i class="material-icons right">save_alt</i>
+                        Save <i class="material-icons right">save_alt</i>
                     </button>
                 {% else %}
                     <!-- Save button: restricted access-->
                     <button class="disabled waves-effect waves-light btn cyan accent-4" type="submit" name="action">
-                        Save
-                        <i class="material-icons right">save_alt</i>
+                        Save <i class="material-icons right">save_alt</i>
                     </button>
                 {% endif %}
                 <!-- DELETE -->
@@ -63,22 +61,19 @@
                     <!-- Delete button: admin access -->
                     <a href="{{ url_for('delete_term', term_id=term._id) }}" 
                         class="waves-effect waves-light btn cyan accent-4">
-                        Delete  
-                        <i class="material-icons prefix right">delete_forever</i>
+                        Delete <i class="material-icons prefix right">delete_forever</i>
                     </a>
                 {% else %}
                     <!-- Delete button: restricted access -->
                     <a href="{{ url_for('delete_term', term_id=term._id) }}" 
                         class=" disabled waves-effect waves-light btn cyan accent-4">
-                        Delete  
-                        <i class="material-icons prefix right">delete_forever</i>
+                        Delete <i class="material-icons prefix right">delete_forever</i>
                     </a>
                 {% endif %}
                 <!-- Cancel button -->
                 <a href="{{ url_for('get_terms') }}" 
                     class="waves-effect waves-light btn grey">
-                    Cancel
-                    <i class="material-icons right">cancel</i>
+                    Cancel <i class="material-icons right">cancel</i>
                 </a>
             </div>
 
