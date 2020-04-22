@@ -199,13 +199,10 @@
 <footer>
     <div class="footer-copyright center">
         <div class="container">
-            <div class="footer-session">
+            <div class="footer-session grey-text">
                 {% if session['user_name'] %}
-                    You are logged in as {{ session['user_name'] }}.
-                    </br>
-                    <a href="{{ url_for('logout') }}">
-                        Log out here.
-                    </a>
+                    You are logged in as <span class="footer-session-user">{{ session['user_name'] }}</span>.
+                    <a href="{{ url_for('logout') }}">Log out here.</a>
                 {% endif %}
             </div>
             <div class="foot-creds grey-text">

@@ -43,6 +43,15 @@ footer{
     padding: 15px 5px 15px 5px;
 }
 
+.footer-session {
+    letter-spacing: 1px !important;
+    font-size: 90%;
+}
+
+.footer-session-user {
+    color: #000 !important;
+}
+
 .foot-creds,
 .ether-girl {
     text-transform: uppercase;
