@@ -130,9 +130,9 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 2. Programing languages - this project uses [Python](https://www.python.org/) as the main programing language, as well as  [Javascript](www.javascript.com) and the [JQuery library](https://jquery.com/).
 
-3. [Flask](https://flask.palletsprojects.com/en/1.1.x/) - This project uses the **Flask** frameqork and the Jinja library.
+3. [Flask](https://flask.palletsprojects.com/en/1.1.x/) - This project uses the **Flask** framework and the Jinja library.
 
-4. [MongoDB](https://www.mongodb.com/) - This project uses **MongoDB** as a document-oriented database to store data in JSON-like objects with dynamic schema.
+4. [MongoDB](https://www.mongodb.com/) - This project uses **MongoDB** as a document-oriented database to store data in JSON-like objects with a dynamic schema.
 
 5. [Materialize](https://materializecss.com/) - This project uses the **Materialize** Css Framework to facilitate a grid-system, responsive design, and optimal user experience.
 
@@ -147,3 +147,17 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 10. [Heroku](https://www.heroku.com/) - This project uses **Heroku** for app deployment.
 
 11. [StackEdit](https://pages.github.com/) - This project uses **StackEdit** as an in-browser Markdown editor for beautiful, stress-free README writing.
+
+## Testing
+
+- **Responsiveness** -- The responsiveness of this website was consistently tested during the development process: on GITPOD using the Chrome developer tools, as well as locally using real mobile devices, tablets, and desktops.
+
+- **Browsers** -- The website was tested and verified using in Chrome, Safari, Firefox, Brave and Opera.
+
+- **Code Validation** -- The following  **validation services**  were used to check the code:
+    - [W3C Markup Validator](https://validator.w3.org) was used to validate HTML.
+    - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS.
+    - [JSHint](https://jshint.com) was used to validate JavaScript.
+    - [DiffChecker](www.diffchecker.com) was used to validade the Python app.
+
+- **Real User Input** -- I have asked friends and family to check and use the website on their desktop and mobile devices with positive feedback of proper functioning and design experience.
