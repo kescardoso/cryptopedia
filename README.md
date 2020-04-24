@@ -123,3 +123,27 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 2. **Pagination:** as the glossary grows with more terms, a pagination feature becomes necessary and is planned to be implemented soon.
 
 3. **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't display correctly on the first click.
+
+## Technologies Used
+
+1. HTML & CSS.
+
+2. Programing languages - this project uses [Python](https://www.python.org/) as the main programing language, as well as  [Javascript](www.javascript.com) and the [JQuery library](https://jquery.com/).
+
+3. [Flask](https://flask.palletsprojects.com/en/1.1.x/) - This project uses the **Flask** frameqork and the Jinja library.
+
+4. [MongoDB](https://www.mongodb.com/) - This project uses **MongoDB** as a document-oriented database to store data in JSON-like objects with dynamic schema.
+
+5. [Materialize](https://materializecss.com/) - This project uses the **Materialize** Css Framework to facilitate a grid-system, responsive design, and optimal user experience.
+
+6. [GitPod](https://gitpod.io/) - This project uses **Gitpod** as a development and testing environment.
+
+7. [FontAwesome](https://fontawesome.com/) - This project uses **FontAwesome** to style the footer with icons.
+
+8. [Git](https://git-scm.com) - This project uses **Git** for version-control and for tracking changes in source code during development. 
+
+9. [GitHub](https://github.com/) - This project uses **GitHub** as a remote code repository.
+
+10. [Heroku](https://www.heroku.com/) - This project uses **Heroku** for app deployment.
+
+11. [StackEdit](https://pages.github.com/) - This project uses **StackEdit** as an in-browser Markdown editor for beautiful, stress-free README writing.
