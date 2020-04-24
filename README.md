@@ -5,7 +5,7 @@ The Cryptopedia is a community encyclopedia about crypto assets, crypto economy,
 
 ![](https://i.ibb.co/qsKs85k/Cryptopedia-Responsive.png)
 
-The Cryptopedia is a Python-Flask based web application that lists crypto informational content in the form of an online interactive encyclopedia, backed by a MongoDB collection. The Cryptopedia is a cloud web app deployed via the Heroku PaaS and consists of a lightweight, responsive website designed with Google's Materialize CSS Framework. As you read this document, you find my complete development process, from UX strategy to deployment.
+The Cryptopedia is a Python-Flask web application that lists crypto informational content in the form of an online interactive encyclopedia, backed by a MongoDB collection. The Cryptopedia is a cloud web app deployed via the Heroku PaaS and consists of a lightweight, responsive website designed with Google's Materialize CSS Framework. As you read this document, you find my complete development process, from UX strategy to deployment.
 
 - [View The Cryptopedia on Heroku](https://thecryptopedia.herokuapp.com)
 - [View the Repository on GitHub](https://github.com/kescardoso/cryptopedia)
@@ -42,9 +42,9 @@ Link to the initial wireframe for this app on [Figma](https://www.figma.com/file
 
 ### Who is the target user
 
-According to Binance, active cryptocurrency users total number currently stands [somewhere around 19 million](https://www.similarweb.com/website/binance.com), and according to Bitcointalk [about 82% of this users identify as male](https://bitcointalk.org/index.php?action=stats) between 18 and 45 years-old interested in the following areas: trading, investing, computers, software, design and animation, employement and career change, electronic gadgets, and banking systems. The current geographical engagement is mainly caucasian: Europe followed byt the US are the most important crypto markets and blockchain technology providers.
+According to Binance, active cryptocurrency users total number currently stands [somewhere around 19 million](https://www.similarweb.com/website/binance.com), and according to Bitcointalk [about 82% of this users identify as male](https://bitcointalk.org/index.php?action=stats) interested in the following areas: trading, investing, computers, software, design and animation, employement and career change, electronic gadgets, and banking systems. The current geographical engagement is mainly caucasian: Europe, followed by the US are the most important crypto markets and blockchain technology providers.
 
-This demographic concentration could be due to a lack of educational and informational systems available for people who are outside the dominant fintech industry and network. Overall we see that the typical crypto user can be described as the following: "**a European male, between the ages of 25 and 34, who is interested in finances, investing and technology**. He is relatively risky, not overly fearful of the volatile nature of cryptocurrency, while being tech-savvy enough to understand the basic mechanics of how crypto-related products and services work" (source: [CoinTraffic](https://cointraffic.io/blog/crypto-audience-revealed-who-is-your-target-user/)).
+This demographic concentration could be due to a lack of educational and informational systems available for people who are outside the dominant fintech industry. Overall we see that the typical crypto user can be described as the following: "**European male, between the ages of 25 and 34, who is interested in finances, investing and technology**. He is relatively risky, not overly fearful of the volatile nature of cryptocurrency, while being tech-savvy enough to understand the basic mechanics of how crypto-related products and services work" (source: [CoinTraffic](https://cointraffic.io/blog/crypto-audience-revealed-who-is-your-target-user/)).
 
 The Cryptopedia World aims to provide entry-level information to people who are new to crypto and who are looking for alternatives to elevate their financial status and begin investing outside the traditional bank system or the stock and bonds market. Therefore, this project gears towards empowering new users, from a different background than those above, so crypto mass adoption can happen as intended: openly and democratically, all the while encouraging decentralized global wealth.
 
@@ -52,20 +52,74 @@ The Cryptopedia World aims to provide entry-level information to people who are 
  
 - **Client Avatar:** Cross-cultural English speaking men and women, from GenX and Millenials, who are researching basic information on how to get started with cryptocurrencies, digital asset trading, Bitcoin, Ethereum, Litecoin and Decentralised Finances (DeFi). This user demographic is based on the following:
 
-    - Working women: female engagement with cryptocurrencies is rising and currently at an all-time high. The Cryptopedia aims to bridge the gender technological and monetary gab, by also offering women with resources and possibilities for financial and professional sustainability
+    - Working women: female engagement with cryptocurrencies is rising and currently at an all-time high. The Cryptopedia aims to bridge the gender technological and monetary gab, by also offering women with resources and possibilities for financial and professional sustainability.
     - Coding Bootcamp students interested in software and undergoing a career change, who are looking to achieve financial stability with an initial low monetary support.
     - Entrepreneurs interested in the new economy and looking for alternatives within staking, investing, accounting, affordable online payments, and low-cost international banking systems;
     - Travelers, digital nomads, culture and art lovers, and political enthusiasts with interests in open finance and global economy solutions.
 
 ### Main challenges
 
-These are some of the main reasons why people don’t invest in cryptocurrencies or blockchain-related products, and the biggest hindrances to the adoption of crypto, according to [CoinTraffic](https://cointraffic.io/blog/crypto-audience-revealed-who-is-your-target-user/):
+These are some of the main reasons why people don’t invest in cryptocurrencies or blockchain-related products, according to [CoinTraffic](https://cointraffic.io/blog/crypto-audience-revealed-who-is-your-target-user/):
 
 -   They find crypto hard to understand.
--   They consider it to be too volatile.
--   They believe their investments could lose all of their value.
--   They believe all crypto to be a scam or in a bubble.
+-   They believe all crypto to be a scam.
 -   They are under the impression it is illegal in their jurisdiction.
 -   They find crypto to be too difficult to spend in every-day life.
 
 The goal of the Cryptopedia is to pass information about the fundamentals of crypto finance through a simple, user-friendly interface. Structures are lightweight, from design to copy, and information is recorded from reliable sources and research. The reader can pick and choose what they need to learn and clarify and build on their knowledge. They can also contribute and enrich the collection with their research. The Cryptopedia follows the same ideology of decentralized blockchain systems: it is a trustless and permissionless encyclopedia for the crypto learner.
+
+### User Stories
+
+Chloé is a 35-year-old European female, based in France. She is a cross-cultural English-speaking solo-entrepreneur, and she is looking for financial solutions during the current pandemic and economic downturn. She has savings on her French bank account, but she worries about her long-term sustainability, and how she will send money contributions to her retired mother who lives in Guadalupe, as the quarantine and social distancing are preventing her regular revenue.
+
+Apart from finding online alternatives to continue running her business, Chloé wants to find a more profitable money management system, and she heard about crypto and how crypto transactions accross frontiers are cheaper and how DeFi could be an alternative for her savings. But Chloé is not tech-savvy, and she is afraid of running risks and losing her money.
+
+When Chloé researches the internet about crypto assets, she finds very complex information, with lots of financial and technical jargon. But amid her google search, she spots The Cryptopedia World, which seems to be a more straightforward and accessible place to get started.
+
+1. She opens The Cryptopedia web app on her Chrome browser and starts experimenting with it.
+
+2. The interface is very straight forward, and soon she performs a term search through the glossary to find information about Etherium.
+
+3. The search brings out a short text about what Etherium is and the possibilities around Ether and stable coins.
+
+4. So Chloé goes to the categories tab and searches for "stable coins" and pulls out another short text, and she finds out about DeFi.
+
+5. Chloe decides then to go back to google to find out more in-depth information related to DeFi. She learns about terms such as Smart Contracts, and the possibilities of lending-borrowing with higher interest rates than traditional banking, all using stable coins which are not affected by high volatility such as Bitcoin.
+
+6. She is now very excited about the possibility of having a crypto staking and savings account, so she goes back to The Cryptopedia and decides to share this information with the archives.
+
+7. Chloé quickly finds the register and login page; she enters her user information and logs in to The Cryptopedia. She is now able to add a new term to the glossary 'DeFi' and contribute to the database with her research.
+
+8. She clicks the button "add new term", she fills out the form, and she clicks save. And her contribution is added to the glossary.
+
+9. Chloé is also able to enter new category names to the archives. She can, too, search for terms using the category lists, which group terms by categories. And she finds, on the categorie list "Financial Terms", the term "Exchanges".
+ 
+10. She reads about exchanges and learns that these are the plataforms where we can buy, sell and send crypto beyond borders for a very affordable price. She feels very good about this possibility for sending money to her retired mother and she wants to find out more about exchanges and wallets.
+ 
+12. Chloé now feels empowered and motivated to continue growing her knowledge about crypto finances. The Cryptopedia is friendly and easy to use, and her participation counts: she is motivated. She is also looking forward to learning more about staking stable coins and finding a crypto banking solution to use her stable coins with a crypto visa card for her weekly groceries. The possibilities are now endless!
+
+## Features
+ 
+### Existing Features
+
+1. **Navbar:** contains the logo and the main menu with easy access to the glossary, add new term and category, term lists by category and the login button
+
+2. **Search Box:** this is a full-text search box that allows the user to locate a term to on the glossary. The Search Box is wired to the Cryptopedia MongoDB atlas.
+
+3. **The Glossary:** this is the Cryptopedia itself, where all the information is stored (listed by term name, term category and term description) in the form of a collapsable accordion list.
+
+4. **Add New Buttons** this offers the possibility for users and admins to add new terms and new categories to the glossary, via a form wired to the database.
+
+5. **Edit Button** this offers the possibility for users and admins to edit existing terms and categories already in the glossary.
+
+6. **Delete Button:** this offers the possibility for admins only to curate and erase terms and categories from the glossary.
+
+7. **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
+
+### Features Left to Implement
+
+1. **Autocomplete Search:** at the moment, the app disposes of a full-text search form (which is the feature available for MongoDB search forms). With more complex functionalities such as Elastic search, it is possible to have a autocomplete search feature.
+
+2. **Pagination:** as the glossary grows with more terms, a pagination feature becomes necessary and is planned to be implemented soon.
+
+3. **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't display correctly on the first click.
