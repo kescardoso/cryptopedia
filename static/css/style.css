@@ -18,7 +18,7 @@ button:hover {
     color: #000;
 }
 
-/* Container */
+/* Margins for Main Container */
 .template-container {
     margin-top: 30px;
 }
@@ -42,7 +42,6 @@ main {
     flex: 1 0 auto;
 }
 
-/* Footer credits */
 footer{  
     letter-spacing: 0.2em;
     line-height: 2em;
@@ -102,7 +101,11 @@ footer a {
     letter-spacing: 0.1em;
 }
 
-/* Accordion Icons */
+/* Accordion */
+.collapsible-body {
+    text-align: justify;
+}
+
 .glos-icon {
     justify-content: space-between;
     position: absolute;
@@ -127,7 +130,7 @@ i.material-icons.open-list-icon {
     text-align: center;
 }
 
-/* Form Validator Alert */
+/* Form Validators */
 .alert .alert-badge {
     margin: 20px 0px 5px 0px;
     padding: 20px 15px;
@@ -135,10 +138,7 @@ i.material-icons.open-list-icon {
     text-align: center;
 }
 
+/* Page of Credits */
 .cred-list {
     margin-left: 16px;
-}
-
-.collapsible-body {
-    text-align: justify;
 }

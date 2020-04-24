@@ -180,7 +180,7 @@ def logout():
     return redirect(url_for('get_terms'))
 
 
-### SEARCH FORM
+### FULL TEXT SEARCH FORM
 @app.route('/search_terms', methods=['POST'])
 def search_terms():
     search = request.form.get('search')
