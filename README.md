@@ -17,12 +17,12 @@ Thanks for appreciating The Cryptopedia World with me!
 
 ## Contents table
 
- 1. [UX](#ux)
+ 1. [UX](##ux)
  
-     - 1.1 [Wireframe](#wireframe)
-     - 1.2 [Target User and What They Want to Achieve](#who-is-the-target-user)
-     - 1.3 [Target-user main challenges](#target-user-main-challenges)
-     - 1.4 [User Stories](#user-stories)
+     - 1.1 [Wireframe](###wireframe)
+     - 1.2 [Target User and What They Want to Achieve](###who-is-the-target-user)
+     - 1.3 [Target-user main challenges](###target-users-main-challenges)
+     - 1.4 [User Stories](###user-stories)
 
  2. [Features](#features)
      
@@ -57,7 +57,7 @@ The Cryptopedia World aims to provide entry-level information to people who are 
     - Entrepreneurs interested in the new economy and looking for alternatives within staking, investing, accounting, affordable online payments, and low-cost international banking systems;
     - Travelers, digital nomads, culture and art lovers, and political enthusiasts with interests in open finance and global economy solutions.
 
-### 1.3 Target-user main challenges
+### 1.3 Target-user's main challenges
 
 These are some of the main reasons why people don’t invest in cryptocurrencies or blockchain-related products, and the biggest hindrances to the adoption of crypto, according to [CoinTraffic](https://cointraffic.io/blog/crypto-audience-revealed-who-is-your-target-user/):
 
