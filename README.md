@@ -181,31 +181,31 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 -  **Code Validation** -- The following **validation services** were used to check the code:
 
--  [W3C Markup Validator](https://validator.w3.org) was used to validate HTML.
+	-  [W3C Markup Validator](https://validator.w3.org) was used to validate HTML.
 
--  [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS.
+	-  [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS.
 
--  [JSHint](https://jshint.com) was used to validate JavaScript.
+	-  [JSHint](https://jshint.com) was used to validate JavaScript.
 
--  [DiffChecker](www.diffchecker.com) was used to validade the Python app.
+	-  [DiffChecker](www.diffchecker.com) was used to validade the Python app.
 
 -  **Real User Input** -- I have asked friends and family to check and use the website on their desktop and mobile devices with positive feedback of proper functioning and design experience.
 
 -  **Practical Tests** -- Please, click on the linked titles below to open each test and see a screencast (mp4 file) on your browser.
 
-- Practical Test 1 [Register and login forms](http://www.kescardoso.com/wp-content/uploads/2020/04/register-login.mp4)
+	- Practical Test 1 [Register and login forms](http://www.kescardoso.com/wp-content/uploads/2020/04/register-login.mp4)
 
-- Practical Test 2 [Logged user: add term](http://www.kescardoso.com/wp-content/uploads/2020/04/add-term.mp4)
+	- Practical Test 2 [Logged user: add term](http://www.kescardoso.com/wp-content/uploads/2020/04/add-term.mp4)
 
-- Practical Test 3 [Logged user: edit term](http://www.kescardoso.com/wp-content/uploads/2020/04/edit-term.mp4)
+	- Practical Test 3 [Logged user: edit term](http://www.kescardoso.com/wp-content/uploads/2020/04/edit-term.mp4)
 
-- Practical Test 4 [Category list view](http://www.kescardoso.com/wp-content/uploads/2020/04/categories-lists.mp4)
+	- Practical Test 4 [Category list view](http://www.kescardoso.com/wp-content/uploads/2020/04/categories-lists.mp4)
 
-- Practical Test 5 [Logged user: add and edit category](http://www.kescardoso.com/wp-content/uploads/2020/04/add-edit-category.mp4)
+	- Practical Test 5 [Logged user: add and edit category](http://www.kescardoso.com/wp-content/uploads/2020/04/add-edit-category.mp4)
 
-- Practical Test 6 [Logout](http://www.kescardoso.com/wp-content/uploads/2020/04/logout.mp4)
+	- Practical Test 6 [Logout](http://www.kescardoso.com/wp-content/uploads/2020/04/logout.mp4)
 
-- Practical Test 7 [Admin: delete privilege](http://www.kescardoso.com/wp-content/uploads/2020/04/admin-delete.mp4)
+	- Practical Test 7 [Admin: delete privilege](http://www.kescardoso.com/wp-content/uploads/2020/04/admin-delete.mp4)
 
 ## Deployment
 
@@ -217,24 +217,24 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 4.  **Heroku Deployment**: the Cryptopedia was deployed to [Heroku](https://dashboard.heroku.com/apps) using the following steps:
 
-5. A `requirements.txt` file was created using the terminal command `pip freeze > requirements.txt`.
+	- A `requirements.txt` file was created using the terminal command `pip freeze > requirements.txt`.
 
-6. A `Procfile` was created using the terminal command `echo web: python app.py > Procfile`.
+	- A `Procfile` was created using the terminal command `echo web: python app.py > Procfile`.
 
-7. These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
+	- These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
 
-8. A new app was created for the Cryptopedia on Heroku dashboard, by clicking the "New" button and setting the region to Europe.
+	- A new app was created for the Cryptopedia on Heroku dashboard, by clicking the "New" button and setting the region to Europe.
 
-9. From the Heroku dashboard the app was deployed using the "Deploy button".
+	- From the Heroku dashboard the app was deployed using the "Deploy button".
 
-10. New app configurations were added on "Settings" > "Reveal Config Vars":
+	- New app configurations were added on "Settings" > "Reveal Config Vars":
 
-	- IP
-	- MONGO_URI
-	- PORT
-	- SECRET_KEY
+		- IP
+		- MONGO_URI
+		- PORT
+		- SECRET_KEY
 
-10. The web app is now successfully deployed.
+	- The web app is now successfully deployed.
 
 ## Credits
 
