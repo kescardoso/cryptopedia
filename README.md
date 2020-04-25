@@ -12,6 +12,10 @@ The Cryptopedia is a Python-Flask web application that lists crypto informationa
 
 -  [View the Repository on GitHub](https://github.com/kescardoso/cryptopedia)
 
+- For testing, please use the following login information:
+    - username: user / password: user
+    - username: admin / password: admin
+
 This project has both educational and entrepreneurial goals.
 
 Thanks for appreciating The Cryptopedia World with me!
