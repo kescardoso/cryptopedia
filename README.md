@@ -221,9 +221,9 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 ## Credits
 
 1. **Code**
-Pretty Printed Login System https://youtu.be/vVx1737auSE
-Pretty Printed Bad request in Flask https://youtu.be/lLc_jHkifRc
-Tech Monger https://techmonger.github.io/4/secure-passwords-werkzeug/
+Pretty Printed [Login System](https://youtu.be/vVx1737auSE)
+Pretty Printed [Bad request in Flask](https://youtu.be/lLc_jHkifRc) 
+Tech Monger [Secure Passwords](https://techmonger.github.io/4/secure-passwords-werkzeug/)
 
 2. **Media**
 	Logo: [Eucalyp](https://www.flaticon.com/authors/eucalyp) from [FlatIcon](https://www.flaticon.com/)
