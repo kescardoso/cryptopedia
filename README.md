@@ -204,7 +204,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
     
 6.  A  `Procfile`  was created using the terminal command  `echo web: python app.py > Procfile`.
     
-7.  These files were added and comited to github using the commands `git add`  `git commit`  `git push`  .
+7.  These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push`  .
     
 8.  A new app was created for the Cryptopedia on Heroku dashboard, by clicking the "New" button and setting the region to Europe.
     
