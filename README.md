@@ -108,13 +108,15 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 3. **The Glossary:** this is the Cryptopedia itself, where all the information is stored (listed by term name, term category and term description) in the form of a collapsable accordion list.
 
-4. **Add New Buttons** this offers the possibility for users and admins to add new terms and new categories to the glossary, via a form wired to the database.
+4. **Category Lists:** There is the main category list, listing all categories for management, and there are query lists that filter terms by category. They display in the form of a collapsable accordion list, and these lists serve to improve the user interface.
 
-5. **Edit Button** this offers the possibility for users and admins to edit existing terms and categories already in the glossary.
+5. **Add New Buttons** this offers the possibility for users and admins to add new terms and new categories to the glossary, via a form wired to the database.
 
-6. **Delete Button:** this offers the possibility for admins only to curate and erase terms and categories from the glossary.
+6. **Edit Button** this offers the possibility for users and admins to edit existing terms and categories already in the glossary.
 
-7. **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
+7. **Delete Button:** this offers the possibility for admins only to curate and erase terms and categories from the glossary.
+
+8. **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
 
 ### Features Left to Implement
 
@@ -123,6 +125,14 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 2. **Pagination:** as the glossary grows with more terms, a pagination feature becomes necessary and is planned to be implemented soon.
 
 3. **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't display correctly on the first click.
+
+4. **Recover Password:** the register and login system used in this version is a lightweight and straightforward py-mongo method based on user-sessions. For a more sophisticated and robust user system, Flask-Login has more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens.
+
+5. **Secure SSL Certificate:** for users to feel confidente using private information such as email and Password on this app, and also to increase website credibility.
+
+6. **Custom Domain:** a custom, registered domain is planned for this project.
+
+7. **Translations:** translations to both French and Portuguese are planned for future versions of this project.
 
 ## Technologies Used
 
@@ -150,11 +160,6 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 12. [StackEdit](https://pages.github.com/) - as an in-browser Markdown editor for beautiful, stress-free README writing.
 
-13. [Am I Responsive](http://ami.responsivedesign.is/) - to create the screen sizes image in this readme file.
-
-14. [Imgbb](https://imgbb.com/)  to store all external images for this project.
-
-
 ## Testing
 
 - **Responsiveness** -- The responsiveness of this website was consistently tested during the development process: on GITPOD using the Chrome developer tools, as well as locally using real mobile devices, tablets, and desktops.
@@ -168,3 +173,62 @@ When Chloé researches the internet about crypto assets, she finds very complex 
     - [DiffChecker](www.diffchecker.com) was used to validade the Python app.
 
 - **Real User Input** -- I have asked friends and family to check and use the website on their desktop and mobile devices with positive feedback of proper functioning and design experience.
+
+- **Practical Tests** -- Please, click on the linked titles below to open each test and see a screencast (mp4 file) on your browser.
+
+    - Practical Test 1 [Register and login forms](http://www.kescardoso.com/wp-content/uploads/2020/04/register-login.mp4)
+
+    - Practical Test 2 [Logged user: add term](http://www.kescardoso.com/wp-content/uploads/2020/04/add-term.mp4)
+
+    - Practical Test 3 [Logged user: edit term](http://www.kescardoso.com/wp-content/uploads/2020/04/edit-term.mp4)
+
+    - Practical Test 4 [Category list view](http://www.kescardoso.com/wp-content/uploads/2020/04/categories-lists.mp4)
+
+    - Practical Test 5 [Logged user: add and edit category](http://www.kescardoso.com/wp-content/uploads/2020/04/add-edit-category.mp4)
+
+    - Practical Test 6 [Logout](http://www.kescardoso.com/wp-content/uploads/2020/04/logout.mp4)
+
+    - Practical Test 7 [Admin: delete privilege](http://www.kescardoso.com/wp-content/uploads/2020/04/admin-delete.mp4)
+
+## Deployment
+
+1. This Project was developed and stored in git using Gitpod.
+
+2. The Project's source files were regularly pushed to [GitHub repository kescardoso/cryptopedia](https://github.com/kescardoso/cryptopedia) via the `master` branch.
+
+3. The Project's source file was also pushed to Heroku via the `heroku master` branch
+
+4. **Heroku Deployment**: the Cryptopedia was deployed to [Heroku](https://dashboard.heroku.com/apps) using the following steps:
+
+5.  A  `requirements.txt`  file was created using the terminal command  `pip freeze > requirements.txt`.
+    
+6.  A  `Procfile`  was created using the terminal command  `echo web: python app.py > Procfile`.
+    
+7.  These files were added and comited to github using the commands `git add`  `git commit`  `git push`  .
+    
+8.  A new app was created for the Cryptopedia on Heroku dashboard, by clicking the "New" button and setting the region to Europe.
+    
+9.  From the Heroku dashboard the app was deployed using the "Deploy button".
+    
+10.  New app configurations were added on "Settings" > "Reveal Config Vars":
+		- IP
+		- MONGO_URI
+		- PORT
+		- SECRET_KEY
+    
+10.  The web app is now successfully deployed.
+	
+## Credits
+
+1. **Code**
+Pretty Printed Login System https://youtu.be/vVx1737auSE
+Pretty Printed Bad request in Flask https://youtu.be/lLc_jHkifRc
+Tech Monger https://techmonger.github.io/4/secure-passwords-werkzeug/
+
+2. **Media**
+	Logo: [Eucalyp](https://www.flaticon.com/authors/eucalyp) from [FlatIcon](https://www.flaticon.com/)
+
+3. **More credits** [here](https://thecryptopedia.herokuapp.com/credits)
+
+4. **Acknowledgements** 
+Gratitude to my dear mentor Seun for her feminine and generous support and motivation throughout my coding training and journey. Also, to [Code Institute](https://codeinstitute.net/) Student Services for their incredible patience and support. Thank you, from the bottom of my heart.
