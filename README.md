@@ -72,9 +72,7 @@ The Cryptopedia provides entry-level information to people who are new to crypto
 
 ### Main challenges
 
-According to CoinTraffic, some of the main reasons why regular people don't invest in cryptocurrencies or blockchain-related products are:
-
-(https://cointraffic.io/blog/crypto-audience-revealed-who-is-your-target-user/):
+According to [CoinTraffic](https://cointraffic.io/blog/crypto-audience-revealed-who-is-your-target-user/), some of the main reasons why regular people don't invest in cryptocurrencies or blockchain-related products are:
 
 -   They find crypto hard to understand.
 -   They believe all crypto to be a scam.
