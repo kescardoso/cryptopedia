@@ -70,7 +70,7 @@ The goal of the Cryptopedia is to pass information about the fundamentals of cry
 
 ### User Stories
 
-Chloé is a 35-year-old European female, based in France. She is a cross-cultural English-speaking solo-entrepreneur, and she is looking for financial solutions during the current pandemic and economic downturn. She has savings on her French bank account, but she worries about her long-term sustainability, and how she will send money contributions to her retired mother who lives in Guadalupe, as the quarantine and social distancing are preventing her regular revenue.
+Chloé is a 38-year-old European female, based in France. She is a cross-cultural English-speaking solo-entrepreneur, and she is looking for financial solutions during the current pandemic and economic downturn. She has savings on her French bank account, but she worries about her long-term sustainability, and how she will send money contributions to her retired mother who lives in Guadalupe, as the quarantine and social distancing are preventing her regular revenue.
 
 Apart from finding online alternatives to continue running her business, Chloé wants to find a more profitable money management system, and she heard about crypto and how crypto transactions accross frontiers are cheaper and how DeFi could be an alternative for her savings. But Chloé is not tech-savvy, and she is afraid of running risks and losing her money.
 
