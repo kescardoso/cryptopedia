@@ -142,3 +142,12 @@ i.material-icons.open-list-icon {
 .cred-list {
     margin-left: 16px;
 }
+
+/* About & Credits */
+.abt {
+    text-align: justify;
+}
+
+strong {
+    font-weight: bold;
+}
