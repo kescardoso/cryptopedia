@@ -128,25 +128,32 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 1. HTML & CSS.
 
-2. Programing languages - this project uses [Python](https://www.python.org/) as the main programing language, as well as  [Javascript](www.javascript.com) and the [JQuery library](https://jquery.com/).
+2. Programing languages - this project uses [Python](https://www.python.org/) as the main programing language, with [PyMongo](https://docs.mongodb.com/drivers/pymongo) as the main library; as well as  [Javascript](www.javascript.com) and the [JQuery library](https://jquery.com/).
 
-3. [Flask](https://flask.palletsprojects.com/en/1.1.x/) - This project uses the **Flask** framework and the Jinja library.
+3. [PIP](https://pip.pypa.io/en/stable/installing/) - for installation of necessray tools and extensions.
 
-4. [MongoDB](https://www.mongodb.com/) - This project uses **MongoDB** as a document-oriented database to store data in JSON-like objects with a dynamic schema.
+4. [Flask](https://flask.palletsprojects.com/en/1.1.x/) - as a Python framework, with the [Jinja library](https://jinja.palletsprojects.com/en/2.11.x/).
 
-5. [Materialize](https://materializecss.com/) - This project uses the **Materialize** Css Framework to facilitate a grid-system, responsive design, and optimal user experience.
+5. [MongoDB](https://www.mongodb.com/) - as a document-oriented database to store data in JSON-like objects with a dynamic schema.
 
-6. [GitPod](https://gitpod.io/) - This project uses **Gitpod** as a development and testing environment.
+6. [Materialize](https://materializecss.com/) - as a Css Framework to facilitate a grid-system, responsive design, and optimal user experience.
 
-7. [FontAwesome](https://fontawesome.com/) - This project uses **FontAwesome** to style the footer with icons.
+7. [GitPod](https://gitpod.io/) - as a development and testing environment.
 
-8. [Git](https://git-scm.com) - This project uses **Git** for version-control and for tracking changes in source code during development. 
+8. [FontAwesome](https://fontawesome.com/) - to style the footer with icons.
 
-9. [GitHub](https://github.com/) - This project uses **GitHub** as a remote code repository.
+9. [Git](https://git-scm.com) - for version-control and for tracking changes in source code during development. 
 
-10. [Heroku](https://www.heroku.com/) - This project uses **Heroku** for app deployment.
+10. [GitHub](https://github.com/) - as a remote code repository.
 
-11. [StackEdit](https://pages.github.com/) - This project uses **StackEdit** as an in-browser Markdown editor for beautiful, stress-free README writing.
+11. [Heroku](https://www.heroku.com/) - for app deployment.
+
+12. [StackEdit](https://pages.github.com/) - as an in-browser Markdown editor for beautiful, stress-free README writing.
+
+13. [Am I Responsive](http://ami.responsivedesign.is/) - to create the screen sizes image in this readme file.
+
+14. [Imgbb](https://imgbb.com/)  to store all external images for this project.
+
 
 ## Testing
 
