@@ -179,7 +179,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 13. [NameCheap](https://www.namecheap.com/) - for aquisition and installation of custom domain.
 
-14. [CloudFlare](https://cloudflare.com) - for SSL certificate instalation.
+14. [CloudFlare](https://cloudflare.com) - for Universal SSL certificate instalation (currently being validated, may take a few days).
 
 ## Testing
 
