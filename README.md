@@ -10,7 +10,7 @@ The Cryptopedia is a Python-Flask web application that lists crypto informationa
 
 -  [View The Cryptopedia on Heroku](https://thecryptopedia.herokuapp.com)
 
--  [View the Repository on GitHub](https://github.com/kescardoso/cryptopedia)
+-  [View the repository on GitHub](https://github.com/kescardoso/cryptopedia)
 
 - For testing, please use the following login information:
     - username: user / password: user
@@ -101,7 +101,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 4. So Chloé goes to the categories tab and searches for "stable coins" and pulls out another short text, and she finds out about DeFi.
 
-5. Chloe decides then to go back to google to find out more in-depth information related to DeFi. She learns about terms such as Smart Contracts, and the possibilities of lending-borrowing with higher interest rates than traditional banking, all using stable coins which are not affected by high volatility such as Bitcoin.
+5. Chloé decides then to go back to google to find out more in-depth information related to DeFi. She learns about terms such as Smart Contracts, and the possibilities of lending-borrowing with higher interest rates than traditional banking, all using stable coins which are not affected by high volatility such as Bitcoin.
 
 6. She is now very excited about the possibility of having a crypto staking and savings account, so she goes back to The Cryptopedia and decides to share this information with the archives.
 
@@ -137,7 +137,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 9.  **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
 
-10.  **Custom Domain:** a custom is registered for this project at http://www.thecryptopedia.world
+10.  **Custom Domain:** a custom is registered for this project at http://thecryptopedia.world
 
 ### Features Left to Implement
 
@@ -155,7 +155,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 1. HTML & CSS.
 
-2. Programing languages - this project uses [Python](https://www.python.org/) as the main programing language, with [PyMongo](https://docs.mongodb.com/drivers/pymongo) as the main library; as well as [Javascript](www.javascript.com) and the [JQuery library](https://jquery.com/).
+2. Programing languages - this project uses [Python](https://www.python.org/) as the main programing language, with [PyMongo](https://docs.mongodb.com/drivers/pymongo) as the main library; as well as [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and the [JQuery library](https://jquery.com/).
 
 3.  [PIP](https://pip.pypa.io/en/stable/installing/) - for installation of necessray tools and extensions.
 
@@ -175,7 +175,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 11.  [Heroku](https://www.heroku.com/) - for app deployment.
 
-12.  [StackEdit](https://pages.github.com/) - as an in-browser Markdown editor for beautiful, stress-free README writing.
+12.  [StackEdit](https://stackedit.io/app#) - as an in-browser Markdown editor for beautiful, stress-free README writing.
 
 ## Testing
 
@@ -191,7 +191,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 	-  [JSHint](https://jshint.com) was used to validate JavaScript.
 
-	-  [DiffChecker](www.diffchecker.com) was used to validade the Python app.
+	-  [DiffChecker](https://www.diffchecker.com/) was used to validade the Python app.
 
 -  **Real User Input** -- I have asked friends and family to check and use the website on their desktop and mobile devices with positive feedback of proper functioning and design experience.
 
@@ -219,7 +219,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 3. The Project's source file was also pushed to Heroku via the `heroku master` branch
 
-4.  **Heroku Deployment**: the Cryptopedia was deployed to [Heroku](https://dashboard.heroku.com/apps) using the following steps:
+4.  **Heroku Deployment**: the Cryptopedia was deployed to [Heroku](https://heroku.com/) using the following steps:
 
 	- A `requirements.txt` file was created using the terminal command `pip freeze > requirements.txt`.
 
@@ -249,6 +249,8 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 	- Pretty Printed [Bad request in Flask](https://youtu.be/lLc_jHkifRc)
 
 	- Tech Monger [Secure Passwords](https://techmonger.github.io/4/secure-passwords-werkzeug/)
+
+    - DarilliGames [Flask Paginate](https://github.com/DarilliGames/flaskpaginate)
 
 2.  **Media**
 

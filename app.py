@@ -21,16 +21,10 @@ mongo = PyMongo(app)
 
 
 ### CRUD ROUTES
-
-# @app.route('/')
-# @app.route('/get_terms')
-# def get_terms():
-#     """ CRUD: bind and display a list of all terms in the database """
-#     return render_template('terms.html',
-#                             terms=mongo.db.terms.find().sort('term_name'))
-
-
-def paged_terms(offset=0, per_page=10):
+# Code credits:
+# DarilliGames Flask Paginate https://github.com/DarilliGames/flaskpaginate
+""" Glossary of terms with pagination """
+def paginated_terms(offset=0, per_page=10):
     terms = mongo.db.terms.find()
     print("herl")
     return terms[offset: offset + per_page]
@@ -39,14 +33,14 @@ def paged_terms(offset=0, per_page=10):
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
-    """ Pagination """
+    """ Pagination for glossary """
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
-    """ CRUD: bind and display a list of all terms in the database with pagination """
+    """ CRUD: bind and display a list of all terms in the db as a glossary with pagination """
     total = mongo.db.terms.find().sort('term_name').count()
     pagination = Pagination(page=page, per_page=per_page, total=total,
                             css_framework='materialize')
-    paginatedTerms = paged_terms(offset=offset, per_page=per_page)
+    paginatedTerms = paginated_terms(offset=offset, per_page=per_page)
     return render_template('terms.html',
                             terms=paginatedTerms,
                             page=page,
@@ -222,3 +216,4 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
+            
