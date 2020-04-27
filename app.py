@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, flash, ses
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_paginate import Pagination, get_page_args
 # Environment variables
 from os import path
 if path.exists('env.py'):
@@ -20,12 +21,38 @@ mongo = PyMongo(app)
 
 
 ### CRUD ROUTES
+
+# @app.route('/')
+# @app.route('/get_terms')
+# def get_terms():
+#     """ CRUD: bind and display a list of all terms in the database """
+#     return render_template('terms.html',
+#                             terms=mongo.db.terms.find().sort('term_name'))
+
+
+def paged_terms(offset=0, per_page=10):
+    terms = mongo.db.terms.find()
+    print("herl")
+    return terms[offset: offset + per_page]
+
+
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
-    """ CRUD: bind and display a list of all terms in the database """
+    """ Pagination """
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    """ CRUD: bind and display a list of all terms in the database with pagination """
+    total = mongo.db.terms.find().sort('term_name').count()
+    pagination = Pagination(page=page, per_page=per_page, total=total,
+                            css_framework='materialize')
+    paginatedTerms = paged_terms(offset=offset, per_page=per_page)
     return render_template('terms.html',
-                            terms=mongo.db.terms.find().sort('term_name'))
+                            terms=paginatedTerms,
+                            page=page,
+                            per_page=per_page,
+                            pagination=pagination,
+                            )
 
 
 @app.route('/add_term')

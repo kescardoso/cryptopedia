@@ -119,6 +119,14 @@ i.material-icons.open-list-icon {
     margin-right: 1px;
 }
 
+.pagination {
+    text-align: center !important;
+}
+
+.pagination li.active a {
+    background-color: #3b4a40 !important; /* same as navbar background */
+}
+
 /* Intro Card */
 .card {
     background: url('/static/images/paper02.png');

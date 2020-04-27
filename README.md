@@ -133,23 +133,23 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 7.  **Delete Button:** this offers the possibility for admins only to curate and erase terms and categories from the glossary.
 
-8.  **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
+8.  **Pagination:** as the glossary grows with more terms, pagination is necessary and implemented for best user-interface.
+
+9.  **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
+
+10.  **Custom Domain:** a custom is registered for this project at http://www.thecryptopedia.world
 
 ### Features Left to Implement
 
 1.  **Autocomplete Search:** at the moment, the app disposes of a full-text search form (which is the feature available for MongoDB search forms). With more complex functionalities such as Elastic search, it is possible to have a autocomplete search feature.
 
-2.  **Pagination:** as the glossary grows with more terms, a pagination feature becomes necessary and is planned to be implemented soon.
+2.  **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't display correctly on the first click.
 
-3.  **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't display correctly on the first click.
+3.  **Recover Password:** the register and login system used in this version is a lightweight and straightforward py-mongo method based on user-sessions. For a more sophisticated and robust user system, Flask-Login has more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens.
 
-4.  **Recover Password:** the register and login system used in this version is a lightweight and straightforward py-mongo method based on user-sessions. For a more sophisticated and robust user system, Flask-Login has more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens.
+4.  **Secure SSL Certificate:** for users to feel confidente using private information such as email and Password on this app, and also to increase website credibility.
 
-5.  **Secure SSL Certificate:** for users to feel confidente using private information such as email and Password on this app, and also to increase website credibility.
-
-6.  **Custom Domain:** a custom, registered domain is planned for this project.
-
-7.  **Translations:** translations to both French and Portuguese are planned for future versions of this project.
+5.  **Translations:** translations to both French and Portuguese are planned for future versions of this project.
 
 ## Technologies Used
 

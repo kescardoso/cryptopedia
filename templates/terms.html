@@ -34,7 +34,6 @@
         
         <!-- Start list: glossary of terms -->
         <ul class="collapsible" data-collapsible="accordion">
-
             <!-- Search form -->
             <li>
                 <div class="collapsible-header">
@@ -52,39 +51,38 @@
             </li>
 
             {% for term in terms %}
-            <li>
+                <li>
+                    <!-- List of terms -->
+                    <div class="collapsible-header">
+                        <div class="col s1"> 
+                            <!-- Expand button -->
+                            <i class="material-icons">expand_more</i>
+                        </div>
+                        <div class="col s11">
+                            <div class="term-header left"> 
+                                <!-- Term header: name - category -->
+                                <strong>{{term.term_name}}</strong> - <span class="grey-text">{{term.category_name}}</span>
+                            </div>
+                            <div class="glos-icon">
+                                <!-- Edit and delete button -->
+                                <a href="{{ url_for('edit_term', term_id=term._id) }}" alt="Edit Term">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            </div>
+                        </div>                    
+                    </div> 
 
-                <!-- List of terms -->
-                <div class="collapsible-header">
-                    <div class="col s1"> 
-                        <!-- Expand button -->
-                        <i class="material-icons">expand_more</i>
+                    <!-- Accordion: term description -->
+                    <div class="collapsible-body">
+                        <span>
+                            {{term.term_description}}
+                        </span>
                     </div>
-                    <div class="col s11">
-                        <div class="term-header left"> 
-                            <!-- Term header: name - category -->
-                            <strong>{{term.term_name}}</strong> - <span class="grey-text">{{term.category_name}}</span>
-                        </div>
-                        <div class="glos-icon">
-                            <!-- Edit and delete button -->
-                            <a href="{{ url_for('edit_term', term_id=term._id) }}" alt="Edit Term">
-                                <i class="material-icons">edit</i>
-                            </a>
-                        </div>
-                    </div>                    
-                </div> 
 
-                <!-- Accordion: term description -->
-                <div class="collapsible-body">
-                    <span>
-                        {{term.term_description}}
-                    </span>
-                </div>
-
-            </li>
+                </li>
             {% endfor %}
         </ul>
-
+    {{ pagination.links }}
     </div>
     
 {% endblock %}
