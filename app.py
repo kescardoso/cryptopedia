@@ -33,7 +33,7 @@ def paginated_terms(offset=0, per_page=10):
     print("herl")
     return terms[offset: offset + per_page]
 
-# Glossary
+# Display glossary of terms
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
@@ -52,7 +52,7 @@ def get_terms():
                             pagination=pagination,
                             )
 
-# Search
+# Full text Search
 @app.route('/search_terms', methods=['POST'])
 def search_terms():
     search = request.form.get('search')
@@ -73,6 +73,7 @@ def search_terms():
                             )
 
 
+# Add new term
 @app.route('/add_term')
 def add_term():
     """ CRUD: get form to add new term """
@@ -88,6 +89,7 @@ def insert_term():
     return redirect(url_for('get_terms'))
 
 
+# Edit term
 @app.route('/edit_term/<term_id>')
 def edit_term(term_id):
     """ CRUD: get form to edit term """
@@ -109,6 +111,7 @@ def update_term(term_id):
     return redirect(url_for('get_terms'))
 
 
+# Delete term
 @app.route('/delete_term/<term_id>')
 def delete_term(term_id):
     """ CRUD: delete term from the database """
@@ -116,6 +119,7 @@ def delete_term(term_id):
     return redirect(url_for('get_terms'))
 
 
+# Display categories
 @app.route('/get_categories')
 def get_categories():
     """ CRUD: bind and display list of categories from the database """
@@ -123,6 +127,7 @@ def get_categories():
                            categories=mongo.db.categories.find().sort('category_name'))
 
 
+# Add new category
 @app.route('/add_category')
 def add_category():
     """ CRUD: get form to add new category to the database """
@@ -137,6 +142,7 @@ def insert_category():
     return redirect(url_for('get_categories'))
 
 
+# Edit category
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     """ CRUD: get form to edit category """
@@ -154,6 +160,7 @@ def update_category(category_id):
     return redirect(url_for('get_categories'))
 
 
+# Delete category
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
     """ CRUD: delete categories from the databse """
