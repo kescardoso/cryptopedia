@@ -18,6 +18,10 @@ button:hover {
     color: #000;
 }
 
+strong {
+    font-weight: bold;
+}
+
 /* Margins for Main Container */
 .template-container {
     margin-top: 30px;
@@ -154,8 +158,4 @@ i.material-icons.open-list-icon {
 /* About & Credits */
 .abt {
     text-align: justify;
-}
-
-strong {
-    font-weight: bold;
 }
