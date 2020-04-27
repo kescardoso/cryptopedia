@@ -258,4 +258,4 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 3.  **More credits** [here](https://thecryptopedia.herokuapp.com/credits)
 
-4.  **Acknowledgements** Gratitude to my dear mentor Seun for her feminine and gentle support and motivation throughout my coding training and journey. Also, to [Code Institute](https://codeinstitute.net/) Student Services and tutors for their incredible patience and and ongoing 24hour support. Thank you, from the bottom of my heart.
+4.  **Acknowledgements** Gratitude to my dear mentor Seun for her gentle support and motivation throughout my coding journey. Also, to [Code Institute](https://codeinstitute.net/) staff, student services and tutors for their incredible patience and ongoing 24hour support. Thank you, from the bottom of my heart.
