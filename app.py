@@ -21,15 +21,19 @@ mongo = PyMongo(app)
 
 
 ### CRUD ROUTES
+
+# Glossary and Search
 # Code credits:
 # DarilliGames Flask Paginate https://github.com/DarilliGames/flaskpaginate
+
+# Pagination function
 """ Glossary of terms with pagination """
 def paginated_terms(offset=0, per_page=10):
     terms = mongo.db.terms.find()
     print("herl")
     return terms[offset: offset + per_page]
 
-
+# Glossary
 @app.route('/')
 @app.route('/get_terms')
 def get_terms():
@@ -43,6 +47,26 @@ def get_terms():
     paginatedTerms = paginated_terms(offset=offset, per_page=per_page)
     return render_template('terms.html',
                             terms=paginatedTerms,
+                            page=page,
+                            per_page=per_page,
+                            pagination=pagination,
+                            )
+
+# Search
+@app.route('/search_terms', methods=['POST'])
+def search_terms():
+    search = request.form.get('search')
+    print(search)
+    """ Pagination for search """
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    mongo.db.terms.create_index([ ('term_name', 'text'), ('term_description', 'text') ])
+    results = mongo.db.terms.find({"$text": {"$search": search}})
+    pagination = Pagination(page=page, per_page=per_page, results=results,
+                            css_framework='materialize')
+    paginatedTerms = paginated_terms(offset=offset, per_page=per_page)
+    return render_template("terms.html",
+                            terms=results,
                             page=page,
                             per_page=per_page,
                             pagination=pagination,
@@ -201,19 +225,7 @@ def logout():
     return redirect(url_for('get_terms'))
 
 
-### FULL TEXT SEARCH FORM
-@app.route('/search_terms', methods=['POST'])
-def search_terms():
-    search = request.form.get('search')
-    print(search)
-    mongo.db.terms.create_index([ ('term_name', 'text'), ('term_description', 'text') ])
-    results=mongo.db.terms.find({"$text": {"$search": search}})
-    return render_template("terms.html",
-                            terms=results)
-
-
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
-            
