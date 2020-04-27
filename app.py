@@ -169,8 +169,8 @@ def delete_category(category_id):
 
 
 ### FILTER TERMS BY CATEGORY QUERIES
-@app.route('/filter_terms/<category>')
-def filter_terms(category):
+@app.route('/terms_in/<category>')
+def terms_in(category):
     """ Query Terms by Category """
     return render_template('filterterms.html', category=category,
                             terms=mongo.db.terms.find({'category_name' : category}).sort('term_name'))

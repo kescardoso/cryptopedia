@@ -23,7 +23,7 @@
                 <div class="collapsible-header">
                     <!-- Category header: with external links to dynamic list view -->
                     <div class="cat-header"> 
-                        {{category.category_name}} <a href="{{ url_for('filter_terms', category=category.category_name) }}" alt="See all terms from this category"> 
+                        {{category.category_name}} <a href="{{ url_for('terms_in', category=category.category_name) }}" alt="See all terms from this category"> 
                             <i class="material-icons open-list-icon">launch</i> 
                         </a> 
                     </div>
