@@ -139,6 +139,8 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 10.  **Custom Domain:** a custom domain is registered for this project at http://thecryptopedia.world
 
+11.  **Secure SSL Certificate:** for users to feel confidente using private information such as email and Password on this app, and to increase software credibility.
+
 ### Features Left to Implement
 
 1.  **Autocomplete Search:** at the moment, the app disposes of a full-text search form (which is the feature available for MongoDB search forms). With more complex functionalities such as Elastic search, it is possible to have a autocomplete search feature.
@@ -147,9 +149,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 3.  **Recover Password:** the register and login system used in this version is a lightweight and straightforward py-mongo method based on user-sessions. For a more sophisticated and robust user system, Flask-Login has more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens.
 
-4.  **Secure SSL Certificate:** for users to feel confidente using private information such as email and Password on this app, and also to increase website credibility.
-
-5.  **Translations:** translations to both French and Portuguese are planned for future versions of this project.
+4.  **Translations:** translations to both French and Portuguese are planned for future versions of this project.
 
 ## Technologies Used
 
@@ -171,11 +171,15 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 9.  [Git](https://git-scm.com) - for version-control and for tracking changes in source code during development.
 
-10.  [GitHub](https://github.com/) - as a remote code repository.
+10. [GitHub](https://github.com/) - as a remote code repository.
 
-11.  [Heroku](https://www.heroku.com/) - for app deployment.
+11. [Heroku](https://www.heroku.com/) - for app deployment.
 
-12.  [StackEdit](https://stackedit.io/app#) - as an in-browser Markdown editor for beautiful, stress-free README writing.
+12. [StackEdit](https://stackedit.io/app#) - as an in-browser Markdown editor for beautiful, stress-free README writing.
+
+13. [NameCheap](https://www.namecheap.com/) - for aquisition and installation of custom domain.
+
+14. [CloudFlare](https://cloudflare.com) - for SSL certificate instalation.
 
 ## Testing
 
