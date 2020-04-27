@@ -137,7 +137,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 9.  **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
 
-10.  **Custom Domain:** a custom domain is registered for this project at http://thecryptopedia.world
+10.  **Custom Domain:** a custom domain is registered for this project at http://www.thecryptopedia.world
 
 11.  **Secure SSL Certificate:** for users to feel confidente using private information such as email and Password on this app, and to increase software credibility.
 
