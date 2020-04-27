@@ -29,11 +29,13 @@
                     </div>
 
                     <!-- Edit and delete button -->
-                    <div class="glos-icon">
-                        <a href="{{ url_for('edit_category', category_id=category._id) }}">
-                            <i class="material-icons">edit</i>
-                        </a>
-                    </div>
+                    {% if session['user_name'] %}
+                        <div class="glos-icon">
+                            <a href="{{ url_for('edit_category', category_id=category._id) }}">
+                                <i class="material-icons">edit</i>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
 
             </li>
