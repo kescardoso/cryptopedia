@@ -35,8 +35,8 @@ def paginated_terms(offset=0, per_page=10):
 
 # Display glossary of terms
 @app.route('/')
-@app.route('/get_terms')
-def get_terms():
+@app.route('/glossary')
+def glossary():
     """ Pagination for glossary """
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
@@ -86,7 +86,7 @@ def insert_term():
     """ CRUD: add new term to the database """
     terms = mongo.db.terms
     terms.insert_one(request.form.to_dict())
-    return redirect(url_for('get_terms'))
+    return redirect(url_for('glossary'))
 
 
 # Edit term
@@ -108,7 +108,7 @@ def update_term(term_id):
         'category_name': request.form.get('category_name'),
         'term_description': request.form.get('term_description'),
     })
-    return redirect(url_for('get_terms'))
+    return redirect(url_for('glossary'))
 
 
 # Delete term
@@ -116,12 +116,12 @@ def update_term(term_id):
 def delete_term(term_id):
     """ CRUD: delete term from the database """
     mongo.db.terms.remove({'_id': ObjectId(term_id)})
-    return redirect(url_for('get_terms'))
+    return redirect(url_for('glossary'))
 
 
 # Display categories
-@app.route('/get_categories')
-def get_categories():
+@app.route('/categories')
+def categories():
     """ CRUD: bind and display list of categories from the database """
     return render_template('categories.html',
                            categories=mongo.db.categories.find().sort('category_name'))
@@ -139,7 +139,7 @@ def insert_category():
     """ CRUD: add new Category to the database """
     category_doc = {'category_name': request.form.get('category_name')}
     mongo.db.categories.insert_one(category_doc)
-    return redirect(url_for('get_categories'))
+    return redirect(url_for('categories'))
 
 
 # Edit category
@@ -157,7 +157,7 @@ def update_category(category_id):
     mongo.db.categories.update(
         {'_id': ObjectId(category_id)},
         {'category_name': request.form.get('category_name')})
-    return redirect(url_for('get_categories'))
+    return redirect(url_for('categories'))
 
 
 # Delete category
@@ -165,7 +165,7 @@ def update_category(category_id):
 def delete_category(category_id):
     """ CRUD: delete categories from the databse """
     mongo.db.categories.remove({'_id': ObjectId(category_id)})
-    return redirect(url_for('get_categories'))
+    return redirect(url_for('categories'))
 
 
 ### FILTER TERMS BY CATEGORY QUERIES
@@ -218,7 +218,7 @@ def login():
         if check_password_hash(login_user['user_pass'], request.form.get('password')):
             session['user_name'] = request.form.get('username')
             flash('Success! You have been logged in.', 'badge light-green lighten-4')
-            return redirect(url_for('get_terms'))    
+            return redirect(url_for('glossary'))    
         else:
             flash('Login Unsuccessful. Please check username and password.', 'badge red lighten-4')    
     return render_template('login.html')
@@ -229,7 +229,7 @@ def login():
 def logout():
     session.pop('user_name')
     flash('You were logged out.', 'badge light-green lighten-4')
-    return redirect(url_for('get_terms'))
+    return redirect(url_for('glossary'))
 
 
 if __name__ == '__main__':

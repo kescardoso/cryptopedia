@@ -39,7 +39,7 @@
             <div class="nav-wrapper">
 
                 <!-- Logo at Nav -->
-                <a href="{{url_for('get_terms')}}" class="brand-logo">
+                <a href="{{url_for('glossary')}}" class="brand-logo">
                     <img id='image-logo' alt="The Cryptopedia World" src="{{ url_for('static', filename='images/logo-cpw-blue.png') }}">
                 </a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -47,7 +47,7 @@
                 <!-- Responsive Nav -->
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
-                        <a class="nav-links" href="{{url_for('get_terms')}}">
+                        <a class="nav-links" href="{{url_for('glossary')}}">
                             <i class="material-icons left">menu_book</i>
                             Glossary
                         </a>
@@ -62,7 +62,7 @@
                     </li>
                     <!-- Dropdown Link Structure : Categories -->
                     <ul id="dropdown1" class="dropdown-content">
-                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('get_categories')}}">See All Categories</a></li> 
+                        <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('categories')}}">See All Categories</a></li> 
                         <li class="divider"></li>
                         <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Assets')}}">Assets</a></li>
                         <li><a class="nav-drop cyan-text text-accent-4" href="{{url_for('filter_terms', category='Coins & Tokens')}}">Coins & Tokens</a></li>
@@ -122,12 +122,12 @@
                             </div>
                         {% endif %}
                     </li>    
-                    <li><a href="{{url_for('get_terms')}}">
+                    <li><a href="{{url_for('glossary')}}">
                             <i class="material-icons left">menu_book</i>
                             Glossary
                         </a>
                     </li>
-                    <li><a href="{{url_for('get_categories')}}">
+                    <li><a href="{{url_for('categories')}}">
                             <i class="material-icons left">label</i>
                             All Categories
                         </a>
