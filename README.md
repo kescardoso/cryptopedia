@@ -137,7 +137,7 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 9.  **Footer:** Displays credits and contact links. It also has a login/logout ticker that becomes available during user sessions.
 
-10.  **Custom Domain:** a custom is registered for this project at http://thecryptopedia.world
+10.  **Custom Domain:** a custom domain is registered for this project at http://thecryptopedia.world
 
 ### Features Left to Implement
 
@@ -258,4 +258,4 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 3.  **More credits** [here](https://thecryptopedia.herokuapp.com/credits)
 
-4.  **Acknowledgements** Gratitude to my dear mentor Seun for her feminine and generous support and motivation throughout my coding training and journey. Also, to [Code Institute](https://codeinstitute.net/) Student Services for their incredible patience and support. Thank you, from the bottom of my heart.
+4.  **Acknowledgements** Gratitude to my dear mentor Seun for her feminine and gentle support and motivation throughout my coding training and journey. Also, to [Code Institute](https://codeinstitute.net/) Student Services and tutors for their incredible patience and and ongoing 24hour support. Thank you, from the bottom of my heart.
