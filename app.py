@@ -29,7 +29,7 @@ mongo = PyMongo(app)
 # Pagination function
 """ Glossary of terms with pagination """
 def paginated_terms(offset=0, per_page=10):
-    terms = mongo.db.terms.find()
+    terms = mongo.db.terms.find().sort('term_name')
     print("herl")
     return terms[offset: offset + per_page]
 
