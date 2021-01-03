@@ -26,10 +26,9 @@ mongo = PyMongo(app)
 
 
 # Pagination
-""" Glossary of terms with pagination """
 def paginated_terms(offset=0, per_page=10):
+    """ Glossary of terms with pagination """
     terms = mongo.db.terms.find().sort('term_name')
-    print("herl")
     return terms[offset:offset + per_page]
 
 
@@ -42,50 +41,45 @@ def glossary():
         page_parameter='page', per_page_parameter='per_page')
     """ CRUD: bind and display a list of all terms in the db as a glossary with pagination """
     total = mongo.db.terms.find().sort('term_name').count()
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total, css_framework='materialize')
+    pagination = Pagination(page=page,
+                            per_page=per_page,
+                            total=total,
+                            css_framework='materialize')
     paginatedTerms = paginated_terms(offset=offset, per_page=per_page)
-    return render_template(
-        'terms.html',
-        terms=paginatedTerms,
-        page=page,
-        per_page=per_page,
-        pagination=pagination,
-    )
+    return render_template('terms.html',
+                           terms=paginatedTerms,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination,)
 
 
 # Full text Search
 @app.route('/search_terms', methods=['POST'])
 def search_terms():
     search = request.form.get('search')
-    print(search)
     """ Pagination for search """
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    mongo.db.terms.create_index([('term_name', 'text'), ('term_description',
-                                                         'text')])
+    page, per_page, offset = get_page_args(page_parameter='page',                                                     per_page_parameter='per_page')
+    mongo.db.terms.create_index([('term_name', 'text'),
+                                 ('term_description', 'text')])
     results = mongo.db.terms.find({"$text": {"$search": search}})
-    pagination = Pagination(
-        page=page,
-        per_page=per_page,
-        results=results,
-        css_framework='materialize')
+    pagination = Pagination(page=page,
+                            per_page=per_page,
+                            results=results,
+                            css_framework='materialize')
     paginatedTerms = paginated_terms(offset=offset, per_page=per_page)
-    return render_template(
-        "terms.html",
-        terms=results,
-        page=page,
-        per_page=per_page,
-        pagination=pagination,
-    )
+    return render_template("terms.html",
+                           terms=results,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination,)
 
 
 # Add new term
 @app.route('/add_term')
 def add_term():
     """ CRUD: get form to add new term """
-    return render_template(
-        'addterm.html', categories=mongo.db.categories.find())
+    return render_template('addterm.html',
+                           categories=mongo.db.categories.find())
 
 
 @app.route('/insert_term', methods=['POST'])
@@ -102,21 +96,20 @@ def edit_term(term_id):
     """ CRUD: get form to edit term """
     the_term = mongo.db.terms.find_one({'_id': ObjectId(term_id)})
     all_categories = mongo.db.categories.find()
-    return render_template(
-        'editterm.html', term=the_term, categories=all_categories)
+    return render_template('editterm.html',
+                           term=the_term,
+                           categories=all_categories)
 
 
 @app.route('/update_term/<term_id>', methods=['POST'])
 def update_term(term_id):
     """ CRUD: edit term into the database """
     terms = mongo.db.terms
-    terms.update({
-        '_id': ObjectId(term_id)
-    }, {
-        'term_name': request.form.get('term_name'),
-        'category_name': request.form.get('category_name'),
-        'term_description': request.form.get('term_description'),
-    })
+    terms.update({'_id': ObjectId(term_id)},
+                 {'term_name': request.form.get('term_name'),
+                  'category_name': request.form.get('category_name'),
+                  'term_description': request.form.get('term_description'),}
+                )
     return redirect(url_for('glossary'))
 
 
@@ -166,12 +159,9 @@ def edit_category(category_id):
 @app.route('/update_category/<category_id>', methods=['POST'])
 def update_category(category_id):
     """ CRUD: edit category into the database """
-    mongo.db.categories.update(
-        {
-            '_id': ObjectId(category_id)
-        }, {
-            'category_name': request.form.get('category_name')
-        })
+    mongo.db.categories.update({'_id': ObjectId(category_id)},
+                               {'category_name': request.form.get('category_name')}
+                              )
     return redirect(url_for('categories'))
 
 
@@ -187,11 +177,9 @@ def delete_category(category_id):
 @app.route('/terms_in/<category>')
 def terms_in(category):
     """ Query Terms by Category """
-    return render_template(
-        'filterterms.html',
-        category=category,
-        terms=mongo.db.terms.find({
-            'category_name': category
+    return render_template('filterterms.html',
+                           category=category,
+                           terms=mongo.db.terms.find({'category_name': category
         }).sort('term_name'))
 
 
