@@ -54,7 +54,7 @@ def glossary():
 def search_terms():
     search = request.form.get('search')
     """ Pagination for search """
-    page, per_page, offset = get_page_args(page_parameter='page',                                                     per_page_parameter='per_page')
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
     mongo.db.terms.create_index([('term_name', 'text'),
                                  ('term_description', 'text')])
     results = mongo.db.terms.find({"$text": {"$search": search}})
@@ -105,8 +105,7 @@ def update_term(term_id):
                  {'term_name': request.form.get('term_name'),
                   'category_name': request.form.get('category_name'),
                   'term_description': request.form.get('term_description'),
-                 }
-                )
+                 })
     return redirect(url_for('glossary'))
 
 
@@ -209,8 +208,7 @@ def register():
                   'badge light-green lighten-4')
             return redirect(url_for('login'))
         else:
-            flash(
-                  'Sorry! This username is already taken. If it is you, please log in.',
+            flash('Sorry! This username is already taken. If it is you, please log in.',
                   'badge red lighten-4')
     return render_template("register.html")
 
