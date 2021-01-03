@@ -219,62 +219,71 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 This project was developed using Gitpod as the chosen IDE and GitHub as a remote repository. The Project's source files were regularly pushed to the [GitHub repository kescardoso/cryptopedia](https://github.com/kescardoso/cryptopedia) via the `master` branch.
 
-1. **Local Deployment**: To reproduce this project within a local deployement, use the following steps and requirements:
+**Local Deployment**: To reproduce this project within a local deployement, use the following steps and requirements:
 
-Have the following installed in your IDE of choice:
+1. Have the following installed in your IDE of choice:
 
 - Git (for version control)
+
 - pip (package installer for Python; pip3 was used at the time of production: April 2020)
+
 - Python3 (the programming language used to produce the backend logic of this project) using the following command:
+    
     - `pip3 install dnspython`
+
 - Flask (the library used to add special features and functionalities to this Python application) using the following command:
+    
     - `pip3 install flask`
 
 2. Create an account with [MongoDB](https://www.mongodb.com/), following the MongoDB instructions for the creation of a Cluster and Collections, and connect your database server with your Flask application:
+    
     - From your MongoDB cluster dashboard >> click on CONNECT  >> choose "Connect your application" >> Driver: Python and Version: your python version.
+    
     - Register your MONGO_URI credentials inside your env.py file withing your project, by using the follwoing commands:
+
         - `touch .gitignore`
         - `touch env.py`
 
-        - and inside env.py:
+    - Connect your MongoDB data to your Flask app using the following command:
+
+        - `pip3 install flask-pymongo`
+
+    - Add the environment variables to your env.py file:
 
         `import os`
-        
-        `os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")`
-
-    - Connect your MongoDB data to your Flask app using the following command:
-        - `pip3 install flask-pymongo`
-    - Add the environament variables to your env.py file:
 
         `os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")`
         `os.environ.setdefault("IP", "0.0.0.0")`
         `os.environ.setdefault("PORT", "5000")`
         `os.environ.setdefault("SECRET_KEY", "your_secret_key")`
 
-    - Install additional packages:
-        - `pip3 install flask-paginate`
-    - These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
+3. Install additional packages:
+        
+    - `pip3 install flask-paginate`
+    
+4. Update the requirements.txt file using the following command:
 
-3. Update the requirements.txt file using the following command:
     - `pip3 freeze > requirements.txt`
 
-4.  **Heroku Deployment**: The Project's source file was also pushed to Heroku via the `heroku master` branch. The CryptopediaWprld was deployed to [Heroku](https://heroku.com/) using the following steps:
+5. These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
 
-	- A `requirements.txt` file was created using the terminal command `pip3 freeze > requirements.txt`.
+**Heroku Deployment**: The Project's source file was also pushed to Heroku via the `heroku master` branch. The CryptopediaWprld was deployed to [Heroku](https://heroku.com/) using the following steps:
 
-	- A `Procfile` was created using the terminal command `echo web: python app.py > Procfile`.
+1. A `requirements.txt` file was created using the terminal command `pip3 freeze > requirements.txt`.
 
-    - A new app was created for the Cryptopedia on Heroku dashboard, by clicking the "New" button and setting the region to Europe. It is necessary to open an account with Heroku and start a new app installation inside your heroku dashboard. 
+2. A `Procfile` was created using the terminal command `echo web: python app.py > Procfile`.
 
-    - New app configurations including environament variables were added on "Settings" > "Reveal Config Vars" inside the Heroku dashboard:
-        - IP: 0.0.0.0
-		- MONGO_URI: your_mongodb_credential_data
-		- PORT: 5000
-		- SECRET_KEY: your_secret_key
+3. A new app was created for the Cryptopedia on Heroku dashboard, by clicking the "New" button and setting the region to Europe. It is necessary to open an account with Heroku and start a new app installation inside your heroku dashboard. 
 
-	- These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
+4. New app configurations including environament variables were added on "Settings" > "Reveal Config Vars" inside the Heroku dashboard:
+    - IP: 0.0.0.0
+    - MONGO_URI: your_mongodb_credential_data
+    - PORT: 5000
+    - SECRET_KEY: your_secret_key
 
 	- From the Heroku dashboard the app was deployed using the "Deploy button" and connected to the gihub master branch for automatic deployments.
+
+    - These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
 
 	- The web app is now successfully deployed.
 
