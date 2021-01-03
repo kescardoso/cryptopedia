@@ -239,6 +239,7 @@ Have the following installed in your IDE of choice:
         - and inside env.py:
 
         `import os`
+        
         `os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")`
 
     - Connect your MongoDB data to your Flask app using the following command:
