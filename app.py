@@ -9,30 +9,26 @@ from os import path
 if path.exists('env.py'):
     import env
 
-# Flask app:
+# Crete the Flask app:
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
 # MongoDB settings:
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
-# Pymongo app:
+# Pymongo and Flask app:
 mongo = PyMongo(app)
 
 
-### CRUD ROUTES
-# Glossary and Search
+# Pagination
 # Code credits:
 # DarilliGames Flask Paginate https://github.com/DarilliGames/flaskpaginate
-
-
-# Pagination
 def paginated_terms(offset=0, per_page=10):
     """ Glossary of terms with pagination """
     terms = mongo.db.terms.find().sort('term_name')
     return terms[offset:offset + per_page]
 
 
-# Display glossary of terms
+# Homepage: Display glossary of terms
 @app.route('/')
 @app.route('/glossary')
 def glossary():
@@ -73,7 +69,7 @@ def search_terms():
                            per_page=per_page,
                            pagination=pagination,)
 
-
+### CRUD ROUTES
 # Add new term
 @app.route('/add_term')
 def add_term():
@@ -108,7 +104,8 @@ def update_term(term_id):
     terms.update({'_id': ObjectId(term_id)},
                  {'term_name': request.form.get('term_name'),
                   'category_name': request.form.get('category_name'),
-                  'term_description': request.form.get('term_description'),}
+                  'term_description': request.form.get('term_description'),
+                 }
                 )
     return redirect(url_for('glossary'))
 
@@ -121,13 +118,13 @@ def delete_term(term_id):
     return redirect(url_for('glossary'))
 
 
+# CATEGORIES
 # Display categories
 @app.route('/categories')
 def categories():
     """ CRUD: bind and display list of categories from the database """
-    return render_template(
-        'categories.html',
-        categories=mongo.db.categories.find().sort('category_name'))
+    return render_template('categories.html',
+                           categories=mongo.db.categories.find().sort('category_name'))
 
 
 # Add new category
@@ -149,11 +146,9 @@ def insert_category():
 @app.route('/edit_category/<category_id>')
 def edit_category(category_id):
     """ CRUD: get form to edit category """
-    return render_template(
-        'editcategory.html',
-        category=mongo.db.categories.find_one({
-            '_id': ObjectId(category_id)
-        }))
+    return render_template('editcategory.html',
+                           category=mongo.db.categories.find_one({'_id': ObjectId(category_id)})
+                          )
 
 
 @app.route('/update_category/<category_id>', methods=['POST'])
@@ -179,8 +174,8 @@ def terms_in(category):
     """ Query Terms by Category """
     return render_template('filterterms.html',
                            category=category,
-                           terms=mongo.db.terms.find({'category_name': category
-        }).sort('term_name'))
+                           terms=mongo.db.terms.find({'category_name': category}).sort('term_name')
+                          )
 
 
 ### CREDITS ROUTE
@@ -195,32 +190,28 @@ def credits():
 # Pretty Printed Bad request in Flask https://youtu.be/lLc_jHkifRc
 # Tech Monger https://techmonger.github.io/4/secure-passwords-werkzeug/
 
-
 # Register Form
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """ Check if username already exists, to avoid duplicates """
     if request.method == 'POST':
-        existing_user = mongo.db.users.find_one({
-            'user_name':
-            request.form.get('username')
-        })
+        existing_user = mongo.db.users.find_one({'user_name': request.form.get('username')})
         """ If username doesn't exist, create new instance for user """
         if existing_user is None:
             pwhash = generate_password_hash(request.form.get('password'))
             mongo.db.users.insert({
-                'user_name': request.form.get('username'),
-                'user_email': request.form.get('email'),
-                'user_pass': pwhash
-            })
+                                   'user_name': request.form.get('username'),
+                                   'user_email': request.form.get('email'),
+                                   'user_pass': pwhash
+                                  })
             session['user_name'] = request.form.get('username')
             flash('Account created successfuly. Please, log in.',
                   'badge light-green lighten-4')
             return redirect(url_for('login'))
         else:
             flash(
-                'Sorry! This username is already taken. If it is you, please log in.',
-                'badge red lighten-4')
+                  'Sorry! This username is already taken. If it is you, please log in.',
+                  'badge red lighten-4')
     return render_template("register.html")
 
 
@@ -228,14 +219,10 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     """ Check if username exists """
-    login_user = mongo.db.users.find_one({
-        'user_name':
-        request.form.get('username')
-    })
+    login_user = mongo.db.users.find_one({'user_name': request.form.get('username')})
     """ If username exists, log user in """
     if login_user:
-        if check_password_hash(login_user['user_pass'],
-                               request.form.get('password')):
+        if check_password_hash(login_user['user_pass'],request.form.get('password')):
             session['user_name'] = request.form.get('username')
             flash('Success! You have been logged in.',
                   'badge light-green lighten-4')
@@ -256,6 +243,6 @@ def logout():
 
 if __name__ == '__main__':
     app.run(
-        host=os.environ.get('IP'),
-        port=int(os.environ.get('PORT')),
-        debug=True)
+            host=os.environ.get('IP'),
+            port=int(os.environ.get('PORT')),
+            debug=True)
