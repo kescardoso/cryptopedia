@@ -253,6 +253,7 @@ This project was developed using Gitpod as the chosen IDE and GitHub as a remote
         `import os`
 
         `os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")`
+        `os.environ.setdefault("MONGO_DBNAME", "your_mongodb_name")`
         `os.environ.setdefault("IP", "0.0.0.0")`
         `os.environ.setdefault("PORT", "5000")`
         `os.environ.setdefault("SECRET_KEY", "your_secret_key")`
@@ -277,9 +278,10 @@ This project was developed using Gitpod as the chosen IDE and GitHub as a remote
 
 4. New app configurations including environament variables were added on "Settings" > "Reveal Config Vars" inside the Heroku dashboard:
     - IP: 0.0.0.0
-    - MONGO_URI: your_mongodb_credential_data
     - PORT: 5000
     - SECRET_KEY: your_secret_key
+    - MONGO_URI: your_mongodb_credential_data
+    - MONGO_DBNAME: your_mongodb_name
 
 5. From the Heroku dashboard the app was deployed using the "Deploy button" and connected to the gihub master branch for automatic deployments.
 
