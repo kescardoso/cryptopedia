@@ -281,11 +281,11 @@ This project was developed using Gitpod as the chosen IDE and GitHub as a remote
     - PORT: 5000
     - SECRET_KEY: your_secret_key
 
-	- From the Heroku dashboard the app was deployed using the "Deploy button" and connected to the gihub master branch for automatic deployments.
+5. From the Heroku dashboard the app was deployed using the "Deploy button" and connected to the gihub master branch for automatic deployments.
 
-    - These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
+6. These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
 
-	- The web app is now successfully deployed.
+7. The web app is now successfully deployed.
 
 ## Credits
 
