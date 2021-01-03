@@ -226,31 +226,36 @@ Have the following installed in your IDE of choice:
 - Git (for version control)
 - pip (package installer for Python; pip3 was used at the time of production: April 2020)
 - Python3 (the programming language used to produce the backend logic of this project) using the following command:
-    - pip3 install dnspython
+    - `pip3 install dnspython`
 - Flask (the library used to add special features and functionalities to this Python application) using the following command:
-    - pip3 install flask
+    - `pip3 install flask`
 
 2. Create an account with [MongoDB](https://www.mongodb.com/), following the MongoDB instructions for the creation of a Cluster and Collections, and connect your database server with your Flask application:
     - From your MongoDB cluster dashboard >> click on CONNECT  >> choose "Connect your application" >> Driver: Python and Version: your python version.
     - Register your MONGO_URI credentials inside your env.py file withing your project, by using the follwoing commands:
-        - touch .gitignore
-        - touch env.py
+        - `touch .gitignore`
+        - `touch env.py`
+
         - and inside env.py:
+
         `import os`
         `os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")`
+
     - Connect your MongoDB data to your Flask app using the following command:
-        - pip3 install flask-pymongo
+        - `pip3 install flask-pymongo`
     - Add the environament variables to your env.py file:
-        - os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")
-        - os.environ.setdefault("IP", "0.0.0.0")
-        - os.environ.setdefault("PORT", "5000")
-        - os.environ.setdefault("SECRET_KEY", "your_secret_key")
+
+        `os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")`
+        `os.environ.setdefault("IP", "0.0.0.0")`
+        `os.environ.setdefault("PORT", "5000")`
+        `os.environ.setdefault("SECRET_KEY", "your_secret_key")`
+
     - Install additional packages:
-        - pip3 install flask-paginate
+        - `pip3 install flask-paginate`
     - These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
 
 3. Update the requirements.txt file using the following command:
-    - pip3 freeze > requirements.txt
+    - `pip3 freeze > requirements.txt`
 
 4.  **Heroku Deployment**: The Project's source file was also pushed to Heroku via the `heroku master` branch. The CryptopediaWprld was deployed to [Heroku](https://heroku.com/) using the following steps:
 
@@ -269,13 +274,6 @@ Have the following installed in your IDE of choice:
 	- These files were added, commited and pushed to github using the commands `git add`  `git commit`  `git push` .
 
 	- From the Heroku dashboard the app was deployed using the "Deploy button" and connected to the gihub master branch for automatic deployments.
-
-	- New app configurations were added on "Settings" > "Reveal Config Vars":
-
-		- IP
-		- MONGO_URI
-		- PORT
-		- SECRET_KEY
 
 	- The web app is now successfully deployed.
 
