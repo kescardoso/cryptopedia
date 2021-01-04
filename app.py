@@ -1,4 +1,5 @@
 import os
+import re
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -57,7 +58,10 @@ def search_terms():
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
     mongo.db.terms.create_index([('term_name', 'text'),
                                  ('term_description', 'text')])
-    results = mongo.db.terms.find({"$text": {"$search": search}})
+    # results = mongo.db.terms.find({"$text": {"$search": search}})
+    query_string = re.compile(".*{0}.*".format(search), re.IGNORECASE)
+    print(query_string)
+    results = mongo.db.terms.find({"term_name": query_string})
     pagination = Pagination(page=page,
                             per_page=per_page,
                             results=results,
