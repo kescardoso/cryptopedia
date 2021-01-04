@@ -253,9 +253,13 @@ This project was developed using Gitpod as the chosen IDE and GitHub as a remote
         `import os`
 
         `os.environ.setdefault("MONGO_URI", "your_mongodb_credential_data")`
+        <br>
         `os.environ.setdefault("MONGO_DBNAME", "your_mongodb_name")`
+        <br>
         `os.environ.setdefault("IP", "0.0.0.0")`
+        <br>
         `os.environ.setdefault("PORT", "5000")`
+        <br>
         `os.environ.setdefault("SECRET_KEY", "your_secret_key")`
 
 3. Install additional packages:
