@@ -143,11 +143,11 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 ### Features Left to Implement
 
-1.  **Autocomplete Search:** at the moment, the app disposes of a full-text search form (which is the feature available for MongoDB search forms). With more complex functionalities such as Elastic search, it is possible to have a autocomplete search feature.
+1.  **Autocomplete Search:** at the moment, the app disposes of a full-text search form (which is the feature available for MongoDB search forms). With more complex functionalities (outside of the scope of this project) such as Elastic search, it is possible to have a autocomplete search feature in the future.
 
-2.  **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't display correctly on the first click.
+2.  **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't render the display correctly on the first click.
 
-3.  **Recover Password:** the register and login system used in this version is a lightweight and straightforward py-mongo method based on user-sessions. For a more sophisticated and robust user system, Flask-Login has more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens.
+3.  **Recover Password:** the register and login system used in this version is a lightweight and straightforward py-mongo method based on user-sessions. For a more sophisticated and robust user system (outside of the scope of this project), Flask-Login has more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens which can be implemented in future versions.
 
 4.  **Translations:** translations to both French and Portuguese are planned for future versions of this project.
 
@@ -183,9 +183,9 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 ## Testing
 
--  **Responsiveness** -- The responsiveness of this website was consistently tested during the development process: on GITPOD using the Chrome developer tools, as well as locally using real mobile devices, tablets, and desktops.
+-  **Responsiveness** -- The responsiveness of this website was consistently tested locally during the development process: on GITPOD using the Chrome developer tools, as well as physically using iPhone mobile devices, iPad tablets, and Mac desktop.
 
--  **Browsers** -- The website was tested and verified using in Chrome, Safari, Firefox, Brave and Opera.
+-  **Browsers** -- The website was tested and verified in Chrome, Safari, Firefox, Brave and Opera.
 
 -  **Code Validation** -- The following **validation services** were used to check the code:
 
