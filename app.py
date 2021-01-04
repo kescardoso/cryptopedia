@@ -50,7 +50,8 @@ def glossary():
                            pagination=pagination,)
 
 
-# Full text Search
+# Wildcard Search
+# Code Credit: https://stackoverflow.com/questions/55617412/how-to-perform-wildcard-searches-mongodb-in-python-with-pymongo
 @app.route('/search_terms', methods=['POST'])
 def search_terms():
     search = request.form.get('search')
@@ -58,9 +59,7 @@ def search_terms():
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
     mongo.db.terms.create_index([('term_name', 'text'),
                                  ('term_description', 'text')])
-    # results = mongo.db.terms.find({"$text": {"$search": search}})
     query_string = re.compile(".*{0}.*".format(search), re.IGNORECASE)
-    print(query_string)
     results = mongo.db.terms.find({"term_name": query_string})
     pagination = Pagination(page=page,
                             per_page=per_page,
@@ -108,8 +107,8 @@ def update_term(term_id):
     terms.update({'_id': ObjectId(term_id)},
                  {'term_name': request.form.get('term_name'),
                   'category_name': request.form.get('category_name'),
-                  'term_description': request.form.get('term_description'),
-                 })
+                  'term_description': request.form.get('term_description'),}
+                )
     return redirect(url_for('glossary'))
 
 
@@ -150,16 +149,14 @@ def insert_category():
 def edit_category(category_id):
     """ CRUD: get form to edit category """
     return render_template('editcategory.html',
-                           category=mongo.db.categories.find_one({'_id': ObjectId(category_id)})
-                          )
+                           category=mongo.db.categories.find_one({'_id': ObjectId(category_id)}))
 
 
 @app.route('/update_category/<category_id>', methods=['POST'])
 def update_category(category_id):
     """ CRUD: edit category into the database """
     mongo.db.categories.update({'_id': ObjectId(category_id)},
-                               {'category_name': request.form.get('category_name')}
-                              )
+                               {'category_name': request.form.get('category_name')})
     return redirect(url_for('categories'))
 
 
@@ -177,8 +174,7 @@ def terms_in(category):
     """ Query Terms by Category """
     return render_template('filterterms.html',
                            category=category,
-                           terms=mongo.db.terms.find({'category_name': category}).sort('term_name')
-                          )
+                           terms=mongo.db.terms.find({'category_name': category}).sort('term_name'))
 
 
 ### CREDITS ROUTE
