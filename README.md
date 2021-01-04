@@ -143,13 +143,13 @@ When Chloé researches the internet about crypto assets, she finds very complex 
 
 ### Features Left to Implement
 
-1.  **Autocomplete Search:** at the moment, the app disposes of a full-text search form (which is the feature available for MongoDB search forms). With more complex functionalities (outside of the scope of this project) such as Elastic search, it is possible to have a autocomplete search feature in the future.
+1.  **Wildcard Search:** at the development of the first version, the app disposes of a full-text search form (which is the feature available for MongoDB and pyMongo search forms). **In January 2021** a fully functioning widcard search box was achieved and implemented using $regex.
 
-2.  **Fix Add New Category Dropdown Form:** there is an issue coming from MaterializeCss where the dropdown doesn't render the display correctly on the first click.
+2.  **Recover Password:** the register and login system used in this version is a lightweight and straightforward pyMongo method based on user-sessions. For a more sophisticated and robust user system, a uthentication token system (i.e. JWT token) or the Flask-Login add-on have more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens which can be implemented in future versions. 
 
-3.  **Recover Password:** the register and login system used in this version is a lightweight and straightforward py-mongo method based on user-sessions. For a more sophisticated and robust user system (outside of the scope of this project), Flask-Login has more secure options for the register, login, and password handling, including the option for recovering passwords with temporary session tokens which can be implemented in future versions.
+3.  **Translations:** translations to both French and Portuguese are planned for future versions of this project.
 
-4.  **Translations:** translations to both French and Portuguese are planned for future versions of this project.
+4.  **Databse Update:** this project currently uses a document oriented database (MongoDB), which could be updated to a Relational Database (mySQL) to dispose of more functionlities in terms of users priviledges, user profile features, list of contributions by users, and admin priviledges for a more complex encyclopedia and database app based experience.
 
 ## Technologies Used
 
